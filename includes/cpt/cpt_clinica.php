@@ -49,6 +49,7 @@ function cpt_clinica() {
 		'capability_type'       => 'post',
 	);
 	register_post_type( 'clinica', $args );
+	flush_rewrite_rules();
 
 }
 add_action( 'init', 'cpt_clinica', 0 );

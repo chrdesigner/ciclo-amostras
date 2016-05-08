@@ -25,7 +25,7 @@ require plugin_dir_path( __FILE__ ) . 'includes/cpt/cpt_clinica.php';
 
 
 /**
- * Enqueue the date picker
+ * Register and Enqueue - Backend
  */
 
 function add_admin_scripts( $hook ) {
@@ -33,16 +33,30 @@ function add_admin_scripts( $hook ) {
     global $post;
 
     if ( $hook == 'post-new.php' || $hook == 'post.php' ) {
-        if ( 'clinica' === $post->post_type ) {     
-            
-			wp_register_style( 'jquery-ui-styles','//code.jquery.com/ui/1.11.4/themes/smoothness/jquery-ui.css' );
-			wp_enqueue_style( 'jquery-ui-styles' );
+        if ( 'clinica' === $post->post_type ) { 
 
-			wp_enqueue_script( 'field-date-js', plugin_dir_url( __FILE__ ) . 'assets/js/field_date.js', array('jquery', 'jquery-ui-core', 'jquery-ui-datepicker'), true );
-			wp_enqueue_style( 'jquery-ui-datepicker' );
+        	wp_enqueue_script( 'ca-maskedinput-js', plugin_dir_url( __FILE__ ) . 'assets/js/jquery.maskedinput.min.js', false, true );
+			wp_enqueue_script( 'ca-main-js', plugin_dir_url( __FILE__ ) . 'assets/js/main.js', array('jquery'), true );
+
+			// wp_register_style( 'jquery-ui-styles','//code.jquery.com/ui/1.11.4/themes/smoothness/jquery-ui.css' );
+			// wp_enqueue_style( 'jquery-ui-styles' );
+
+			// wp_enqueue_script( 'field-date-js', plugin_dir_url( __FILE__ ) . 'assets/js/field_date.js', array('jquery', 'jquery-ui-core', 'jquery-ui-datepicker'), true );
+			// wp_enqueue_style( 'jquery-ui-datepicker' );
 
         }
     }
+}
+
+
+// Register and Enqueue - Frontend
+function add_frontend_scripts() {
+
+	if ( is_singular('clinica') ) {
+		wp_enqueue_script( 'ca-maskedinput-js', plugin_dir_url( __FILE__ ) . 'assets/js/jquery.maskedinput.min.js', false, true );
+		wp_enqueue_script( 'ca-main-js', plugin_dir_url( __FILE__ ) . 'assets/js/main.js', array('jquery'), true );
+	}
+
 }
 
 
@@ -54,7 +68,9 @@ function acf_install_init() {
 	if( class_exists( 'acf' ) ) {
  		
  		include_once plugin_dir_path( __FILE__ ) . 'includes/acf/acf-clinica.php';
+ 		
  		add_action( 'admin_enqueue_scripts', 'add_admin_scripts', 10, 1 );
+ 		add_action( 'wp_enqueue_scripts', 'add_frontend_scripts' );
 
 	}else{
 		add_action( 'admin_notices', 'admin_notice_acf_activation');
@@ -78,7 +94,7 @@ function include_template_showcase( $template_path ) {
             if ( $theme_file = locate_template( array ( 'single-clinica.php' ) ) ) {
                 $template_path = $theme_file;
             } else {
-                $template_path = plugin_dir_path( __FILE__ ) . '/single-clinica.php';
+                $template_path = plugin_dir_path( __FILE__ ) . '/themes/single-clinica.php';
             }
         }
     }

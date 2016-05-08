@@ -107,16 +107,16 @@ if(function_exists("register_field_group"))
 				'formatting' => 'html',
 				'maxlength' => '',
 			),
-			array (
-				'key' => 'field_572e82b8a73ac',
-				'label' => 'Senha de acesso',
-				'name' => 'senha_de_acesso_clinica',
-				'type' => 'password',
-				'required' => 1,
-				'placeholder' => '',
-				'prepend' => '',
-				'append' => '',
-			),
+			// array (
+			// 	'key' => 'field_572e82b8a73ac',
+			// 	'label' => 'Senha de acesso',
+			// 	'name' => 'senha_de_acesso_clinica',
+			// 	'type' => 'password',
+			// 	'required' => 1,
+			// 	'placeholder' => '',
+			// 	'prepend' => '',
+			// 	'append' => '',
+			// ),
 		),
 		'location' => array (
 			array (
