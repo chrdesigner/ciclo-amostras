@@ -25,8 +25,6 @@ class acf_brazilian_city_field extends acf_field {
             'version' => '1.0.1'
         );
     }
-    
-    
 
     function create_field( $field )
     {
@@ -53,7 +51,7 @@ class acf_brazilian_city_field extends acf_field {
 
             <ul class="country-selector-list">
                 <li id="field-<?php echo $fieldName; ?>[state_id]">
-                        <strong><?php _e("Selecione o estado", 'acf'); ?></strong><br />
+                        <strong><?php _e("Estado", 'acf'); ?></strong><br />
 
                         <?php
 
@@ -68,7 +66,7 @@ class acf_brazilian_city_field extends acf_field {
                         ?>
                 </li>
                 <li id="field-<?php echo $fieldName; ?>[city_id]">
-                        <strong><?php _e("Selecione a cidade", 'acf'); ?></strong><br />
+                        <strong><?php _e("Cidade", 'acf'); ?></strong><br />
                         <?php
 
                         $city_field = $field['name'] . '[city_id]';
