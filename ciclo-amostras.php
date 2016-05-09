@@ -12,6 +12,8 @@
  * Domain Path:       /languages
  */
 
+load_plugin_textdomain( 'ciclo-amostras', false, dirname( plugin_basename(__FILE__) ) . '/languages/' );
+
 // If this file is called directly, abort.
 if ( ! defined( 'WPINC' ) ) {
 	die;
@@ -23,6 +25,20 @@ if ( ! defined( 'WPINC' ) ) {
 
 require plugin_dir_path( __FILE__ ) . 'includes/cpt/cpt_clinica.php';
 
+
+/**
+ * Remover as Metabox não desejadas
+ */
+if ( is_admin() ) {
+
+	function remove_meta_boxes() {
+		remove_meta_box( 'mymetabox_revslider_0', 'clinica', 'normal' );
+		remove_meta_box( 'pyre_post_options', 'clinica', 'advanced' );
+	}
+
+	add_action( 'do_meta_boxes', 'remove_meta_boxes' );
+	
+}
 
 /**
  * Register and Enqueue - Backend
@@ -59,6 +75,31 @@ function add_frontend_scripts() {
 
 }
 
+// Todos os Creditos para https://github.com/luizhguimaraes/acf-brazilian-city
+
+function register_fields_brazilian_city() {
+    include_once('includes/acf/acf-brazilian-city-field.php');
+}
+
+
+function populate_db() {
+    require_once(ABSPATH . 'wp-admin/includes/upgrade.php');
+
+    ob_start();
+    include_once plugin_dir_path( __FILE__ ) . 'lib/install-data.php';
+    $sql = ob_get_clean();
+    dbDelta( $sql );
+}
+
+function depopulate_db() {
+    require_once(ABSPATH . 'wp-admin/includes/upgrade.php');
+
+    ob_start();
+    include_once plugin_dir_path( __FILE__ ) . 'lib/drop-tables.php';
+    $sql = ob_get_clean();
+    dbDelta( $sql );
+}
+
 
 /**
  * Aplicação e verificação dos custom fields
@@ -69,6 +110,12 @@ function acf_install_init() {
  		
  		include_once plugin_dir_path( __FILE__ ) . 'includes/acf/acf-clinica.php';
  		
+
+ 		add_action('acf/register_fields', 'register_fields_brazilian_city');  
+ 		// Activate and deactivate hooks
+		register_activation_hook( __FILE__, 'populate_db' );
+		register_deactivation_hook( __FILE__, 'depopulate_db' );
+
  		add_action( 'admin_enqueue_scripts', 'add_admin_scripts', 10, 1 );
  		add_action( 'wp_enqueue_scripts', 'add_frontend_scripts' );
 
@@ -87,8 +134,8 @@ function admin_notice_acf_activation() {
 }
 
 
-add_filter( 'template_include', 'include_template_showcase', 1 );
-function include_template_showcase( $template_path ) {
+add_filter( 'template_include', 'include_template_single', 1 );
+function include_template_single( $template_path ) {
     if ( get_post_type() == 'clinica' ) {
         if ( is_single() ) {
             if ( $theme_file = locate_template( array ( 'single-clinica.php' ) ) ) {

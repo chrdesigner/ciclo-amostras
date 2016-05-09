@@ -133,21 +133,43 @@ if(function_exists("register_field_group"))
 			'position' => 'normal',
 			'layout' => 'no_box',
 			'hide_on_screen' => array (
-				0 => 'the_content',
-				1 => 'excerpt',
-				2 => 'custom_fields',
-				3 => 'discussion',
-				4 => 'comments',
-				5 => 'revisions',
-				6 => 'slug',
-				7 => 'author',
-				8 => 'format',
-				9 => 'featured_image',
-				10 => 'categories',
-				11 => 'tags',
-				12 => 'send-trackbacks',
 			),
 		),
-		'menu_order' => 1,
+		'menu_order' => 2,
+	));
+
+	register_field_group(array (
+		'id' => 'acf_ativonao-ativo',
+		'title' => 'Ativo/Não Ativo',
+		'fields' => array (
+			array (
+				'key' => 'field_5730834a62b92',
+				'label' => 'Situação do Cadastro',
+				'name' => 'situacao_do_cadastro',
+				'type' => 'true_false',
+				'instructions' => 'Selecione o campo se o cadastro não estiver mais ativo',
+				'required' => 1,
+				'message' => 'Esse cadastrado não esta mais ativo',
+				'default_value' => 0,
+			),
+		),
+		'location' => array (
+			array (
+				array (
+					'param' => 'post_type',
+					'operator' => '==',
+					'value' => 'clinica',
+					'order_no' => 0,
+					'group_no' => 0,
+				),
+			),
+		),
+		'options' => array (
+			'position' => 'side',
+			'layout' => 'no_box',
+			'hide_on_screen' => array (
+			),
+		),
+		'menu_order' => 2,
 	));
 }
