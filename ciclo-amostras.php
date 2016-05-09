@@ -14,6 +14,10 @@
 
 load_plugin_textdomain( 'ciclo-amostras', false, dirname( plugin_basename(__FILE__) ) . '/languages/' );
 
+// Activate and deactivate hooks
+register_activation_hook( __FILE__, 'populate_db' );
+register_deactivation_hook( __FILE__, 'depopulate_db' );
+
 // If this file is called directly, abort.
 if ( ! defined( 'WPINC' ) ) {
 	die;
@@ -54,12 +58,6 @@ function add_admin_scripts( $hook ) {
         	wp_enqueue_script( 'ca-maskedinput-js', plugin_dir_url( __FILE__ ) . 'assets/js/jquery.maskedinput.min.js', false, true );
 			wp_enqueue_script( 'ca-main-js', plugin_dir_url( __FILE__ ) . 'assets/js/main.js', array('jquery'), true );
 
-			// wp_register_style( 'jquery-ui-styles','//code.jquery.com/ui/1.11.4/themes/smoothness/jquery-ui.css' );
-			// wp_enqueue_style( 'jquery-ui-styles' );
-
-			// wp_enqueue_script( 'field-date-js', plugin_dir_url( __FILE__ ) . 'assets/js/field_date.js', array('jquery', 'jquery-ui-core', 'jquery-ui-datepicker'), true );
-			// wp_enqueue_style( 'jquery-ui-datepicker' );
-
         }
     }
 }
@@ -76,30 +74,9 @@ function add_frontend_scripts() {
 }
 
 // Todos os Creditos para https://github.com/luizhguimaraes/acf-brazilian-city
-
 function register_fields_brazilian_city() {
     include_once('includes/acf/acf-brazilian-city-field.php');
 }
-
-
-function populate_db() {
-    require_once(ABSPATH . 'wp-admin/includes/upgrade.php');
-
-    ob_start();
-    include_once plugin_dir_path( __FILE__ ) . 'lib/install-data.php';
-    $sql = ob_get_clean();
-    dbDelta( $sql );
-}
-
-function depopulate_db() {
-    require_once(ABSPATH . 'wp-admin/includes/upgrade.php');
-
-    ob_start();
-    include_once plugin_dir_path( __FILE__ ) . 'lib/drop-tables.php';
-    $sql = ob_get_clean();
-    dbDelta( $sql );
-}
-
 
 /**
  * Aplicação e verificação dos custom fields
@@ -110,14 +87,10 @@ function acf_install_init() {
  		
  		include_once plugin_dir_path( __FILE__ ) . 'includes/acf/acf-clinica.php';
  		
-
- 		add_action('acf/register_fields', 'register_fields_brazilian_city');  
- 		// Activate and deactivate hooks
-		register_activation_hook( __FILE__, 'populate_db' );
-		register_deactivation_hook( __FILE__, 'depopulate_db' );
-
  		add_action( 'admin_enqueue_scripts', 'add_admin_scripts', 10, 1 );
  		add_action( 'wp_enqueue_scripts', 'add_frontend_scripts' );
+
+ 		add_action('acf/register_fields', 'register_fields_brazilian_city');
 
 	}else{
 		add_action( 'admin_notices', 'admin_notice_acf_activation');
@@ -146,4 +119,22 @@ function include_template_single( $template_path ) {
         }
     }
     return $template_path;
+}
+
+function populate_db() {
+    require_once(ABSPATH . 'wp-admin/includes/upgrade.php');
+
+    ob_start();
+    require_once "lib/install-data.php";
+    $sql = ob_get_clean();
+    dbDelta( $sql );
+}
+
+function depopulate_db() {
+    require_once(ABSPATH . 'wp-admin/includes/upgrade.php');
+
+    ob_start();
+    require_once "lib/drop-tables.php";
+    $sql = ob_get_clean();
+    dbDelta( $sql );
 }
