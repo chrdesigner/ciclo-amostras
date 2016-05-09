@@ -5,7 +5,7 @@ jQuery(function($) {
 
 	$.mask.definitions['~']='[+-]';
 	//Inicio Mascara Telefone
-	$('#acf-field-telefone_clinica, #acf-field-celular_clinica').focusout(function(){
+	$('#acf-field-telefone_clinica, #acf-field-telefone_promotor, #acf-field-celular_clinica, #acf-field-celular_promotor').focusout(function(){
 		var phone, element;
 		element = $(this);
 		element.unmask();

@@ -28,16 +28,18 @@ if ( ! defined( 'WPINC' ) ) {
  */
 
 require plugin_dir_path( __FILE__ ) . 'includes/cpt/cpt_clinica.php';
-
+require plugin_dir_path( __FILE__ ) . 'includes/cpt/cpt_promotor.php';
 
 /**
  * Remover as Metabox não desejadas
  */
+
 if ( is_admin() ) {
 
 	function remove_meta_boxes() {
-		remove_meta_box( 'mymetabox_revslider_0', 'clinica', 'normal' );
-		remove_meta_box( 'pyre_post_options', 'clinica', 'advanced' );
+		remove_meta_box( 'mymetabox_revslider_0', array('clinica', 'promotor'), 'normal' );
+		remove_meta_box( 'wpseo_meta', array('clinica', 'promotor'), 'normal' );
+		remove_meta_box( 'pyre_post_options', array('clinica', 'promotor'), 'advanced' );
 	}
 
 	add_action( 'do_meta_boxes', 'remove_meta_boxes' );
@@ -53,7 +55,7 @@ function add_admin_scripts( $hook ) {
     global $post;
 
     if ( $hook == 'post-new.php' || $hook == 'post.php' ) {
-        if ( 'clinica' === $post->post_type ) { 
+        if ( 'clinica' === $post->post_type || 'promotor' === $post->post_type ) { 
 
         	wp_enqueue_script( 'ca-maskedinput-js', plugin_dir_url( __FILE__ ) . 'assets/js/jquery.maskedinput.min.js', false, true );
 			wp_enqueue_script( 'ca-main-js', plugin_dir_url( __FILE__ ) . 'assets/js/main.js', array('jquery'), true );
@@ -66,7 +68,7 @@ function add_admin_scripts( $hook ) {
 // Register and Enqueue - Frontend
 function add_frontend_scripts() {
 
-	if ( is_singular('clinica') ) {
+	if ( is_singular('clinica') || is_singular('promotor') ) {
 		wp_enqueue_script( 'ca-maskedinput-js', plugin_dir_url( __FILE__ ) . 'assets/js/jquery.maskedinput.min.js', false, true );
 		wp_enqueue_script( 'ca-main-js', plugin_dir_url( __FILE__ ) . 'assets/js/main.js', array('jquery'), true );
 	}
@@ -86,6 +88,7 @@ function acf_install_init() {
 	if( class_exists( 'acf' ) ) {
  		
  		include_once plugin_dir_path( __FILE__ ) . 'includes/acf/acf-clinica.php';
+ 		include_once plugin_dir_path( __FILE__ ) . 'includes/acf/acf-promotor.php';
  		
  		add_action( 'admin_enqueue_scripts', 'add_admin_scripts', 10, 1 );
  		add_action( 'wp_enqueue_scripts', 'add_frontend_scripts' );
@@ -109,12 +112,12 @@ function admin_notice_acf_activation() {
 
 add_filter( 'template_include', 'include_template_single', 1 );
 function include_template_single( $template_path ) {
-    if ( get_post_type() == 'clinica' ) {
+    if ( get_post_type() == 'clinica' || get_post_type() == 'promotor' ) {
         if ( is_single() ) {
-            if ( $theme_file = locate_template( array ( 'single-clinica.php' ) ) ) {
+            if ( $theme_file = locate_template( array ( 'single-amostras.php' ) ) ) {
                 $template_path = $theme_file;
             } else {
-                $template_path = plugin_dir_path( __FILE__ ) . '/themes/single-clinica.php';
+                $template_path = plugin_dir_path( __FILE__ ) . '/themes/single-amostras.php';
             }
         }
     }
