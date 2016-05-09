@@ -89,6 +89,9 @@ function acf_install_init() {
  		
  		include_once plugin_dir_path( __FILE__ ) . 'includes/acf/acf-clinica.php';
  		include_once plugin_dir_path( __FILE__ ) . 'includes/acf/acf-promotor.php';
+
+ 		include_once plugin_dir_path( __FILE__ ) . 'includes/role-register.php';
+ 		include_once plugin_dir_path( __FILE__ ) . 'includes/register-user.php';
  		
  		add_action( 'admin_enqueue_scripts', 'add_admin_scripts', 10, 1 );
  		add_action( 'wp_enqueue_scripts', 'add_frontend_scripts' );
@@ -96,7 +99,9 @@ function acf_install_init() {
  		add_action('acf/register_fields', 'register_fields_brazilian_city');
 
 	}else{
+		
 		add_action( 'admin_notices', 'admin_notice_acf_activation');
+		
 	}
 }
 add_action( 'plugins_loaded', 'acf_install_init' );
