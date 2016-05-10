@@ -33,7 +33,7 @@ function cpt_promotor() {
 		'label'                 => __( 'Promotor', 'ciclo-amostras' ),
 		'description'           => __( 'Cadastrar Promotor', 'ciclo-amostras' ),
 		'labels'                => $labels,
-		'supports'              => array( 'title', ),
+		'supports'              => array( 'title'),
 		'hierarchical'          => false,
 		'public'                => true,
 		'show_ui'               => true,

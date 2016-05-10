@@ -5,8 +5,10 @@
 
 	add_action('acf/save_post', 'promotor_postdata', 10);
 	function promotor_postdata( $post_id ) {
-	    
-	    global $wpdb;
+
+		if ( get_post_type( $post_id ) != 'promotor' || get_post_type( $post_id ) == 'acf' ) return;
+
+		global $wpdb;
 
 		$firstname = get_post_meta($post_id, 'post_title', true);
 		$lastname = get_post_meta($post_id, 'sobrenome_promotor', true);
@@ -52,6 +54,7 @@
 
 		return $user_id;
 
+
 	}
 
 /*
@@ -61,7 +64,7 @@
 	add_action( 'acf/save_post', 'update_promotor', 10, 2 );
 	function update_promotor( $post_id ) {
 	    
-	    if ( get_post_type( $post_id ) == 'acf' ) return;
+	    if ( get_post_type( $post_id ) != 'promotor' || get_post_type( $post_id ) == 'acf' ) return;
 	    
 	    $fields = get_field_objects( $post_id );
 
@@ -71,15 +74,21 @@
 	    $post_last_name = get_field('sobrenome_promotor', $post_id) . ' ' . $value;
 	    $new_slug = sanitize_title( $post_first_name . $post_last_name);
 
+	    $email_register = get_post_meta($post_id, 'email_promotor', true);
+
+	    $find_userID = get_user_by( 'email', $email_register );
+
 	    $post = array(
 	        'ID'           => $post_id,
 	        'post_title'   => $post_first_name . $post_last_name,
 		  	'post_name'    => $new_slug,
+		  	'author'       => $find_userID->ID,
 	        'post_status'  => 'publish'
 	    );
-		
+
 	    wp_update_post( $post );
-	    add_action( 'acf/save_post', 'update_promotor' );
+
+	    add_action( 'acf/save_post', 'saved_promotor' );
 
 	    $_POST['return'] = add_query_arg( 'updated', 'true', get_permalink( $post_id ) );
 
