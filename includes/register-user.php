@@ -31,7 +31,7 @@ function promotor_postdata( $post_id ) {
 	    	return $post_id;
 		   
 	    }
-	    
+
     	$userdata = array(
 			'ID' 		 => $user_id,
 			'first_name' => $firstname,
