@@ -1,6 +1,11 @@
 // <![CDATA[
 jQuery(function($) {
 	
+	//find the hidden post type input, and grab the value
+	if($('#post_type').val() === 'promotor'){
+		$('#title').attr('disabled','disabled');
+	}
+
 	$( "#post-body .field" ).removeClass( "required" );
 
 	$.mask.definitions['~']='[+-]';
