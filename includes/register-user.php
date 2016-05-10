@@ -26,7 +26,7 @@
 				'first_name'   => $firstname,
 				'last_name'	   => $lastname,
 				'user_email'   => $email,
-				'display_name' => $firstname . $lastname
+				'display_name' => $firstname . ' ' . $lastname
 			);
 
 	    	$post_id = wp_update_user($xuserdata);
@@ -74,19 +74,23 @@
 	    $post_last_name = get_field('sobrenome_promotor', $post_id) . ' ' . $value;
 	    $new_slug = sanitize_title( $post_first_name . $post_last_name);
 
-	    $email_register = get_post_meta($post_id, 'email_promotor', true);
-
+	    $email_register = get_field('email_promotor', $post_id) . ' ' . $value;
 	    $find_userID = get_user_by( 'email', $email_register );
+	    $userID = $find_userID->ID;
 
 	    $post = array(
-	        'ID'           => $post_id,
-	        'post_title'   => $post_first_name . $post_last_name,
-		  	'post_name'    => $new_slug,
-		  	'author'       => $find_userID->ID,
-	        'post_status'  => 'publish'
+	        'ID'			=> $post_id,
+	        'post_title'	=> $post_first_name . $post_last_name,
+		  	'post_name'		=> $new_slug,
+		  	'post_author'	=> $userID,
+	        'post_status'	=> 'publish'
 	    );
 
-	    wp_update_post( $post );
+		// echo '<pre>';
+		// 	var_dump($post);
+		// echo '</pre>';
+
+		wp_update_post( $post );
 
 	    add_action( 'acf/save_post', 'saved_promotor' );
 

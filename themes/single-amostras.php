@@ -9,6 +9,8 @@
 				
 				<h1><?php the_title(); ?></h1>
 				
+				<?php if(is_singular('promotor')){ echo get_the_author(); } ; ?>
+
 				<?php acf_form(); ?>
 
 			<?php endwhile; ?>
