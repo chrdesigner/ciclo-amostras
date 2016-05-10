@@ -31,6 +31,12 @@ require plugin_dir_path( __FILE__ ) . 'includes/cpt/cpt_clinica.php';
 require plugin_dir_path( __FILE__ ) . 'includes/cpt/cpt_promotor.php';
 
 /**
+ * Personalição da(s) coluna(s)
+ */
+
+require plugin_dir_path( __FILE__ ) . 'admin/edit-column-promotor.php';
+
+/**
  * Remover as Metabox não desejadas
  */
 

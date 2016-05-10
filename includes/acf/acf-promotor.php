@@ -47,6 +47,11 @@ if(function_exists("register_field_group"))
 				'label' => 'Selecione o Estado e a Cidade',
 				'name' => 'estado_cidade_promotor',
 				'type' => 'COUNTRY_FIELD',
+				'required' => 1,
+				'city_name' => '',
+				'state_name' => '',
+				'city_id' => 0,
+				'state_id' => '',
 			),
 			array (
 				'key' => 'field_972e8290a73aa',

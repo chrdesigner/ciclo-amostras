@@ -4,9 +4,10 @@ jQuery(function($) {
 	//find the hidden post type input, and grab the value
 	if($('#post_type').val() === 'promotor'){
 		$('#title').attr('disabled','disabled');
+		$( "#post-body #acf-estado_cidade_promotor.field" ).removeClass( "required" );
+		$( "#post-body #acf-telefone_promotor.field" ).removeClass( "required" );
+		$( "#post-body #acf-celular_promotor.field" ).removeClass( "required" );
 	}
-
-	$( "#post-body .field" ).removeClass( "required" );
 
 	$.mask.definitions['~']='[+-]';
 	//Inicio Mascara Telefone
