@@ -35,7 +35,7 @@ class PageTemplater {
             );
             
             $this->templates = array(
-                    'template-restrita.php'     => 'Área Restrita',
+                    '../template-restrita.php'     => 'Área Restrita',
             );
             
     } 

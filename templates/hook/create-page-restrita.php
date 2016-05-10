@@ -11,8 +11,10 @@
 	        'post_status'    => 'publish',
 	        'post_author'    => 1,
 	        'menu_order'     => 0,
-	        'page_template'  => 'template-restrita.php',
 	    );
-	    wp_insert_post( $page_area_restrita );
+	    
+	    $postID = wp_insert_post($page_area_restrita, $error);
+
+	    update_post_meta($postID, "_wp_page_template", "../template-restrita.php");
 
 	}

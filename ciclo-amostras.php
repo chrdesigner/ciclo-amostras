@@ -87,11 +87,6 @@ function register_fields_brazilian_city() {
 }
 
 
-function register_page_restricted_area() {
-    require_once('includes/hook/create-page-restrita.php');
-}
-register_activation_hook( __FILE__, 'register_page_restricted_area' );
-
 /**
  * Aplicação e verificação dos custom fields
  */
@@ -131,7 +126,12 @@ function admin_notice_acf_activation() {
  * Cria e verifica single/page personalizada
  */
 
-require_once('templates/class-page-templater.php');
+function register_page_restricted_area() {
+    require_once('templates/hook/create-page-restrita.php');
+}
+register_activation_hook( __FILE__, 'register_page_restricted_area' );
+
+require_once('templates/class/class-page-templater.php');
 
 add_filter( 'template_include', 'include_template_single', 1 );
 function include_template_single( $template_path ) {
