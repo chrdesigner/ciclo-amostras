@@ -70,7 +70,6 @@ function add_admin_scripts( $hook ) {
     }
 }
 
-
 // Register and Enqueue - Frontend
 function add_frontend_scripts() {
 
@@ -85,7 +84,6 @@ function add_frontend_scripts() {
 function register_fields_brazilian_city() {
     include_once('includes/acf/acf-brazilian-city-field.php');
 }
-
 
 /**
  * Aplicação e verificação dos custom fields
@@ -133,6 +131,8 @@ register_activation_hook( __FILE__, 'register_page_restricted_area' );
 
 require_once('templates/class/class-page-templater.php');
 
+require_once('includes/edit-page-template.php');
+
 add_filter( 'template_include', 'include_template_single', 1 );
 function include_template_single( $template_path ) {
 
@@ -157,7 +157,6 @@ function include_template_single( $template_path ) {
     return $template_path;
 }
 
-
 /**
  * Populate o SQL com os Estados e Cidades
  */
@@ -179,6 +178,3 @@ function depopulate_db() {
     $sql = ob_get_clean();
     dbDelta( $sql );
 }
-
-
-
