@@ -86,6 +86,12 @@ function register_fields_brazilian_city() {
     include_once('includes/acf/acf-brazilian-city-field.php');
 }
 
+
+function register_page_restricted_area() {
+    require_once('includes/hook/create-page-restrita.php');
+}
+register_activation_hook( __FILE__, 'register_page_restricted_area' );
+
 /**
  * Aplicação e verificação dos custom fields
  */
@@ -121,20 +127,40 @@ function admin_notice_acf_activation() {
     echo '<div class="error"><p>' . __('O Ciclo de Amostras precisa do <b>Advanced Custom Fields</b> instalado e ativo.' , 'ciclo-amostras' ) . '</p></div>';
 }
 
+/**
+ * Cria e verifica single/page personalizada
+ */
+
+require_once('templates/class-page-templater.php');
 
 add_filter( 'template_include', 'include_template_single', 1 );
 function include_template_single( $template_path ) {
+
     if ( get_post_type() == 'clinica' || get_post_type() == 'promotor' ) {
         if ( is_single() ) {
             if ( $theme_file = locate_template( array ( 'single-amostras.php' ) ) ) {
                 $template_path = $theme_file;
             } else {
-                $template_path = plugin_dir_path( __FILE__ ) . '/themes/single-amostras.php';
+                $template_path = plugin_dir_path( __FILE__ ) . '/templates/single-amostras.php';
             }
         }
+    } elseif ( is_page_template( 'template-restrita.php' )) {
+    
+        if ( $theme_file = locate_template( array ( 'template-restrita.php' ) ) ) {
+            $template_path = $theme_file;
+        } else {
+            $template_path = plugin_dir_path( __FILE__ ) . '/templates/template-restrita.php';
+        }
+        
     }
+    
     return $template_path;
 }
+
+
+/**
+ * Populate o SQL com os Estados e Cidades
+ */
 
 function populate_db() {
     require_once(ABSPATH . 'wp-admin/includes/upgrade.php');
@@ -153,3 +179,6 @@ function depopulate_db() {
     $sql = ob_get_clean();
     dbDelta( $sql );
 }
+
+
+
