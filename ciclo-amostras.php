@@ -86,22 +86,23 @@ function register_fields_brazilian_city() {
 
 function acf_install_init() {
 	if( class_exists( 'acf' ) ) {
- 		
+ 		// Custom Fields
  		include_once plugin_dir_path( __FILE__ ) . 'includes/acf/acf-clinica.php';
  		include_once plugin_dir_path( __FILE__ ) . 'includes/acf/acf-promotor.php';
 
+ 		// Registro e Permissão Promotor
  		include_once plugin_dir_path( __FILE__ ) . 'includes/role-register.php';
  		include_once plugin_dir_path( __FILE__ ) . 'includes/register-user.php';
  		
+ 		// Scripts
  		add_action( 'admin_enqueue_scripts', 'add_admin_scripts', 10, 1 );
  		add_action( 'wp_enqueue_scripts', 'add_frontend_scripts' );
-
  		add_action('acf/register_fields', 'register_fields_brazilian_city');
 
 	}else{
 		
 		add_action( 'admin_notices', 'admin_notice_acf_activation');
-		
+
 	}
 }
 add_action( 'plugins_loaded', 'acf_install_init' );
