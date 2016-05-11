@@ -33,7 +33,7 @@ function cpt_clinica() {
 		'label'                 => __( 'Clínica', 'ciclo-amostras' ),
 		'description'           => __( 'Cadastrar Clínica', 'ciclo-amostras' ),
 		'labels'                => $labels,
-		'supports'              => array( 'title', ),
+		'supports'              => array( 'title', 'author'),
 		'hierarchical'          => false,
 		'public'                => true,
 		'show_ui'               => true,

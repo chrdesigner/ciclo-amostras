@@ -7,8 +7,8 @@ if(function_exists("register_field_group"))
 		'fields' => array (
 			array (
 				'key' => 'field_572e81e6a73a4',
-				'label' => 'Nome',
-				'name' => 'post_title',
+				'label' => 'Nome do Veterinário',
+				'name' => 'nome_clinica',
 				'type' => 'text',
 				'required' => 1,
 				'default_value' => '',
@@ -21,7 +21,7 @@ if(function_exists("register_field_group"))
 			array (
 				'key' => 'field_572e8207a73a5',
 				'label' => 'Clínica',
-				'name' => 'clinica_clinica',
+				'name' => 'post_title',
 				'type' => 'text',
 				'required' => 1,
 				'default_value' => '',
@@ -118,7 +118,7 @@ if(function_exists("register_field_group"))
 				'name' => 'situacao_do_cadastro',
 				'type' => 'true_false',
 				'instructions' => 'Selecione o campo se o cadastro não estiver mais ativo',
-				'required' => 1,
+				'required' => 0,
 				'message' => 'Esse cadastrado não esta mais ativo',
 				'default_value' => 0,
 			),
