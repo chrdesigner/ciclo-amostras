@@ -49,6 +49,10 @@
 	content: " |";
 }
 
+.header-restrita > div.main-info-restrita nav ul li a{
+	width: 100%;
+}
+
 .header-restrita > div.main-info-restrita nav ul li a:before{
 	display: block;
     font-size: 35px;

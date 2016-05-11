@@ -19,17 +19,6 @@
 			
 		require plugin_dir_path( __FILE__ ) . 'header-restitra.php';
 
-		$args = array (
-			'post_type'              => array( 'clinica' ),
-			'post_status'            => array( 'publish' ),
-			'author'                 => get_current_user_id(),
-			'posts_per_page'         => -1,
-		);
-		
-		$loop_inscricao = new WP_Query( $args );
-
-		
-		if ( $loop_inscricao->have_posts() ) {
 	?>
 			<div class="table-2">
 				<h3 style="text-align: center; text-transform: uppercase;">Informações da(s) Minha(s) Clinica(s)</h3>
@@ -48,7 +37,20 @@
 						</tr>
 					</thead>
 					<tbody>
-					<?php while ( $loop_inscricao->have_posts() ) { $loop_inscricao->the_post(); ?>
+					<?php
+
+					$args = array (
+						'post_type'              => array( 'clinica' ),
+						'post_status'            => array( 'publish' ),
+						'author'                 => get_current_user_id(),
+						'posts_per_page'         => -1,
+					);
+
+					$loop_inscricao = new WP_Query( $args );
+
+					if ( $loop_inscricao->have_posts() ) {
+
+						while ( $loop_inscricao->have_posts() ) { $loop_inscricao->the_post(); ?>
 						<tr class="clickable-row" data-href="<?php the_permalink();?>">
 							<td>
 								<?php the_title(); ?>
@@ -87,7 +89,13 @@
 								?>
 							</td>
 						</tr>
-					<?php } ?>
+					<?php } } else { ?>
+						<tr>
+							<td colspan="8" align="center">
+								Não existe nenhuma clínica cadastrada...
+							</td>
+						</tr>
+					<?php } wp_reset_postdata(); ?>
 					</tbody>
 					<tfoot>
 						<tr>
@@ -123,11 +131,6 @@
 					});
 				});
 			</script>
-				<?php
-			} 	
-
-			wp_reset_postdata();
-		?>
 
 	
 	<?php }; ?>
