@@ -111,110 +111,18 @@
 					</tfoot>
 				</table>
 			</div>
-				<script type="text/javascript">
-					jQuery(document).ready(function($) {
-					    $('.clickable-row').click(function() {
-					        window.document.location = $(this).data('href');
-					    });
-					    $( '.adicionar-clinica' ).click(function() {
-						  $( '#campos-clinica' ).toggle( 'slow', function() {
-						    // Animation complete.
-						  });
-						});
+			<script type="text/javascript">
+				jQuery(document).ready(function($) {
+				    $('.clickable-row').click(function() {
+				        window.document.location = $(this).data('href');
+				    });
+				    $( '.adicionar-clinica' ).click(function() {
+					  $( '#campos-clinica' ).toggle( 'slow', function() {
+					    // Animation complete.
+					  });
 					});
-				</script>
-
-				<style type="text/css">
-					.header-restrita{
-						display: table;
-						width: 100%;
-					}
-
-					.header-restrita > div{
-						display: table-cell;
-						vertical-align: middle;
-					}
-
-					.header-restrita > div.main-info-restrita{
-						width: 90%;
-					}
-
-					.header-restrita > div.logout-restrita{
-						width: 10%;
-						text-align: right;
-					}
-
-					.header-restrita > div.main-info-restrita nav{
-						width: 100%;
-						text-align: left;
-					}
-
-					.header-restrita > div.main-info-restrita nav ul{
-						list-style-type: none;
-						margin: 0 0;
-						padding: 0;
-					}
-
-					.table-clinicas{
-						width: 100%;
-						margin-bottom: 45px;
-					}
-
-					.table-clinicas > tbody > tr{
-						cursor: pointer;
-					}
-
-					.table-clinicas > tbody > tr:hover{
-						background-color: rgba(53, 53, 53, .7);
-					}
-
-					.table-clinicas > tbody > tr:nth-child(even){
-						background-color: #23282D;
-					}
-
-					.table-clinicas > tbody > tr:hover:nth-child(even){
-						background-color: rgba(35, 40, 45, .6);
-					}
-
-					.table-clinicas > tbody > tr > td{
-						padding-top: 15px;
-						padding-bottom: 15px;
-					}
-
-					.table-clinicas > tfoot > tr{
-						background-color: #383838;
-						border-top: 3px solid #aaa9a9;
-					}
-
-					.table-clinicas > tfoot > tr > td{
-						padding-top: 15px;
-						padding-bottom: 15px;
-					}
-
-					.table-clinicas > tfoot > tr > td #new_post label{
-						cursor: pointer;
-						color: #ED2224;
-						font-weight: bold;
-						text-transform: uppercase;
-					}
-
-					.table-clinicas > tfoot > tr > td #new_post fieldset{
-						position: relative;
-						width: 100%;
-						margin-top: 15px;
-					}
-
-					#ativa{
-						color: #34A853;
-						text-decoration: none;
-					}
-
-					#inativa{
-						color: #EA4335;
-						text-decoration: none;
-					}
-				</style>
-				
+				});
+			</script>
 				<?php
 			} 	
 
