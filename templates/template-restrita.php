@@ -16,48 +16,21 @@
 		include_once plugin_dir_path( __FILE__ ) . 'login/form-login.php';
 
 	} else {
-
-		global $current_user;
-      	get_currentuserinfo();
-
-		?>
-
-		<header class="header-restrita">
-			<div class="main-info-restrita">
-				<h1>Olá, <?php echo $current_user->display_name; ?></h1>
-				<p class="status-logout"></p>
-				<nav>
-					<ul>
-				<?php
-					$args = array (
-						'post_type'              => array( 'promotor' ),
-						'post_status'            => array( 'publish' ),
-						'author'                 => get_current_user_id(),
-						'posts_per_page'         => 1,
-					);
-					$loop_promotor = new WP_Query( $args ); if ( $loop_promotor->have_posts() ) { while ( $loop_promotor->have_posts() ) { $loop_promotor->the_post(); ?>
-						<li><a href="<?php the_permalink();?>" title="Meu Cadastro." class="dashicons-before dashicons-admin-generic">Meu Cadastro</a></li>
-				<?php } } wp_reset_postdata(); ?>
-					</ul>
-				</nav>
-			</div>
-			<div class="logout-restrita">
-				<a href="" class="logout dashicons-before dashicons-migrate">Sair</a>
-			</div>
-		</header>
-
-		<?php
-			$args = array (
-				'post_type'              => array( 'clinica' ),
-				'post_status'            => array( 'publish' ),
-				'author'                 => get_current_user_id(),
-				'posts_per_page'         => -1,
-			);
 			
-			$loop_inscricao = new WP_Query( $args );
+		require plugin_dir_path( __FILE__ ) . 'header-restitra.php';
 
-			
-			if ( $loop_inscricao->have_posts() ) { ?>
+		$args = array (
+			'post_type'              => array( 'clinica' ),
+			'post_status'            => array( 'publish' ),
+			'author'                 => get_current_user_id(),
+			'posts_per_page'         => -1,
+		);
+		
+		$loop_inscricao = new WP_Query( $args );
+
+		
+		if ( $loop_inscricao->have_posts() ) {
+	?>
 			<div class="table-2">
 				<h3 style="text-align: center; text-transform: uppercase;">Informações da(s) Minha(s) Clinica(s)</h3>
 				
@@ -201,6 +174,11 @@
 
 					.table-clinicas > tbody > tr:hover:nth-child(even){
 						background-color: rgba(35, 40, 45, .6);
+					}
+
+					.table-clinicas > tbody > tr > td{
+						padding-top: 15px;
+						padding-bottom: 15px;
 					}
 
 					.table-clinicas > tfoot > tr{
