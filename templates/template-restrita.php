@@ -9,8 +9,7 @@
 	get_header(); ?>
 
 	<div id="primary">
-		
-
+	
 	<?php if ( !is_user_logged_in() ) { ?>
 		
 		<form id="login" action="login" method="post">
@@ -36,6 +35,7 @@
 		</form>
 
 	<?php }else{ ?>
+
 		<div id="content" role="main">
 	
 			<h1>Olá, ....</h1>
@@ -44,6 +44,7 @@
 			<a href="" class="logout">Sair</a>
 
 		</div><!-- #content -->
+	
 	<?php }; ?>
 
 		

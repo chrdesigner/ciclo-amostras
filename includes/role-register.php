@@ -28,13 +28,10 @@
 	add_action( 'init', 'disable_admin_bar' , 9 );
 
 	// Disable specific access to user roles
-	function no_admin_access() {
-	    $redirect = isset( $_SERVER['HTTP_REFERER'] ) ? $_SERVER['HTTP_REFERER'] : home_url( '/' );
-	    if ( 
-	        current_user_can( 'promotor' )
-	    )
-	    exit( 
-	    	wp_redirect( $redirect )
-	    );
+	add_action( 'init', 'blockusers_init' );
+	function blockusers_init() {
+		if ( is_admin() && current_user_can( 'promotor' ) && ! ( defined( 'DOING_AJAX' ) && DOING_AJAX ) ) {
+			wp_redirect( home_url() );
+			exit;
+		}
 	}
-	add_action( 'admin_init', 'no_admin_access', 100 );
