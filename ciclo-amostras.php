@@ -98,6 +98,9 @@ function acf_install_init() {
  		// Registro e Permissão Promotor
  		include_once plugin_dir_path( __FILE__ ) . 'includes/role-register.php';
  		include_once plugin_dir_path( __FILE__ ) . 'includes/register-user.php';
+
+        // Ajax Login
+        include_once plugin_dir_path( __FILE__ ) . 'templates/login/ajax_login.php';
  		
  		// Scripts
  		add_action( 'admin_enqueue_scripts', 'add_admin_scripts', 10, 1 );
