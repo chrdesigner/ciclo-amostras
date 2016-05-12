@@ -10,6 +10,7 @@ function clinica_posts_edit_columns( $columns ) {
 		'clinica_email' => __( 'E-mail', 'ciclo-amostras' ),
         'clinica_cidade' => __( 'Cidade/UF', 'ciclo-amostras' ),
         'clinica_telefone' => __( 'Contato', 'ciclo-amostras' ),
+        'author' => __( 'Promotor', 'ciclo-amostras' ),
 		'clinica_situacao' => __( 'Situação', 'ciclo-amostras' ),
     );
     return $columns;
@@ -58,9 +59,9 @@ function clinica_posts_columns( $column, $post_id ) {
 
             $situacao = get_post_meta($post_id, 'situacao_do_cadastro', true);
 			if($situacao == null){
-				echo '<abbr id="ativa" class="dashicons-before dashicons-yes" title="Cliníca Ativa"></abbr>';
+				echo '<abbr class="dashicons-before dashicons-yes ativa" title="Cliníca Ativa"></abbr>';
 			}else{
-				echo '<abbr id="inativa" class="dashicons-before dashicons-no" title="Cliníca Inativa"></abbr>';
+				echo '<abbr class="dashicons-before dashicons-no inativa" title="Cliníca Inativa"></abbr>';
 			}
             break;
 

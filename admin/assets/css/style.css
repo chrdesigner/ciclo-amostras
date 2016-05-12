@@ -2,3 +2,15 @@ select[name="seo_filter"],
 .column-title .row-actions{
 	display: none!important;
 }
+
+.column-clinica_situacao abbr{
+	text-decoration: none;
+}
+
+.column-clinica_situacao abbr.ativa:before{
+	color: #34A853;
+}
+
+.column-clinica_situacao abbr.inativa:before{
+	color: #EA4335;
+}

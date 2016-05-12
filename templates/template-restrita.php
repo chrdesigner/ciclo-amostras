@@ -25,19 +25,10 @@
 				
 				<table class="table-clinicas">
 					<thead>
-						<tr>
-							<th>Clinica</th>
-							<th>Veterinário</th>
-							<th>E-mail</th>
-							<th>Endereço</th>
-							<th>Cidada/UF</th>
-							<th>Telefone</th>
-							<th>Celular</th>
-							<th>Situação</th>
-						</tr>
+						<tr><th>Clinica</th><th>Veterinário</th><th>E-mail</th><th>Endereço</th><th>Cidada/UF</th><th>Telefone</th><th>Celular</th><th>Situação</th></tr>
 					</thead>
 					<tbody>
-					<?php
+				<?php
 
 					$args = array (
 						'post_type'              => array( 'clinica' ),
@@ -112,7 +103,6 @@
 									<div class="errorTxt"></div>
 								    <input type="hidden" name="action" value="new_post" />
 								    <?php wp_nonce_field( 'new-post' ); ?>
-
 								</form>
 							</td>
 						</tr>
