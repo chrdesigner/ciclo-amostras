@@ -22,11 +22,12 @@
 	    	$user = get_user_by( 'email', $email );
 
 	    	$xuserdata = array(
-			 	'ID' 		   => $user->ID,
-				'first_name'   => $firstname,
-				'last_name'	   => $lastname,
-				'user_email'   => $email,
-				'display_name' => $firstname . ' ' . $lastname
+			 	'ID'			=> $user->ID,
+				'first_name'	=> $firstname,
+				'last_name'		=> $lastname,
+				'user_email'	=> $email,
+				'display_name'	=> $firstname . ' ' . $lastname,
+		   		'user_pass'  	=> $password
 			);
 
 	    	$post_id = wp_update_user($xuserdata);

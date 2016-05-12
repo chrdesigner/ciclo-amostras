@@ -1,16 +1,16 @@
 <?php
 
-	if( 'POST' == $_SERVER['REQUEST_METHOD'] && !empty( $_POST['action'] ) &&  $_POST['action'] == "new_post") {
+	if( 'POST' == $_SERVER['REQUEST_METHOD'] && !empty( $_POST['action'] ) &&  $_POST['action'] == "nova_clinica") {
 	 	
 	 	$title = $_POST['post_title'];
 
-	    $new_post = array(
+	    $nova_clinica = array(
 		    'post_title'      => $title,
 		    'post_status'     => 'publish', 
 		    'post_type'  	  => 'clinica'
 	    );
 	    
-	    $pid = wp_insert_post($new_post);
+	    $pid = wp_insert_post($nova_clinica);
 
 		add_post_meta($pid, 'post_title', $title, true);
 

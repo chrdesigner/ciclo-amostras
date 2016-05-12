@@ -91,17 +91,17 @@
 					<tfoot>
 						<tr>
 							<td colspan="8">
-								<form id="new_post" name="new_post" method="post" action="" class="front-end-form" enctype="multipart/form-data">
+								<form id="nova_clinica" name="nova_clinica" method="post" action="" class="front-end-form" enctype="multipart/form-data">
 									
 									<label class="adicionar-clinica" for="nome-clinica">Adicionar Nome da Clínica</label>
 									
 									<fieldset id="campos-clinica" style="display: none;">
 								        <input type="text" id="nome-clinica" value="" tabindex="2" name="post_title" />
-								        <input class="button view" type="submit" value="Criar Formulário" tabindex="40" id="submit" name="submit" />
+								        <input class="button view" type="submit" value="Nova Clínica" tabindex="40" id="submit" name="submit" />
 								    </fieldset>
 								
 									<div class="errorTxt"></div>
-								    <input type="hidden" name="action" value="new_post" />
+								    <input type="hidden" name="action" value="nova_clinica" />
 								    <?php wp_nonce_field( 'new-post' ); ?>
 								</form>
 							</td>
