@@ -29,6 +29,7 @@ if ( ! defined( 'WPINC' ) ) {
 
 require plugin_dir_path( __FILE__ ) . 'includes/cpt/cpt_clinica.php';
 require plugin_dir_path( __FILE__ ) . 'includes/cpt/cpt_promotor.php';
+require plugin_dir_path( __FILE__ ) . 'includes/cpt/cpt_gerenciar_visita.php';
 
 /**
  * Personalição da(s) coluna(s)
@@ -43,11 +44,10 @@ require plugin_dir_path( __FILE__ ) . 'admin/edit-column-promotor.php';
 if ( is_admin() ) {
 
 	function remove_meta_boxes() {
-		remove_meta_box( 'mymetabox_revslider_0', array('clinica', 'promotor'), 'normal' );
-		remove_meta_box( 'wpseo_meta', array('clinica', 'promotor'), 'normal' );
-		remove_meta_box( 'pyre_post_options', array('clinica', 'promotor'), 'advanced' );
+		remove_meta_box( 'mymetabox_revslider_0', array('clinica', 'promotor', 'gerenciar_visita'), 'normal' );
+		remove_meta_box( 'wpseo_meta', array('clinica', 'promotor', 'gerenciar_visita'), 'normal' );
+		remove_meta_box( 'pyre_post_options', array('clinica', 'promotor', 'gerenciar_visita'), 'advanced' );
 	}
-
 	add_action( 'do_meta_boxes', 'remove_meta_boxes' );
 	
 }
@@ -66,6 +66,13 @@ function add_admin_scripts( $hook ) {
         	wp_enqueue_script( 'ca-maskedinput-js', plugin_dir_url( __FILE__ ) . 'assets/js/jquery.maskedinput.min.js', false, true );
 			wp_enqueue_script( 'ca-main-js', plugin_dir_url( __FILE__ ) . 'assets/js/main.js', array('jquery'), true );
 
+        } elseif ( 'gerenciar_visita' === $post->post_type ) {
+            
+            wp_register_style( 'style-admin', plugin_dir_url( __FILE__ ) . 'assets/css/style-admin.css' );
+            wp_enqueue_style( 'style-admin' );
+
+            wp_enqueue_script( 'data-visita-js', plugin_dir_url( __FILE__ ) . 'assets/js/data.visita.js', array('jquery'), false );
+            
         }
     }
 }
@@ -74,9 +81,15 @@ function add_admin_scripts( $hook ) {
 function add_frontend_scripts() {
 
 	if ( is_singular('clinica') || is_singular('promotor') ) {
+
 		wp_enqueue_script( 'ca-maskedinput-js', plugin_dir_url( __FILE__ ) . 'assets/js/jquery.maskedinput.min.js', false, true );
 		wp_enqueue_script( 'ca-main-js', plugin_dir_url( __FILE__ ) . 'assets/js/main.js', array('jquery'), true );
-	}
+	
+    }elseif ( is_singular('gerenciar_visita') ) {
+
+        wp_enqueue_script( 'data-visita-js', plugin_dir_url( __FILE__ ) . 'assets/js/data.visita.js', array('jquery'), true );
+
+    }
 
 }
 
@@ -90,10 +103,11 @@ function register_fields_brazilian_city() {
  */
 
 function acf_install_init() {
-	if( class_exists( 'acf' ) ) {
+	if( class_exists( 'acf' ) && function_exists('acf_register_repeater_field') ) {
  		// Custom Fields
  		include_once plugin_dir_path( __FILE__ ) . 'includes/acf/acf-clinica.php';
  		include_once plugin_dir_path( __FILE__ ) . 'includes/acf/acf-promotor.php';
+        include_once plugin_dir_path( __FILE__ ) . 'includes/acf/acf-gerenciar-visita.php';
 
  		// Registro e Permissão Promotor
  		include_once plugin_dir_path( __FILE__ ) . 'includes/role-register.php';
@@ -122,7 +136,7 @@ add_action( 'plugins_loaded', 'acf_install_init' );
  */
 
 function admin_notice_acf_activation() {
-    echo '<div class="error"><p>' . __('O Ciclo de Amostras precisa do <b>Advanced Custom Fields</b> instalado e ativo.' , 'ciclo-amostras' ) . '</p></div>';
+    echo '<div class="error"><p>' . __('O Ciclo de Amostras precisa do(s) plugin(s) <b>Advanced Custom Fields</b> e <b>Advanced Custom Fields: Repeater Field</b> instalado(s) e ativo(s).' , 'ciclo-amostras' ) . '</p></div>';
 }
 
 /**
@@ -141,7 +155,7 @@ require_once('includes/edit-page-template.php');
 add_filter( 'template_include', 'include_template_single', 1 );
 function include_template_single( $template_path ) {
 
-    if ( get_post_type() == 'clinica' || get_post_type() == 'promotor' ) {
+    if ( get_post_type() == 'clinica' || get_post_type() == 'promotor' || get_post_type() == 'gerenciar_visita' ) {
         if ( is_single() ) {
             if ( $theme_file = locate_template( array ( 'single-amostras.php' ) ) ) {
                 $template_path = $theme_file;
