@@ -8,10 +8,9 @@ function promotor_posts_edit_columns( $columns ) {
         'title' => __( 'Nome', 'ciclo-amostras' ),
         'promotor_email' => __( 'E-mail', 'ciclo-amostras' ),
         'promotor_cidade' => __( 'Cidade/UF', 'ciclo-amostras' ),
-        'promotor_telefone' => __( 'Telefone', 'ciclo-amostras' ),
+        'promotor_telefone' => __( 'Contatos', 'ciclo-amostras' ),
         'promotor_clinicas' => __( 'Clinicas/Veterinários', 'ciclo-amostras' ),
         'promotor_proximo' => __( 'Proxímo ciclo visita', 'ciclo-amostras' ),
-        'author' => __( 'Listar promotor', 'ciclo-amostras' ),
     );
     return $columns;
 }
@@ -56,7 +55,13 @@ function promotor_posts_columns( $column, $post_id ) {
 
         case 'promotor_clinicas':
 
-            echo '...';
+            $get_email = get_post_meta($post_id, 'email_promotor', true);
+            $user = get_user_by( 'email', $get_email );
+            
+            $get_id_user = $user->ID;
+            $get_display_name_user = $user->display_name;
+
+            echo sprintf( '<a href="%1$s" title="%2$s">%3$s</a>', admin_url( 'edit.php?post_type=clinica&author=' . $get_id_user ), $get_display_name_user, count_user_posts( $get_id_user , "clinica"  ) );
 
             break;
 

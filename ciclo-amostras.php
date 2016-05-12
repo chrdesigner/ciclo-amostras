@@ -36,6 +36,7 @@ require plugin_dir_path( __FILE__ ) . 'includes/cpt/cpt_gerenciar_visita.php';
  */
 
 require plugin_dir_path( __FILE__ ) . 'admin/edit-column-promotor.php';
+require plugin_dir_path( __FILE__ ) . 'admin/edit-column-clinica.php';
 
 /**
  * Remover as Metabox não desejadas
