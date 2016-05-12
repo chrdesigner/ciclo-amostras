@@ -14,3 +14,12 @@ select[name="seo_filter"],
 .column-clinica_situacao abbr.inativa:before{
 	color: #EA4335;
 }
+
+#acf-entrega_da_amostra, #acf-proxima_entrega{
+	display: inline-block;
+    width: 50%;
+}
+
+#acf-relatorio_do_promotor .field_type-message .label label{
+	display: none;
+}

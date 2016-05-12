@@ -1,6 +1,16 @@
 // <![CDATA[
 jQuery(function($) {
 	
+	//find the hidden post type input, and grab the value
+	if($('#post_type').val() === 'promotor'){
+		$('#title').attr('disabled','disabled');
+		
+		// Remover a class de validação do backend
+		$( "#post-body #acf-estado_cidade_promotor.field" ).removeClass( "required" );
+		$( "#post-body #acf-telefone_promotor.field" ).removeClass( "required" );
+		$( "#post-body #acf-celular_promotor.field" ).removeClass( "required" );
+	}
+	
 	$.mask.definitions['~']='[+-]';
 	//Inicio Mascara Telefone
 	$('#acf-field-telefone_clinica, #acf-field-telefone_promotor, #acf-field-celular_clinica, #acf-field-celular_promotor').focusout(function(){

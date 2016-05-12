@@ -39,6 +39,14 @@ require plugin_dir_path( __FILE__ ) . 'admin/edit-column-promotor.php';
 require plugin_dir_path( __FILE__ ) . 'admin/edit-column-clinica.php';
 
 /**
+ * Registrar styles e scripts padrões do plugin
+ */
+
+wp_register_style( 'style-admin', plugin_dir_url( __FILE__ ) . 'admin/assets/css/style-admin.css' );
+wp_register_script('ca-maskedinput-js', plugin_dir_url( __FILE__ ) . 'assets/js/jquery.maskedinput.min.js', false, true );
+wp_register_script( 'data-visita-js', plugin_dir_url( __FILE__ ) . 'assets/js/data.visita.js', array('jquery'), false );
+
+/**
  * Remover as Metabox não desejadas
  */
 
@@ -62,18 +70,18 @@ function add_admin_scripts( $hook ) {
     global $post;
 
     if ( $hook == 'post-new.php' || $hook == 'post.php' ) {
+
         if ( 'clinica' === $post->post_type || 'promotor' === $post->post_type ) { 
 
-        	wp_enqueue_script( 'ca-maskedinput-js', plugin_dir_url( __FILE__ ) . 'assets/js/jquery.maskedinput.min.js', false, true );
-			wp_enqueue_script( 'ca-main-js', plugin_dir_url( __FILE__ ) . 'assets/js/main.js', array('jquery'), true );
+            wp_enqueue_style( 'style-admin' );
+            wp_enqueue_script('ca-maskedinput-js');
+        	wp_enqueue_script( 'ca-main-admin-js', plugin_dir_url( __FILE__ ) . 'admin/assets/js/main-admin.js', array('jquery'), true );
 
         } elseif ( 'gerenciar_visita' === $post->post_type ) {
             
-            wp_register_style( 'style-admin', plugin_dir_url( __FILE__ ) . 'assets/css/style-admin.css' );
             wp_enqueue_style( 'style-admin' );
+            wp_enqueue_script('data-visita-js');
 
-            wp_enqueue_script( 'data-visita-js', plugin_dir_url( __FILE__ ) . 'assets/js/data.visita.js', array('jquery'), false );
-            
         }
     }
 }
@@ -83,30 +91,35 @@ function add_frontend_scripts() {
 
 	if ( is_singular('clinica') || is_singular('promotor') ) {
 
-		wp_enqueue_script( 'ca-maskedinput-js', plugin_dir_url( __FILE__ ) . 'assets/js/jquery.maskedinput.min.js', false, true );
-		wp_enqueue_script( 'ca-main-js', plugin_dir_url( __FILE__ ) . 'assets/js/main.js', array('jquery'), true );
+		wp_enqueue_script('ca-maskedinput-js');
+        wp_enqueue_script( 'ca-main-js', plugin_dir_url( __FILE__ ) . 'assets/js/main.js', array('jquery'), true );
 	
     }elseif ( is_singular('gerenciar_visita') ) {
 
-        wp_enqueue_script( 'data-visita-js', plugin_dir_url( __FILE__ ) . 'assets/js/data.visita.js', array('jquery'), true );
+        wp_enqueue_script('data-visita-js');
 
     }
+
+}
+
+/*
+ * Adicionar estilo nas colunas dos post's
+ */
+function amostras_admin_css() {
+    
+    global $post_type;
+    
+    if ( ($_GET['post_type'] == 'promotor') || ($post_type == 'promotor') || ($_GET['post_type'] == 'clinica') || ($post_type == 'clinica') ) :
+    
+        wp_enqueue_style( 'style-admin' );
+
+    endif;
 
 }
 
 // Todos os Creditos para https://github.com/luizhguimaraes/acf-brazilian-city
 function register_fields_brazilian_city() {
     include_once('includes/acf/acf-brazilian-city-field.php');
-}
-
-/*
- * Add Custom Css Field in Admin Page
- */
-function amostras_admin_css() {
-    global $post_type;
-    if ( ($_GET['post_type'] == 'promotor') || ($post_type == 'promotor') || ($_GET['post_type'] == 'clinica') || ($post_type == 'clinica') ) :
-        echo "<link type='text/css' rel='stylesheet' href='" . plugins_url('/admin/assets/css/style.css', __FILE__) . "' />";
-    endif;
 }
 
 /**

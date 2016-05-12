@@ -25,7 +25,6 @@
 			 	'ID'			=> $user->ID,
 				'first_name'	=> $firstname,
 				'last_name'		=> $lastname,
-				'user_email'	=> $email,
 				'display_name'	=> $firstname . ' ' . $lastname,
 		   		'user_pass'  	=> $password
 			);
