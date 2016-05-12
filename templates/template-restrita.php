@@ -97,7 +97,7 @@
 									
 									<fieldset id="campos-clinica" style="display: none;">
 								        <input type="text" id="nome-clinica" value="" tabindex="2" name="post_title" />
-								        <input class="button view" type="submit" value="Nova Clínica" tabindex="40" id="submit" name="submit" />
+								        <input class="button" type="submit" value="Nova Clínica" tabindex="40" id="submit" name="submit" />
 								    </fieldset>
 								
 									<div class="errorTxt"></div>

@@ -1,27 +1,48 @@
 <?php
-
+	
 	if( 'POST' == $_SERVER['REQUEST_METHOD'] && !empty( $_POST['action'] ) &&  $_POST['action'] == "nova_clinica") {
 	 	
 	 	$title = $_POST['post_title'];
 
-	    $nova_clinica = array(
-		    'post_title'      => $title,
-		    'post_status'     => 'publish', 
-		    'post_type'  	  => 'clinica'
+	 	global $user_ID, $wpdb;
+
+	    $query = $wpdb->prepare(
+	        'SELECT ID FROM ' . $wpdb->posts . '
+	        WHERE post_title = %s
+	        AND post_type = \'clinica\'',
+	        $title
 	    );
+
+	    $wpdb->query( $query );
+
+	    if ( $wpdb->num_rows ) {
 	    
-	    $pid = wp_insert_post($nova_clinica);
+	        $post_id = $wpdb->get_var( $query );
+	        $meta = get_post_meta( $post_id, 'post_title', TRUE );
+	        $meta++;
+	        update_post_meta( $post_id, 'post_title', $meta );
+	    
+	    } else {
 
-		add_post_meta($pid, 'post_title', $title, true);
+		    $nova_clinica = array(
+			    'post_title'    => $title,
+			    'post_status'   => 'publish',
+			    'post_date' 	=> date('Y-m-d H:i:s'),
+			    'post_type'  	=> 'clinica'
+		    );
+		    
+		    $pid = wp_insert_post($nova_clinica);
 
-	    $post = get_post($pid);
+			add_post_meta($pid, 'post_title', $title, true);
 
-	    wp_redirect( $post->guid);
+		    $post = get_post($pid);
+
+		    wp_redirect( $post->guid);
+
+		}
 	}
-
+	
 	do_action('wp_insert_post', 'wp_insert_post');
-
-
 
 	add_action( 'acf/save_post', 'update_clinica', 10, 2 );
 	function update_clinica( $post_id ) {

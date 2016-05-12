@@ -27,16 +27,22 @@
 	margin: 0 0;
 	padding: 0;
 	display: table;
+	width: 100%;
 }
 
 .header-restrita > div.main-info-restrita nav ul li{
 	display: table-cell;
+	float: left;
 	font-size: 35px;
 	line-height: 35px;
 	padding-left: 10px;
 	position: relative;
 	text-transform: uppercase;
 	vertical-align: middle;
+}
+
+.header-restrita > div.main-info-restrita nav ul li.btn-logout{
+	float: right;
 }
 
 .header-restrita > div.main-info-restrita nav ul li:first-child{
@@ -62,6 +68,10 @@
     text-align: center;
     vertical-align: middle;
     width: 35px;
+}
+
+.header-restrita > div.main-info-restrita nav ul li a:hover:before{
+	color: #ed2224;
 }
 
 .table-clinicas{
@@ -100,18 +110,50 @@
 	padding-bottom: 15px;
 }
 
-.table-clinicas > tfoot > tr > td #new_post label{
+.table-clinicas > tfoot > tr > td #nova_clinica label{
 	cursor: pointer;
 	color: #ED2224;
 	font-weight: bold;
 	text-transform: uppercase;
 }
 
-.table-clinicas > tfoot > tr > td #new_post fieldset{
+.table-clinicas > tfoot > tr > td #nova_clinica fieldset{
 	position: relative;
 	width: 100%;
 	margin-top: 15px;
 }
+
+.table-clinicas > tfoot > tr > td #nova_clinica fieldset input[type="text"]{
+	margin: 0 0 15px 0;
+}
+
+
+.table-clinicas > tfoot > tr > td #nova_clinica fieldset .button{
+	font-size: 14px;
+    line-height: 17px;
+    padding: 13px 29px;    
+    border-radius: 2px 2px 2px 2px;
+	-moz-border-radius: 2px 2px 2px 2px;
+	-webkit-border-radius: 2px 2px 2px 2px;
+	border: 0px solid #780404;
+    font-weight: bold;
+	background: #e80707 -webkit-linear-gradient(to top, #d60707, #e80707) repeat scroll 0 0; /* Safari 5.1-6.0 */
+    background: #e80707 -o-linear-gradient(to top, #d60707, #e80707) repeat scroll 0 0; /* Opera 11.1-12.0 */
+    background: #e80707 -moz-linear-gradient(to top, #d60707, #e80707) repeat scroll 0 0; /* Firefox 3.6-15 */
+    background: #e80707 linear-gradient(to top, #d60707, #e80707) repeat scroll 0 0; /* Standard syntax */
+	color: #780404;
+    cursor: pointer;
+    float: right;
+}
+
+.table-clinicas > tfoot > tr > td #nova_clinica fieldset .button:hover{
+	background: #e80707 -webkit-linear-gradient(to bottom, #d60707, #e80707) repeat scroll 0 0; /* Safari 5.1-6.0 */
+    background: #e80707 -o-linear-gradient(to bottom, #d60707, #e80707) repeat scroll 0 0; /* Opera 11.1-12.0 */
+    background: #e80707 -moz-linear-gradient(to bottom, #d60707, #e80707) repeat scroll 0 0; /* Firefox 3.6-15 */
+    background: #e80707 linear-gradient(to bottom, #d60707, #e80707) repeat scroll 0 0; /* Standard syntax */
+}
+
+
 
 #ativa{
 	color: #34A853;

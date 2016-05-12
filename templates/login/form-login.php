@@ -1,4 +1,4 @@
-<form id="login" action="login" method="post">
+<form id="login" action="login" method="post" class="autenticacao-promotor">
 	<h1>Realize a sua autenticacão</h1>
    
     <p class="status"></p>

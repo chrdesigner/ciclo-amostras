@@ -1,21 +1,21 @@
-.page-template-template-restrita #login{
+#login.autenticacao-promotor{
 	width: 60%;
 	margin: 0 auto;
 }
 
-.page-template-template-restrita #login h1{
+#login.autenticacao-promotor h1{
 	font-weight: 200;
     text-align: center;
     text-transform: uppercase;
 }
 
-.page-template-template-restrita #login .wpcf7-form-control-wrap{
+#login.autenticacao-promotor .wpcf7-form-control-wrap{
 	display: inline-table;
 	width: 100%;
 	margin-bottom: 15px;
 }
 
-.page-template-template-restrita #login .wpcf7-form-control-wrap > input.wpcf7-form-control{
+#login.autenticacao-promotor .wpcf7-form-control-wrap > input.wpcf7-form-control{
 	border: 1px solid #212122;
 	color: #cccccc;
 	background-color: #3e3e3e;
@@ -26,7 +26,7 @@
     width: 100%;
 }
 
-.page-template-template-restrita #login .submit_button{
+#login.autenticacao-promotor .submit_button{
 	font-size: 14px;
     line-height: 17px;
     padding: 13px 29px;    
@@ -44,7 +44,7 @@
     float: right;
 }
 
-.page-template-template-restrita #login .submit_button:hover{
+#login.autenticacao-promotor .submit_button:hover{
 	background: #e80707 -webkit-linear-gradient(to bottom, #d60707, #e80707) repeat scroll 0 0; /* Safari 5.1-6.0 */
     background: #e80707 -o-linear-gradient(to bottom, #d60707, #e80707) repeat scroll 0 0; /* Opera 11.1-12.0 */
     background: #e80707 -moz-linear-gradient(to bottom, #d60707, #e80707) repeat scroll 0 0; /* Firefox 3.6-15 */
