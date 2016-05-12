@@ -16,7 +16,6 @@ function clinica_posts_edit_columns( $columns ) {
 }
 add_filter( 'manage_edit-clinica_columns', 'clinica_posts_edit_columns' );
 
-
 /**
  * Promotor custom columns content.
  */
@@ -63,11 +62,8 @@ function clinica_posts_columns( $column, $post_id ) {
 			}else{
 				echo '<abbr id="inativa" class="dashicons-before dashicons-no" title="Cliníca Inativa"></abbr>';
 			}
-
             break;
-
 
     }
 }
-
 add_action( 'manage_posts_custom_column', 'clinica_posts_columns', 1, 2 );

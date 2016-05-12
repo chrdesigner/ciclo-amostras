@@ -99,6 +99,16 @@ function register_fields_brazilian_city() {
     include_once('includes/acf/acf-brazilian-city-field.php');
 }
 
+/*
+ * Add Custom Css Field in Admin Page
+ */
+function amostras_admin_css() {
+    global $post_type;
+    if ( ($_GET['post_type'] == 'promotor') || ($post_type == 'promotor') || ($_GET['post_type'] == 'clinica') || ($post_type == 'clinica') ) :
+        echo "<link type='text/css' rel='stylesheet' href='" . plugins_url('/admin/assets/css/style.css', __FILE__) . "' />";
+    endif;
+}
+
 /**
  * Aplicação e verificação dos custom fields
  */
@@ -119,6 +129,9 @@ function acf_install_init() {
         // Ajax Login
         include_once plugin_dir_path( __FILE__ ) . 'templates/login/ajax_login.php';
  		
+        // Styles
+        add_action('admin_head', 'amostras_admin_css');
+
  		// Scripts
  		add_action( 'admin_enqueue_scripts', 'add_admin_scripts', 10, 1 );
  		add_action( 'wp_enqueue_scripts', 'add_frontend_scripts' );
