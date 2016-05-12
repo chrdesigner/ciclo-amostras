@@ -1,6 +1,6 @@
-(function($){
-    
-    acf.fields.date_picker = {
+jQuery(function($) {
+
+    acf.fields.date_picker_visita = {
         $el : null,
         $input : null,
         $hidden : null,
@@ -17,7 +17,7 @@
                 return;
             }
             this.$input.val( this.$hidden.val() );
-            var options = $.extend( {}, acf.l10n.date_picker, { 
+            var options = $.extend( {}, acf.l10n.date_picker_visita, { 
                 dateFormat      :   this.o.save_format,
                 altField        :   this.$hidden,
                 altFormat       :   this.o.save_format,
@@ -46,13 +46,15 @@
     };
     
     $(document).on('acf/setup_fields', function(e, el){
-        $(el).find('.acf-date_picker').each(function(){
-            acf.fields.date_picker.set({ $el : $(this) }).init();
+        $(el).find('.acf-date_picker_visita').each(function(){
+            acf.fields.date_picker_visita.set({ $el : $(this) }).init();
         });
     });
     
-    $(document).on('blur', '.acf-date_picker input[type="text"]', function( e ){
-        acf.fields.date_picker.set({ $el : $(this).parent() }).blur();
+    $(document).on('blur', '.acf-date_picker_visita input[type="text"]', function( e ){
+        acf.fields.date_picker_visita.set({ $el : $(this).parent() }).blur();
     });
+
+    $('.field_key-field_57338b57d62d5').find('div').removeClass('acf-date_picker').addClass('acf-date_picker_visita');
 
 })(jQuery);

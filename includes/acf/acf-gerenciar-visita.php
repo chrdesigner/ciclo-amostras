@@ -38,8 +38,10 @@
 				),
 				array (
 					'key' => 'field_57338b57d62d5',
-					'label' => 'Entrega da amostra',
-					'name' => 'entrega_da_amostra',
+					// 'label' => 'Entrega da amostra',
+					// 'name' => 'entrega_da_amostra',
+					'label' => 'Data Programada',
+					'name' => 'data_programada',
 					'type' => 'date_picker',
 					'required' => 1,
 					'date_format' => 'yymmdd',
@@ -62,6 +64,16 @@
 					'name' => 'relatorio_do_promotor',
 					'type' => 'repeater',
 					'sub_fields' => array (
+						array (
+							'key' => 'field_5733ca3697967',
+							'label' => 'Data da Entrega da Amostra',
+							'name' => 'data_entrega_amostra',
+							'type' => 'date_picker',
+							'required' => 1,
+							'date_format' => 'yymmdd',
+							'display_format' => 'dd/mm/yy',
+							'first_day' => 0,
+						),
 						array (
 							'key' => 'field_5733ca3687868',
 							'label' => 'produtos',

@@ -15,7 +15,7 @@ select[name="seo_filter"],
 	color: #EA4335;
 }
 
-#acf-entrega_da_amostra, #acf-proxima_entrega{
+#acf-data_programada, #acf-proxima_entrega{
 	display: inline-block;
     width: 50%;
 }
