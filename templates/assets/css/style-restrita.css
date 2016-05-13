@@ -329,11 +329,15 @@
           transform: translateY(0px);
 }
 
-.info-inicial{
+#info-inicial h2{
 	font-size: 25px;
 	padding: 30px 0;
 	line-height: normal;
 	text-align: center;
 	text-transform: uppercase;
 	color: #EA4335;
+}
+
+.nav-links {
+    display: none;
 }

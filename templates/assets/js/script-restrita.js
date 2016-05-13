@@ -1,14 +1,24 @@
 // <![CDATA[
 	jQuery(function($) {
 		
-		$(".link_info").click(function () {
+		$('#nav-informacoes a').on('click', function(e) {
+		    e.preventDefault();
+		    var $li = $(this).closest('li');
 
-			var id = $(this).attr("id").replace(/^.(\s+)?/, "");
-			var contentTobeLoaded = $("#aba_" + id).html();          
+		    var tab = $li.data('tab');
+		    var current = $('.active.setting-link').data('tab');
 
-			$('#ajax').html(contentTobeLoaded).fadeIn(10, function () {
-				//do whatever you want after fadeIn
-			});
+		    $('#info-inicial').remove();
+
+		    $('#' + current).fadeOut('fast', function() {
+		        //Slide the new div down
+		        $('#' + tab).fadeIn();
+		    });
+
+		    //Remove active class from current link
+		    $('.active.setting-link').removeClass('active');
+
+		    $li.addClass('active');
 		});
 
 	});

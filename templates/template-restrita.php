@@ -22,32 +22,31 @@
 
 	?>
 			
-    <div style="display:none;">
-	    <div id="aba_1">
-	    	<?php require plugin_dir_path( __FILE__ ) . 'includes/lista-clinicas.php'; ?>
-	    </div>
 
-	    <div id="aba_2">
-	   		<?php require plugin_dir_path( __FILE__ ) . 'includes/agenda-visita.php'; ?>
-	    </div>
-	</div>
-	
 	<nav id="nav-informacoes">
-		<ul>
-			<li>
-				<a class="link_info dashicons-before dashicons-nametag" id="a1" title="Minhas Clinicas"></a>
-				<i class="tooltip">Minhas Clininas</i>
+		<ul id="navigation">
+			<li data-tab="clinicas" class="setting-link active">
+				<a class="link_info dashicons-before dashicons-nametag" title="Minhas Clinicas"></a>
+				<i class="tooltip">Minhas Clinicas</i>
 			</li>
-			<li>
-				<a class="link_info dashicons-before dashicons-calendar" id="a2" title="Agenda de Visitas"></a>
+			<li data-tab="visita" class="setting-link">
+				<a class="link_info dashicons-before dashicons-calendar" title="Agenda de Visitas"></a>
 				<i class="tooltip">Agenda de Visitas</i>
 			</li>
 		</ul>
 	</nav>
 
-	<div id="ajax">
-		<h2 class="info-inicial">Clique nós icones acima para lista a tabela desejada</h2>
+	<div id="info-inicial">
+		<h2>Clique nós icones acima para lista a tabela desejada</h2>
 	</div>
+
+	<div id="clinicas" class="nav-links" rel="1">
+    	<?php require plugin_dir_path( __FILE__ ) . 'includes/lista-clinicas.php'; ?>
+    </div>
+
+    <div id="visita" class="nav-links" rel="2">
+   		<?php require plugin_dir_path( __FILE__ ) . 'includes/agenda-visita.php'; ?>
+    </div>
 
 	
 	<?php }; ?>
