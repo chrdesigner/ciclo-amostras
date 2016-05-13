@@ -21,7 +21,7 @@
 						),
 						'allorany' => 'all',
 					),
-					'return_format' => 'id',
+					'return_format' => 'object',
 					'post_type' => array (
 						0 => 'clinica',
 					),
@@ -69,7 +69,7 @@
 							'label' => 'Data da Entrega da Amostra',
 							'name' => 'data_entrega_amostra',
 							'type' => 'date_picker',
-							'required' => 1,
+							'required' => 0,
 							'date_format' => 'yymmdd',
 							'display_format' => 'dd/mm/yy',
 							'first_day' => 0,
@@ -113,9 +113,9 @@
 
 					),
 					'row_min' => 1,
-					'row_limit' => '1',
+					'row_limit' => '',
 					'layout' => 'row',
-					'button_label' => 'Adicionar outra linha',
+					'button_label' => 'Adicionar Novo Relatório',
 				),
 			),
 			'location' => array (

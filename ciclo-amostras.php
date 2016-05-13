@@ -149,6 +149,7 @@ function acf_install_init() {
  		include_once plugin_dir_path( __FILE__ ) . 'includes/register-user.php';
 
         include_once plugin_dir_path( __FILE__ ) . 'includes/register-clinica.php';
+        include_once plugin_dir_path( __FILE__ ) . 'includes/register-visita.php';
 
         // Ajax Login
         include_once plugin_dir_path( __FILE__ ) . 'templates/login/ajax_login.php';

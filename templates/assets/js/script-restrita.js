@@ -1,5 +1,9 @@
 // <![CDATA[
 	jQuery(function($) {
+
+		$('.clickable-row').click(function() {
+	        window.document.location = $(this).data('href');
+	    });
 		
 		$('#nav-informacoes a').on('click', function(e) {
 		    e.preventDefault();
@@ -20,6 +24,11 @@
 
 		    $li.addClass('active');
 		});
+
+		$('#add-visita').change(function() {
+	        var x = $(this).val();
+	        $('#hidden_visita').val(x);
+	    });
 
 	});
 // ]]>

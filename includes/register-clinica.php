@@ -70,11 +70,3 @@
 	    $_POST['return'] = add_query_arg( 'updated', 'true', get_permalink( $post_id ) );
 
 	}
-
-	function relationship_query( $args, $field, $post ) {
-	    // get posts for current logged in user
-	    $args['author'] = get_current_user_id();
-
-	    return $args;
-	}
-	add_filter('acf/fields/relationship/query/key=field_5733613a9ba39', 'relationship_query', 10, 3);
