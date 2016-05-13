@@ -5,10 +5,6 @@
 	 	$title 		= $_POST['post_title'];
 	 	$clinica	= $_POST['todas_clinicas'];
 
-	 	// echo $clinica;
-
-	 	// die();
-
 	 	global $user_ID, $wpdb;
 
 	    $query = $wpdb->prepare(
@@ -35,13 +31,6 @@
 			    'post_date' 	=> date('Y-m-d H:i:s'),
 			    'post_type'  	=> 'gerenciar_visita'
 		    );
-		    
-		 //    echo $clinica;
-		 //    echo "<pre>";
-		 //    var_dump($nova_visita);
-			// echo "</pre>";
-	 	
-	 	// 	die();
 
 		    $pid = wp_insert_post($nova_visita);
 
@@ -49,9 +38,13 @@
 			
 			add_post_meta($pid, 'post_title', $title, true);
 
+			$url = get_permalink( $pid );
+
 			$post = get_post($pid);
 
-		    wp_redirect( $post->guid );
+			wp_redirect($url);
+			
+			exit();
 
 		}
 	}

@@ -35,9 +35,13 @@
 
 			add_post_meta($pid, 'post_title', $title, true);
 
-		    $post = get_post($pid);
+		    $url = get_permalink( $pid );
 
-		    wp_redirect( $post->guid);
+			$post = get_post($pid);
+
+			wp_redirect($url);
+			
+			exit();
 
 		}
 	}

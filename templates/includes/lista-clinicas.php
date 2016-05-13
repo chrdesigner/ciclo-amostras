@@ -25,32 +25,84 @@
 					<?php the_title(); ?>
 				</td>
 				<td>
-					<?php the_field('nome_clinica'); ?>
+				<?php
+					$veterinario = get_field('nome_clinica');
+
+					if (!empty($veterinario)) {
+						the_field('nome_clinica');
+					}else{
+						echo '<strong class="alerta-informacoes">*</strong>';
+					};
+
+				?>
 				</td>
 				<td>
+				<?php
+					$email_clinica = get_field('email_clinica');
+					
+					if (!empty($email_clinica)) {
+				?>
 					<a href="mailto: <?php the_field('email_clinica'); ?>" title="Enviar email para: <?php the_field('email_clinica'); ?>"><?php the_field('email_clinica'); ?></a>
+				<?php
+					}else{
+						echo '<strong class="alerta-informacoes">*</strong>';
+					};
+				?>
+					
 				</td>
 				<td>
-					<?php the_field('endereco_completo_clinica'); ?>
+				<?php
+					$endereco_completo_clinica = get_field('endereco_completo_clinica');
+
+					if (!empty($endereco_completo_clinica)) {
+						the_field('endereco_completo_clinica');
+					}else{
+						echo '<strong class="alerta-informacoes">*</strong>';
+					};
+
+				?>
 				</td>
 				<td>
-					<?php
-						$cidade_uf = get_post_meta($post->ID, 'estado_cidade_clinica', true);
-						if($cidade_uf != null){
-							echo $cidade_uf['city_name'] . '/' . $cidade_uf['state_id'] ;
-						};
-					?>
+				<?php
+					$cidade_uf = get_post_meta($post->ID, 'estado_cidade_clinica', true);
+					if($cidade_uf != null){
+						echo $cidade_uf['city_name'] . '/' . $cidade_uf['state_id'] ;
+					}else{
+						echo '<strong class="alerta-informacoes">*</strong>';
+					};
+				?>
 				</td>
 				<td>
-					<?php the_field('telefone_clinica'); ?>
+				<?php
+					$telefone_clinica = get_field('telefone_clinica');
+
+					if (!empty($telefone_clinica)) {
+						the_field('telefone_clinica');
+					}else{
+						echo '<strong class="alerta-informacoes">*</strong>';
+					};
+
+				?>
 				</td>
 				<td>
-					<?php the_field('celular_clinica'); ?>
+				<?php
+					$celular_clinica = get_field('celular_clinica');
+
+					if (!empty($celular_clinica)) {
+						the_field('celular_clinica');
+					}else{
+						echo '<strong class="alerta-informacoes">*</strong>';
+					};
+
+				?>
 				</td>
 				<td align="center">
 					<?php
 						$situacao = get_field('situacao_do_cadastro');
-						if($situacao == null){
+
+						if (empty($veterinario && $email_clinica && $endereco_completo_clinica && $cidade_uf && $telefone_clinica && $celular_clinica)) {
+							echo '<abbr id="warning" class="dashicons-before dashicons-warning" title="Falta Informações sobre a Clinica"></abbr>';
+						}elseif($situacao == null){
 							echo '<abbr id="ativa" class="dashicons-before dashicons-yes" title="Cliníca Ativa"></abbr>';
 						}else{
 							echo '<abbr id="inativa" class="dashicons-before dashicons-no" title="Cliníca Inativa"></abbr>';
@@ -86,6 +138,10 @@
 			</tr>
 		</tfoot>
 	</table>
+	<dl class="legenda-alerta">
+		<dt>Legenda(s):</dt>
+		<dd><sup class="alerta-informacoes">* Campos não cadastrados</sup></dd>
+	</dl>
 </div>
 <script type="text/javascript">
 	jQuery(document).ready(function($) {

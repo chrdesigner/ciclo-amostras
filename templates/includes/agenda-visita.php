@@ -101,64 +101,44 @@
 		<tfoot>
 			<tr>
 				<td colspan="6">
-				<script type="text/javascript">
-				    $(document).ready(function () {
-					    $('#nova_visita').on('submit', function(e) {
-					        e.preventDefault();
-					        $.ajax({
-					            url : $(this).attr('action') || window.location.pathname,
-					            type: "GET",
-					            data: $(this).serialize(),
-					            success: function (data) {
-					                $(".errorTxt").html(data);
-					            },
-					            error: function (jXHR, textStatus, errorThrown) {
-					                alert(errorThrown);
-					            }
-					        });
-					    });
-					});
-				</script>
+				
 					<form id="nova_visita" name="nova_visita" method="post" action="" class="front-end-form" enctype="multipart/form-data">
 						
 						<label class="adicionar-visita" for="nome-visita">Adicionar Visita</label>
 						
-
-
 						<fieldset id="campos-visita" style="display: none;">
 
 							<input type="text" id="titulo-relatorio" value="" tabindex="2" name="post_title" placeholder="Nome do Relatório: " required />
+							<?php
+								$args = array (
+										'post_type'              => array( 'clinica' ),
+										'post_status'            => array( 'publish' ),
+										'author'                 => get_current_user_id(),
+										'posts_per_page'         => -1,
+									);
 
-						<?php
-							$args = array (
-									'post_type'              => array( 'clinica' ),
-									'post_status'            => array( 'publish' ),
-									'author'                 => get_current_user_id(),
-									'posts_per_page'         => -1,
-								);
+									$loop_add_visita = new WP_Query( $args );
 
-								$loop_add_visita = new WP_Query( $args );
+									if ( $loop_add_visita->have_posts() ) {
+									
+									echo '
+										<select id="add-visita" name="add-visita" required>
+											<option value="">Selecione sua clinica</option>';
 
-								if ( $loop_add_visita->have_posts() ) {
-								
-								echo '
-									<select id="add-visita" name="add-visita" required>
-										<option value="">Selecione sua clinica</option>';
+											while ( $loop_add_visita->have_posts() ) { $loop_add_visita->the_post();
 
-										while ( $loop_add_visita->have_posts() ) { $loop_add_visita->the_post();
+											echo '<option value=' . get_the_ID() . '>' . get_the_title() . '</option>';
 
-										echo '<option value=' . get_the_ID() . '>' . get_the_title() . '</option>';
+											}
 
-										}
+									echo '
+										</select>';
+									
+									}
 
-								echo '
-									</select>';
-								
-								}
-
-							wp_reset_postdata();
-						?>
-					        <input class="button" type="submit" value="Nova Visita" tabindex="40" id="submit" name="submit" />
+								wp_reset_postdata();
+							?>
+					        <input class="button" type="submit" value="Nova Visita" tabindex="40" id="submitButtonId" name="submit" />
 					    </fieldset>
 					
 						<div class="errorTxt"></div>
@@ -174,6 +154,7 @@
 		</tfoot>
 	</table>
 </div>
+
 <script type="text/javascript">
 	jQuery(document).ready(function($) {
 	    $( '.adicionar-visita' ).click(function() {
