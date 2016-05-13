@@ -191,3 +191,149 @@
 	font-size: 18px;
     font-weight: 500;
 }
+
+.single-gerenciar_visita .acf-form,
+.single-promotor .acf-form,
+.single-clinica .acf-form{
+	background-color: #fff;
+	padding: 1rem;
+	color: #333333;
+}
+
+.single-gerenciar_visita .acf-form a{
+	color: #333333;	
+}
+
+#nav-informacoes{
+	position: relative;
+	margin-bottom: 35px;
+}
+
+#nav-informacoes:before{
+	position: absolute;
+	bottom: 0;
+	width: 100%;
+	height: 20px;
+	background: #353535;
+	border-bottom: 2px solid #383838;
+	content: '';
+}
+
+#nav-informacoes ul{
+	text-align: center;
+	padding: 0 0 5px 0;
+	margin: 0;
+}
+
+#nav-informacoes ul li {
+	-webkit-transform: translateZ(0px);
+     -moz-transform: translateZ(0px);
+      -ms-transform: translateZ(0px);
+       -o-transform: translateZ(0px);
+          transform: translateZ(0px);
+  	position: relative;
+  	display: inline-table;
+  	width: 150px;
+  	list-style-type: none;
+  	-webkit-font-smoothing: antialiased;
+}
+
+#nav-informacoes ul li a{
+	cursor: pointer;
+	opacity: 1;
+   transition: opacity .25s ease-in-out;
+   -moz-transition: opacity .25s ease-in-out;
+   -webkit-transition: opacity .25s ease-in-out;
+}
+
+#nav-informacoes ul li a,
+#nav-informacoes ul li a:before{
+	float: left;
+    font-size: 60px;
+    height: 50px;
+    margin: 0;
+    padding: 0;
+    width: 100%;
+}
+
+#nav-informacoes ul li a:hover{
+	opacity: 0.5;
+}
+
+#nav-informacoes ul li a.dashicons-nametag:before{
+	font-size: 63px;
+}
+
+#nav-informacoes ul li .tooltip {
+  background: #EA4335;
+  bottom: 100%;
+  color: #fff;
+  display: block;
+  left: 50%;
+  margin-left: -75px;
+  margin-bottom: 15px;
+  opacity: 0;
+  padding: 20px;
+  pointer-events: none;
+  position: absolute;
+  width: 100%;
+  -webkit-transform: translateY(10px);
+     -moz-transform: translateY(10px);
+      -ms-transform: translateY(10px);
+       -o-transform: translateY(10px);
+          transform: translateY(10px);
+  -webkit-transition: all .25s ease-out;
+     -moz-transition: all .25s ease-out;
+      -ms-transition: all .25s ease-out;
+       -o-transition: all .25s ease-out;
+          transition: all .25s ease-out;
+  -webkit-box-shadow: 2px 2px 6px rgba(0, 0, 0, 0.28);
+     -moz-box-shadow: 2px 2px 6px rgba(0, 0, 0, 0.28);
+      -ms-box-shadow: 2px 2px 6px rgba(0, 0, 0, 0.28);
+       -o-box-shadow: 2px 2px 6px rgba(0, 0, 0, 0.28);
+          box-shadow: 2px 2px 6px rgba(0, 0, 0, 0.28);
+}
+
+/* This bridges the gap so you can mouse into the tooltip without it disappearing */
+#nav-informacoes ul li .tooltip:before {
+  bottom: -20px;
+  content: " ";
+  display: block;
+  height: 20px;
+  left: 0;
+  position: absolute;
+  width: 100%;
+}  
+
+/* CSS Triangles - see Trevor's post */
+#nav-informacoes ul li .tooltip:after {
+  border-left: solid transparent 10px;
+  border-right: solid transparent 10px;
+  border-top: solid #EA4335 10px;
+  bottom: -10px;
+  content: " ";
+  height: 0;
+  left: 50%;
+  margin-left: -13px;
+  position: absolute;
+  width: 0;
+}
+  
+#nav-informacoes ul li:hover .tooltip {
+  opacity: 1;
+  pointer-events: auto;
+  -webkit-transform: translateY(0px);
+     -moz-transform: translateY(0px);
+      -ms-transform: translateY(0px);
+       -o-transform: translateY(0px);
+          transform: translateY(0px);
+}
+
+.info-inicial{
+	font-size: 25px;
+	padding: 30px 0;
+	line-height: normal;
+	text-align: center;
+	text-transform: uppercase;
+	color: #EA4335;
+}
