@@ -78,12 +78,31 @@
 	color: #ed2224;
 }
 
+.page-template-template-restrita .table-2 .dataTables_wrapper div{
+	margin: 0;
+	padding: 0;
+}
+
 .table-default-ca{
-	width: 100%;
+	width: 100%!important;
 	margin-bottom: 45px;
 }
 
-.table-default-ca > tbody > tr{
+
+.table-2 table.dataTable thead .sorting::after,
+.table-2 table.dataTable thead .sorting_asc::after,
+.table-2 table.dataTable thead .sorting_desc::after,
+.table-2 table.dataTable thead .sorting_asc_disabled::after,
+.table-2 table.dataTable thead .sorting_desc_disabled::after{
+	bottom: 19px;
+	opacity: 1;
+}
+
+.table-2 table.dataTable thead .sorting::after{
+	opacity: 0.5;
+}
+
+.table-default-ca > tbody > tr.clickable-row{
 	cursor: pointer;
 }
 
@@ -102,6 +121,11 @@
 .table-default-ca > tbody > tr > td{
 	padding-top: 15px;
 	padding-bottom: 15px;
+	color: #aaa9a9;
+}
+
+.table-default-ca > tbody > tr > td a:hover{
+	color: #ED2224;
 }
 
 .table-default-ca > tfoot > tr{
@@ -170,19 +194,37 @@
     width: 100%;
 }
 
+.dataTables_wrapper .pagination > .active > a,
+.dataTables_wrapper .pagination > .active > a:focus,
+.dataTables_wrapper .pagination > .active > a:hover,
+.dataTables_wrapper .pagination > .active > span,
+.dataTables_wrapper .pagination > .active > span:focus,
+.dataTables_wrapper .pagination > .active > span:hover{
+	background-color: #ED2224;
+	border-color: #ED2224;
+}
+
+abbr.dashicons-before{
+	text-decoration: none;
+	border: none;
+	font-size: 0.0001em;
+	color: transparent;
+}
+
+abbr.dashicons-before:before{
+	font-size: 24px;
+}
+
 #ativa{
 	color: #34A853;
-	text-decoration: none;
 }
 
 #inativa{
 	color: #EA4335;
-	text-decoration: none;
 }
 
 #warning{
 	color: #FBBC05;
-	text-decoration: none;	
 }
 
 .alerta-adm{
@@ -376,10 +418,10 @@
 
 #nav-informacoes ul li a{
 	cursor: pointer;
-	opacity: 1;
-   transition: opacity .25s ease-in-out;
-   -moz-transition: opacity .25s ease-in-out;
-   -webkit-transition: opacity .25s ease-in-out;
+	opacity: 0.5;
+	transition: opacity .25s ease-in-out;
+	-moz-transition: opacity .25s ease-in-out;
+	-webkit-transition: opacity .25s ease-in-out;
 }
 
 #nav-informacoes ul li a,
@@ -393,8 +435,8 @@
 }
 
 #nav-informacoes ul li a:hover,
-#nav-informacoes ul li.btnActive a{
-	opacity: 0.5;
+#nav-informacoes ul li.active a{
+	opacity: 1;
 }
 
 #nav-informacoes ul li a.dashicons-nametag:before{
@@ -485,12 +527,12 @@ dl.legenda-alerta{
 }
 
 dl.legenda-alerta dt{
-	color: #FBBC05;	
+	color: #FBBC05;
+	line-height: 20px;
 }
 
 dl.legenda-alerta dd{
-	padding: 0;
-	margin: 0;
+	line-height: 20px;
 }
 
 dl.legenda-alerta dd .alerta-informacoes{

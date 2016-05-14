@@ -8,17 +8,20 @@
 				<th>Região</th>
 				<th>Entrega da amostra</th>
 				<th>Próxima entrega</th>
-				<th>Histórico</th>
+				<th class="no-sort">Histórico</th>
 			</tr>
 		</thead>
 		<tbody>
 	<?php
 
 		$args = array (
-			'post_type'              => array( 'gerenciar_visita' ),
-			'post_status'            => array( 'publish' ),
-			'author'                 => get_current_user_id(),
-			'posts_per_page'         => -1,
+			'post_type'			=> array( 'gerenciar_visita' ),
+			'post_status'		=> array( 'publish' ),
+			'author'            => get_current_user_id(),
+			'meta_key'			=> 'proxima_entrega',
+			'orderby'			=> 'meta_value_num',
+			'order'				=> 'ASC',
+			'posts_per_page'	=> -1,
 		);
 
 		$loop_visita = new WP_Query( $args );

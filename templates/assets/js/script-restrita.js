@@ -20,9 +20,9 @@
 		    });
 
 		    //Remove active class from current link
-		    $('.active.setting-link').removeClass('active').removeClass('btnActive');
+		    $('.active.setting-link').removeClass('active');
 
-		    $li.addClass('active').addClass('btnActive');
+		    $li.addClass('active');
 		});
 
 		$('#add-visita').change(function() {

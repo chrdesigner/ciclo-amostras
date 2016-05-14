@@ -3,7 +3,16 @@
 	
 	<table class="table-default-ca table-clinicas">
 		<thead>
-			<tr><th>Clinica</th><th>Veterinário</th><th>E-mail</th><th>Endereço</th><th>Cidada/UF</th><th>Telefone</th><th>Celular</th><th>Situação</th></tr>
+			<tr>
+				<th>Clinica</th>
+				<th>Veterinário</th>
+				<th class="no-sort">E-mail</th>
+				<th class="no-sort">Endereço</th>
+				<th>Cidada/UF</th>
+				<th class="no-sort">Telefone</th>
+				<th class="no-sort">Celular</th>
+				<th>Situação</th>
+			</tr>
 		</thead>
 		<tbody>
 	<?php
@@ -101,11 +110,11 @@
 						$situacao = get_field('situacao_do_cadastro');
 
 						if (empty($veterinario && $email_clinica && $endereco_completo_clinica && $cidade_uf && $telefone_clinica && $celular_clinica)) {
-							echo '<abbr id="warning" class="dashicons-before dashicons-warning" title="Falta Informações sobre a Clinica"></abbr>';
+							echo '<abbr id="warning" class="dashicons-before dashicons-warning" title="Falta Informações sobre a Clinica">warning</abbr>';
 						}elseif($situacao == null){
-							echo '<abbr id="ativa" class="dashicons-before dashicons-yes" title="Cliníca Ativa"></abbr>';
+							echo '<abbr id="ativa" class="dashicons-before dashicons-yes" title="Cliníca Ativa">ativo</abbr>';
 						}else{
-							echo '<abbr id="inativa" class="dashicons-before dashicons-no" title="Cliníca Inativa"></abbr>';
+							echo '<abbr id="inativa" class="dashicons-before dashicons-no" title="Cliníca Inativa">inativa</abbr>';
 						}
 					?>
 				</td>
