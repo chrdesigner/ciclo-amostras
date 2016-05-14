@@ -62,6 +62,7 @@
 .header-restrita > div.main-info-restrita nav ul li a{
 	width: 100%;
 	float:left;
+	text-decoration: none;
 }
 
 .header-restrita > div.main-info-restrita nav ul li a:before{
@@ -284,10 +285,11 @@ abbr.dashicons-before:before{
 	color: #fff;
 }
 
-#ca-content-main .titulo-clinica i{
+#ca-content-main .titulo-clinica a{
 	font-size: 1.4em;
 	color: #EA4335;
 	font-weight: 800;
+	font-style: italic;
 }
 
 #ca-content-main input[type=text],

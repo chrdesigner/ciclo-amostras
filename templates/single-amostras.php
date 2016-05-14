@@ -43,7 +43,7 @@
 
 					if( $posts ) : foreach( $posts as $p ) :
 
-						echo '<h3 class="titulo-clinica">Esse relatório é referente à Clinica/Veterinário <i>' . get_the_title($p->ID) . '</i></h3>';
+						echo '<h3 class="titulo-clinica">Esse relatório é referente à Clinica/Veterinário <a href="' . get_the_permalink($p->ID) . '" title="Visualize à Ficha da Clinica ' . get_the_title($p->ID) . '">' . get_the_title($p->ID) . '</a></h3>';
 
 					endforeach; endif;
 	
