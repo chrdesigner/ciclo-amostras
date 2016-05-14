@@ -12,6 +12,10 @@
 	width: 90%;
 }
 
+.header-restrita > div.main-info-restrita h1{
+	color: #aaa9a9;
+}
+
 .header-restrita > div.logout-restrita{
 	width: 10%;
 	text-align: right;
@@ -74,61 +78,62 @@
 	color: #ed2224;
 }
 
-.table-clinicas{
+.table-default-ca{
 	width: 100%;
 	margin-bottom: 45px;
 }
 
-.table-clinicas > tbody > tr{
+.table-default-ca > tbody > tr{
 	cursor: pointer;
 }
 
-.table-clinicas > tbody > tr:hover{
+.table-default-ca > tbody > tr:hover{
 	background-color: rgba(53, 53, 53, .7);
 }
 
-.table-clinicas > tbody > tr:nth-child(even){
+.table-default-ca > tbody > tr:nth-child(even){
 	background-color: #23282D;
 }
 
-.table-clinicas > tbody > tr:hover:nth-child(even){
+.table-default-ca > tbody > tr:hover:nth-child(even){
 	background-color: rgba(35, 40, 45, .6);
 }
 
-.table-clinicas > tbody > tr > td{
+.table-default-ca > tbody > tr > td{
 	padding-top: 15px;
 	padding-bottom: 15px;
 }
 
-.table-clinicas > tfoot > tr{
+.table-default-ca > tfoot > tr{
 	background-color: #383838;
 	border-top: 3px solid #aaa9a9;
 }
 
-.table-clinicas > tfoot > tr > td{
+.table-default-ca > tfoot > tr > td{
 	padding-top: 15px;
 	padding-bottom: 15px;
 }
 
-.table-clinicas > tfoot > tr > td #nova_clinica label{
+.table-default-ca > tfoot > tr > td > form label{
 	cursor: pointer;
 	color: #ED2224;
 	font-weight: bold;
 	text-transform: uppercase;
 }
 
-.table-clinicas > tfoot > tr > td #nova_clinica fieldset{
+.table-default-ca > tfoot > tr > td > form fieldset{
 	position: relative;
 	width: 100%;
 	margin-top: 15px;
 }
 
-.table-clinicas > tfoot > tr > td #nova_clinica fieldset input[type="text"]{
+.table-default-ca > tfoot > tr > td > form fieldset input[type="text"]{
 	margin: 0 0 15px 0;
 }
 
 
-.table-clinicas > tfoot > tr > td #nova_clinica fieldset .button{
+.table-default-ca > tfoot > tr > td > form fieldset .button,
+#ca-content-main .field input[type=submit]{
 	font-size: 14px;
     line-height: 17px;
     padding: 13px 29px;    
@@ -146,11 +151,23 @@
     float: right;
 }
 
-.table-clinicas > tfoot > tr > td #nova_clinica fieldset .button:hover{
+.table-default-ca > tfoot > tr > td > form fieldset .button:hover,
+#ca-content-main .field input:hover[type=submit]{
 	background: #e80707 -webkit-linear-gradient(to bottom, #d60707, #e80707) repeat scroll 0 0; /* Safari 5.1-6.0 */
     background: #e80707 -o-linear-gradient(to bottom, #d60707, #e80707) repeat scroll 0 0; /* Opera 11.1-12.0 */
     background: #e80707 -moz-linear-gradient(to bottom, #d60707, #e80707) repeat scroll 0 0; /* Firefox 3.6-15 */
     background: #e80707 linear-gradient(to bottom, #d60707, #e80707) repeat scroll 0 0; /* Standard syntax */
+}
+
+.table-default-ca > tfoot > tr > td form select#add-visita{
+	background-color: #3e3e3e;
+    border: 1px solid #212122;
+    color: #cccccc;
+    font-size: 14px;
+    height: auto;
+    margin-bottom: 15px;
+    padding: 0.5rem;
+    width: 100%;
 }
 
 #ativa{
@@ -195,16 +212,132 @@
     font-weight: 500;
 }
 
-.single-gerenciar_visita .acf-form,
-.single-promotor .acf-form,
-.single-clinica .acf-form{
-	background-color: #fff;
-	padding: 1rem;
-	color: #333333;
+.ca-titulo-padrao{
+	color: #fff;
+	font-size: 34px;
+    line-height: 48px;
+    font-weight: 500;
 }
 
-.single-gerenciar_visita .acf-form a{
-	color: #333333;	
+#ca-content-main{
+	background-color: #242424;
+	padding: 1rem;
+	color: #aaa9a9;
+	border: 2px solid #353535;
+	display: inline-block;
+	width: 100%;
+}
+
+#ca-content-main #acf-situacao_do_cadastro{
+	background-color: #353535;
+	padding: 1rem;
+}
+
+#ca-content-main #acf-situacao_do_cadastro .label{
+	text-shadow: none;
+}
+
+#ca-content-main .titulo-clinica{
+	text-transform: uppercase;
+	color: #fff;
+}
+
+#ca-content-main .titulo-clinica i{
+	font-size: 1.4em;
+	color: #EA4335;
+	font-weight: 800;
+}
+
+#ca-content-main input[type=text],
+#ca-content-main input[type=email],
+#ca-content-main input[type=password]{
+	padding: .7rem;
+	font-size: 14px;
+	height: auto;
+	border-color: #212122;
+	color: #cccccc;
+	background-color: #3e3e3e;
+}
+
+#ca-content-main input:disabled[type=email]{
+	background: rgba(255, 255, 255, 0.5) none repeat scroll 0 0;
+}
+
+#ca-content-main #acf-data_programada,
+#ca-content-main #acf-proxima_entrega{
+	display: inline-table;
+    width: 49%;
+}
+
+#ca-content-main #acf-data_programada{
+	margin-right: 1%;
+}
+
+#ca-content-main .acf_postbox.no_box > .inside > .field.error{
+	margin: 0;
+}
+
+
+#ca-content-main .field label{
+	color: #aaa9a9;
+	font-size: 14px;
+	text-shadow: none;
+}
+
+#ca-content-main .chosen-container-single .chosen-single{
+	padding: 0.5rem 0.6rem;
+	font-size: 14px;
+	height: auto;
+	border-radius: 0;
+	border-color: #212122;
+	color: #cccccc;
+	background: #3e3e3e;
+	box-shadow: none;
+}
+
+#ca-content-main .chosen-container-single .chosen-single div b{
+	background-position: 0 13px;
+}
+
+#ca-content-main .country-selector-list strong{
+	color: #aaa9a9;
+}
+
+#ca-content-main table.acf-input-table,
+#ca-content-main table.acf_input,
+#ca-content-main table.acf_input tbody tr td,
+#ca-content-main table.acf-input-table > tbody > tr,
+#ca-content-main table.acf-input-table.row_layout,
+#ca-content-main table.acf-input-table.row_layout > tbody > tr > td{
+	border-color: #333333;
+}
+
+#ca-content-main table.acf_input,
+#ca-content-main table.acf-input-table{
+	background-color: #383838;
+}
+
+#ca-content-main table.acf_input tbody tr td.label{
+	background-color: #353535;
+}
+
+#ca-content-main table.acf_input tbody tr.field_type-message td.label label{
+	display: none;
+}
+
+#ca-content-main table.acf_input tbody tr.field_type-message td .inner h3{
+	color: #aaa9a9;
+}
+
+#ca-content-main .repeater > table > tbody > tr > td.order,
+#ca-content-main .repeater > table > tbody > tr > td.remove{
+	background-color: #3e3e3e;
+	border-color: #333333;
+}
+
+#ca-content-main .repeater .acf-button{
+	background-color: #ea4335;
+	border-color: #ea4335;
 }
 
 #nav-informacoes{
@@ -367,4 +500,8 @@ dl.legenda-alerta dd .alerta-informacoes{
 .alerta-informacoes{
 	font-size: 10px;
 	color: #EA4335;
+}
+
+#acf-todas_clinicas{
+	display: none;
 }

@@ -1,7 +1,7 @@
 <div class="table-2">
 	<h3 style="text-align: center; text-transform: uppercase;">Informações da(s) Minha(s) Clinica(s)</h3>
 	
-	<table class="table-clinicas">
+	<table class="table-default-ca table-clinicas">
 		<thead>
 			<tr><th>Clinica</th><th>Veterinário</th><th>E-mail</th><th>Endereço</th><th>Cidada/UF</th><th>Telefone</th><th>Celular</th><th>Situação</th></tr>
 		</thead>
@@ -126,11 +126,12 @@
 						<label class="adicionar-clinica" for="nome-clinica">Adicionar Nome da Clínica</label>
 						
 						<fieldset id="campos-clinica" style="display: none;">
-					        <input type="text" id="nome-clinica" value="" tabindex="2" name="post_title" />
+					        <input type="text" id="nome-clinica" value="" tabindex="2" name="post_title" required />
 					        <input class="button" type="submit" value="Nova Clínica" tabindex="40" id="submit" name="submit" />
 					    </fieldset>
 					
 						<div class="errorTxt"></div>
+						
 					    <input type="hidden" name="action" value="nova_clinica" />
 					    <?php wp_nonce_field( 'new-post' ); ?>
 					</form>

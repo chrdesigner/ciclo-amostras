@@ -46,6 +46,8 @@ wp_register_style( 'style-admin', plugin_dir_url( __FILE__ ) . 'admin/assets/css
 wp_register_script('ca-maskedinput-js', plugin_dir_url( __FILE__ ) . 'assets/js/jquery.maskedinput.min.js', false, true );
 wp_register_script( 'data-visita-js', plugin_dir_url( __FILE__ ) . 'assets/js/data.visita.js', array('jquery'), false );
 wp_register_script( 'disable-field-js', plugin_dir_url( __FILE__ ) . 'assets/js/disable.field.js', array('jquery'), false );
+wp_register_style( 'style-restrita', plugin_dir_url( __FILE__ ) . 'templates/assets/css/style-restrita.css' );
+wp_register_script( 'script-restrita-js', plugin_dir_url( __FILE__ ) . 'templates/assets/js/script-restrita.js', array('jquery'), true );
 
 /**
  * Remover as Metabox não desejadas
@@ -101,14 +103,14 @@ function add_frontend_scripts() {
 		wp_enqueue_script('ca-maskedinput-js');
         wp_enqueue_script( 'ca-main-js', plugin_dir_url( __FILE__ ) . 'assets/js/main.js', array('jquery'), true );
 
-        if( is_singular('promotor') && 'publish' == $post->post_status ){
-            wp_enqueue_script('disable-field-js');
-        }
-
-    }elseif ( is_singular('gerenciar_visita') ) {
+    } elseif ( is_singular('gerenciar_visita') ) {
 
         wp_enqueue_script('data-visita-js');
 
+    }
+
+    if( is_singular('promotor') && 'publish' == $post->post_status || is_singular('gerenciar_visita') && 'publish' == $post->post_status){
+        wp_enqueue_script('disable-field-js');
     }
 
 }
@@ -196,19 +198,29 @@ function include_template_single( $template_path ) {
 
     if ( get_post_type() == 'clinica' || get_post_type() == 'promotor' || get_post_type() == 'gerenciar_visita' ) {
         if ( is_single() ) {
+
+            wp_enqueue_style( 'style-restrita' );
+            wp_enqueue_script('script-restrita-js');
+
             if ( $theme_file = locate_template( array ( 'single-amostras.php' ) ) ) {
                 $template_path = $theme_file;
             } else {
                 $template_path = plugin_dir_path( __FILE__ ) . '/templates/single-amostras.php';
             }
+
         }
     } elseif ( is_page_template( 'template-restrita.php' )) {
+
     
         if ( $theme_file = locate_template( array ( 'template-restrita.php' ) ) ) {
+            
             $template_path = $theme_file;
+        
         } else {
+           
             $template_path = plugin_dir_path( __FILE__ ) . '/templates/template-restrita.php';
         }
+
         
     }
     

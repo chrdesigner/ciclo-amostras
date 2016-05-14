@@ -1,8 +1,5 @@
 <?php
 	
-	wp_register_style( 'style-restrita', plugin_dir_url( __FILE__ ) . 'assets/css/style-restrita.css' );
-	wp_enqueue_style( 'style-restrita' );
-
 	global $current_user;
 	get_currentuserinfo();
 
