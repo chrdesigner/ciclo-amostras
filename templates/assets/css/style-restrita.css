@@ -205,8 +205,8 @@
 }
 
 abbr.dashicons-before{
-	text-decoration: none;
-	border: none;
+	text-decoration: none!important;
+	border: none!important;
 	font-size: 0.0001em;
 	color: transparent;
 }
@@ -432,6 +432,7 @@ abbr.dashicons-before:before{
     margin: 0;
     padding: 0;
     width: 100%;
+    text-decoration: none;
 }
 
 #nav-informacoes ul li a:hover,
@@ -493,7 +494,7 @@ abbr.dashicons-before:before{
   content: " ";
   height: 0;
   left: 50%;
-  margin-left: -13px;
+  margin-left: -9px;
   position: absolute;
   width: 0;
 }
@@ -546,4 +547,9 @@ dl.legenda-alerta dd .alerta-informacoes{
 
 #acf-todas_clinicas{
 	display: none;
+}
+
+.td-historico{
+	width: 5%;
+	text-align: center;
 }

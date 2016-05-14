@@ -95,7 +95,7 @@
 					}
 				?>
 				</td>
-				<td>
+				<td class="td-historico">
 					<a href="<?php the_permalink();?>#acf-relatorio_do_promotor" title="Ver Histórico">Ver</a>
 				</td>
 			</tr>

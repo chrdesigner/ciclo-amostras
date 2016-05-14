@@ -18,16 +18,17 @@
 	} else {
 
 		wp_enqueue_style( 'style-restrita' );
+		wp_enqueue_style( 'style-datatables' );
         wp_enqueue_script('script-restrita-js');
+        wp_enqueue_script('script-datatables-js');
+        wp_enqueue_script('script-moment-js');
+        wp_enqueue_script('script-datetime-moment-js');
 			
 		require plugin_dir_path( __FILE__ ) . 'header-restitra.php';
 
 	?>
 
-		<link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/t/bs-3.3.6/pdfmake-0.1.18,dt-1.10.11,af-2.1.1,b-1.1.2,b-html5-1.1.2/datatables.min.css"/>
- 		<script type="text/javascript" src="https://cdn.datatables.net/t/bs-3.3.6/pdfmake-0.1.18,dt-1.10.11,af-2.1.1,b-1.1.2,b-html5-1.1.2/datatables.min.js"></script>
-
-		<nav id="nav-informacoes">
+ 		<nav id="nav-informacoes">
 			<ul id="navigation">
 				<li data-tab="clinicas" class="setting-link active">
 					<a class="link_info dashicons-before dashicons-nametag" title="Minhas Clinicas"></a>
@@ -50,9 +51,11 @@
 
 	    <script>
 		// <![CDATA[
-			jQuery(function($) {
+			jQuery(document).ready( function ($) {
 
-			    $('.table-default-ca.table-clinicas').DataTable( {
+				$.fn.dataTable.moment('DD/MM');
+
+				$('.table-default-ca.table-clinicas').DataTable( {
 			    	"order": [[ 0, "asc" ]],
 			    	"columnDefs": [ {
 				          "targets": 'no-sort',
@@ -66,6 +69,7 @@
 				    ]
 				} );
 
+			    
 				$('.table-default-ca.table-visita').DataTable( {
 			    	"order": [[ 4, "desc" ]],
 			    	"columnDefs": [ {
