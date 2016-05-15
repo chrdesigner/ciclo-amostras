@@ -59,60 +59,6 @@
 	    	<?php require plugin_dir_path( __FILE__ ) . 'includes/gerar-relatorio.php'; ?>
 	    </div>
 
-	    <script>
-		// <![CDATA[
-			jQuery(document).ready( function ($) {
-
-				$.fn.dataTable.moment('DD/MM');
-
-				$('.table-default-ca.table-clinicas').DataTable( {
-					dom: 'Bfrtip',
-					lengthMenu: [
-			            [ 10, 25, 50, -1 ],
-			            [ '10 resultados', '25 resultados', '50 resultados', 'Todos os resultados' ]
-			        ],
-					"order": [[ 0, "asc" ]],
-			    	"columnDefs": [ {
-				          "targets": 'no-sort',
-				          "orderable": false,
-				    } ],
-			        "language": {
-			            "url": "//cdn.datatables.net/plug-ins/1.10.11/i18n/Portuguese-Brasil.json"
-			        },
-			        buttons: [
-			         	'pageLength',
-			        	'excelHtml5',
-            			'csvHtml5'
-			        ]
-				} );
-
-			    
-				$('.table-default-ca.table-visita').DataTable( {
-					dom: 'Bfrtip',
-					lengthMenu: [
-			            [ 10, 25, 50, -1 ],
-			            [ '10 resultados', '25 resultados', '50 resultados', 'Todos os resultados' ]
-			        ],
-			    	"order": [[ 4, "desc" ]],
-			    	"columnDefs": [ {
-				          "targets": 'no-sort',
-				          "orderable": false,
-				          "searchable": false
-				    } ],
-			        "language": {
-			            "url": "//cdn.datatables.net/plug-ins/1.10.11/i18n/Portuguese-Brasil.json"
-			        },
-			        buttons: [
-			         	'pageLength',
-			        	'excelHtml5',
-            			'csvHtml5'
-			        ]
-				} );
-
-			} );
-	    // ]]>
-	    </script>
-
 	<?php }; ?>
 
 		

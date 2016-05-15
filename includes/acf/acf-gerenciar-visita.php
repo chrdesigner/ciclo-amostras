@@ -113,7 +113,7 @@
 
 					),
 					'row_min' => 1,
-					'row_limit' => '',
+					'row_limit' => '1',
 					'layout' => 'row',
 					'button_label' => 'Adicionar Novo Relatório',
 				),

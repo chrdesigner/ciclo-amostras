@@ -37,7 +37,7 @@
 
 			<section id="ca-content-main">
 			<?php
-				if(is_singular('gerenciar_visita')){
+				if(is_singular('gerenciar_visita')) :
 				
 					$posts = get_field('todas_clinicas');
 
@@ -47,25 +47,13 @@
 
 					endforeach; endif;
 	
-				};
+				endif;
+			 	
+			 	acf_form();
 			?>
-
-				<?php acf_form(); ?>
-
-				<a id="btnExport">XLS</a>
 			</section>
-			
-			<script type="text/javascript">
-			// <![CDATA[
-			jQuery(document).ready( function ($) {
-				$("#btnExport").click(function(e) {
-				    window.open('data:application/vnd.ms-excel,' + $('#ca-content-main').html());
-				    e.preventDefault();
-				});
-			});
-			</script>
+			<?php
 
-			<?php 
 				endwhile;
 
 			else : ?>

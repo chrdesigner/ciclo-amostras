@@ -185,7 +185,7 @@ function admin_notice_acf_activation() {
 }
 
 /**
- * Cria e verifica single/page personalizada
+ * Criação do Frontend - Listagem/Gerenciamento/Relatórios
  */
 
 function register_page_restricted_area() {
@@ -196,6 +196,8 @@ register_activation_hook( __FILE__, 'register_page_restricted_area' );
 require_once('templates/class/class-page-templater.php');
 
 require_once('includes/edit-page-template.php');
+
+require_once('templates/hook/ajax-relatorio-clinica.php');
 
 add_filter( 'template_include', 'include_template_single', 1 );
 function include_template_single( $template_path ) {
@@ -214,21 +216,14 @@ function include_template_single( $template_path ) {
 
         }
     } elseif ( is_page_template( 'template-restrita.php' )) {
-
-    
         if ( $theme_file = locate_template( array ( 'template-restrita.php' ) ) ) {
-            
             $template_path = $theme_file;
-        
-        } else {
-           
+        } else {           
             $template_path = plugin_dir_path( __FILE__ ) . '/templates/template-restrita.php';
         }
-
-        
     }
-    
     return $template_path;
+    
 }
 
 /**
