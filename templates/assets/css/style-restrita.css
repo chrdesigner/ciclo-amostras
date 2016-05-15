@@ -219,14 +219,16 @@
 	border-color: #ED2224;
 }
 
-abbr.dashicons-before{
+abbr.dashicons-before,
+a.dashicons-before.dashicons-edit{
 	text-decoration: none!important;
 	border: none!important;
 	font-size: 0.0001em;
 	color: transparent;
 }
 
-abbr.dashicons-before:before{
+abbr.dashicons-before:before,
+a.dashicons-before.dashicons-edit:before{
 	font-size: 24px;
 }
 

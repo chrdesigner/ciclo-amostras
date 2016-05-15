@@ -37,7 +37,7 @@
             <tbody>
         	<?php  if( $relatorios ) : foreach( $relatorios as $relatorio ) : ?>
 	            <tr>
-	                <td width="10%">
+	                <td width="16%">
 	                <?php
 	                    $data_programada = get_field('data_programada', $relatorio->ID);
 	                    $data_programada = new DateTime($data_programada);
@@ -45,7 +45,7 @@
 	                    echo $data_programada->format('d/m');  
 	                ?>
 	                </td>
-	                <td width="10%">
+	                <td width="16%">
 	                <?php
 	                	$programada_rows = get_field('relatorio_do_promotor', $relatorio->ID);
 	                	if($programada_rows) {
@@ -58,7 +58,7 @@
 						}
 	                ?>
 					</td>
-	                <td width="10%">
+	                <td width="16%">
 	                <?php
 	                    $proxima_entrega = get_field('proxima_entrega', $relatorio->ID);
 	                    $proxima_entrega = new DateTime($proxima_entrega);
@@ -66,7 +66,7 @@
 	                    echo $proxima_entrega->format('d/m');
 	                ?>
 	                </td>
-	                <td width="17.5%">
+	                <td width="25%">
 	                <?php
 	                	$produtos_rows = get_field('relatorio_do_promotor', $relatorio->ID);
 	                	if($produtos_rows) {
@@ -76,7 +76,7 @@
 						}
 	                ?>
 	                </td>
-	                <td width="17.5%">
+	                <td width="25%">
 	                <?php
 	                	$observacoes_rows = get_field('relatorio_do_promotor', $relatorio->ID);
 	                	if($observacoes_rows) {
@@ -86,8 +86,8 @@
 						}
 	                ?>
 	                </td>
-	                <td width="5%">
-	                    <a href="<?php echo get_permalink( $relatorio->ID ); ?>">Editar</a>
+	                <td width="2%">
+	                    <a href="<?php echo get_permalink( $relatorio->ID ); ?>" class="dashicons-before dashicons-edit" title="Editar Relatório">Editar</a>
 	                </td>
 	            </tr>
         	<?php endforeach; endif;?>
