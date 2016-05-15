@@ -40,6 +40,10 @@
 					<a class="link_info dashicons-before dashicons-calendar" title="Agenda de Visitas"></a>
 					<i class="tooltip">Agenda de Visitas</i>
 				</li>
+				<li data-tab="relatorio" class="setting-link">
+					<a class="link_info dashicons-before dashicons-clipboard" title="Gerar Relatório"></a>
+					<i class="tooltip">Gerar Relatório</i>
+				</li>
 			</ul>
 		</nav>
 
@@ -49,6 +53,10 @@
 
 	    <div id="visita" class="nav-links" rel="2">
 	   		<?php require plugin_dir_path( __FILE__ ) . 'includes/agenda-visita.php'; ?>
+	    </div>
+
+	    <div id="relatorio" class="nav-links" rel="3">
+	    	<?php require plugin_dir_path( __FILE__ ) . 'includes/gerar-relatorio.php'; ?>
 	    </div>
 
 	    <script>
