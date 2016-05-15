@@ -84,6 +84,12 @@
 	padding: 0;
 }
 
+.page-template-template-restrita .table-2 .dataTables_wrapper .dt-buttons.btn-group,
+.page-template-template-restrita .table-2 .dataTables_wrapper .dataTables_filter{
+	width: 50%;
+	display: inline-table;
+}
+
 .table-default-ca{
 	width: 100%!important;
 	margin-bottom: 45px;
@@ -459,6 +465,7 @@ abbr.dashicons-before:before{
   pointer-events: none;
   position: absolute;
   width: 100%;
+  text-align: center;
   -webkit-transform: translateY(10px);
      -moz-transform: translateY(10px);
       -ms-transform: translateY(10px);

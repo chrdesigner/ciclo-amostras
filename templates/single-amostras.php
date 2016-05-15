@@ -51,7 +51,20 @@
 			?>
 
 				<?php acf_form(); ?>
+
+				<a id="btnExport">XLS</a>
 			</section>
+			
+			<script type="text/javascript">
+			// <![CDATA[
+			jQuery(document).ready( function ($) {
+				$("#btnExport").click(function(e) {
+				    window.open('data:application/vnd.ms-excel,' + $('#ca-content-main').html());
+				    e.preventDefault();
+				});
+			});
+			</script>
+
 			<?php 
 				endwhile;
 
