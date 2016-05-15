@@ -1,6 +1,11 @@
 // <![CDATA[
 	jQuery(function($) {
 
+		var data = new Date();
+		var mes = data.getMonth()+1;
+		var dia = data.getDate();
+		var dataHoje = ((''+dia).length<2 ? '0' : '') + dia + '/' + ((''+mes).length<2 ? '0' : '') + mes + '/' + data.getFullYear();
+
 		$('.clickable-row').click(function() {
 	        window.document.location = $(this).data('href');
 	    });
@@ -43,8 +48,14 @@
 	        },
 	        buttons: [
 	         	'pageLength',
-	        	'excelHtml5',
-    			'csvHtml5'
+				{
+					extend: 'excelHtml5',
+					title: 'Minhas Clinicas - '+ dataHoje,
+				},
+				{
+					extend: 'csvHtml5',
+					title: 'Minhas Clinicas - '+ dataHoje,
+				}
 	        ]
 		} );
 
@@ -65,8 +76,20 @@
 	        },
 	        buttons: [
 	         	'pageLength',
-	        	'excelHtml5',
-    			'csvHtml5'
+				{
+					extend: 'excelHtml5',
+					title: 'Agenda de Visitas - '+ dataHoje,
+					exportOptions: {
+						columns: [ 0, 1, 2, 3, 4 ]
+					}
+				},
+				{
+					extend: 'csvHtml5',
+					title: 'Agenda de Visitas - '+ dataHoje,
+					exportOptions: {
+						columns: [ 0, 1, 2, 3, 4 ]
+					}
+				}
 	        ]
 		} );
 

@@ -5,11 +5,7 @@
         $id_clinica = $_POST[ 'clinica_value' ];
 		$post_author_id = get_post_field( 'post_author', $id_clinica );
         
-        if( $id_clinica == null ){
-            
-            echo 'Selecione uma Clinica';
-
-        }else{
+        if( $id_clinica == null ){ }else{
 
         $relatorios = get_posts(array(
             'post_type'     => 'gerenciar_visita',
@@ -38,13 +34,6 @@
                     <th class="no-sort"></th>
                 </tr>
             </thead>
-            <tfoot>
-                <tr>
-                    <td colspan="6" class="detalhes-relatorio">
-                        Clinica: <?php echo get_the_title( $id_clinica ); ?> - Promotor: <?php the_author_meta( 'display_name', $post_author_id ); ?>
-                    </td>
-                </tr>
-            </tfoot>
             <tbody>
         	<?php  if( $relatorios ) : foreach( $relatorios as $relatorio ) : ?>
 	            <tr>
@@ -103,6 +92,13 @@
 	            </tr>
         	<?php endforeach; endif;?>
             </tbody>
+            <tfoot>
+                <tr>
+                    <td colspan="6" class="detalhes-relatorio">
+                        Clinica: <?php echo get_the_title( $id_clinica ); ?> - Promotor: <?php the_author_meta( 'display_name', $post_author_id ); ?>
+                    </td>
+                </tr>
+            </tfoot>
         </table>
 	</div><?php
 

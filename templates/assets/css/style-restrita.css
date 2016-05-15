@@ -96,16 +96,17 @@
 }
 
 
-.table-2 table.dataTable thead .sorting::after,
-.table-2 table.dataTable thead .sorting_asc::after,
-.table-2 table.dataTable thead .sorting_desc::after,
-.table-2 table.dataTable thead .sorting_asc_disabled::after,
-.table-2 table.dataTable thead .sorting_desc_disabled::after{
-	bottom: 19px;
-	opacity: 1;
+.table-2 table.dataTable thead .sorting:after,
+.table-2 table.dataTable thead .sorting_asc:after,
+.table-2 table.dataTable thead .sorting_desc:after,
+.table-2 table.dataTable thead .sorting_asc_disabled:after,
+.table-2 table.dataTable thead .sorting_desc_disabled:after{
+	bottom: 50%;
+    margin-bottom: -12px;
+    opacity: 1;
 }
 
-.table-2 table.dataTable thead .sorting::after{
+.table-2 table.dataTable thead .sorting:after{
 	opacity: 0.5;
 }
 
@@ -526,8 +527,8 @@ abbr.dashicons-before:before{
 }
 
 .info-inicial h2{
-	font-size: 25px;
-	padding: 30px 0;
+	font-size: 24px;
+	padding: 14px 0 0;
 	line-height: normal;
 	text-align: center;
 	text-transform: uppercase;
@@ -568,4 +569,33 @@ dl.legenda-alerta dd .alerta-informacoes{
 .td-historico{
 	width: 5%;
 	text-align: center;
+}
+
+#listar-minhas-clinicas #loading-clinica{
+	padding: 0 4rem 4rem 4rem;
+    text-align: center;
+    width: 100%;
+}
+
+
+#listar-minhas-clinicas .styled-select {
+   background: url(http://i62.tinypic.com/15xvbd5.png) no-repeat #353535 96% center;
+   overflow: hidden;
+   width: 460px;
+   height: 49px;
+   margin: 0 auto 3rem auto;
+   -webkit-border-radius: 5px;
+   -moz-border-radius: 5px;
+   border-radius: 5px;
+}
+
+#listar-minhas-clinicas .styled-select select {
+	background: transparent;
+	border: none;
+	font-size: 20px;
+	color: #fff;
+	text-transform: uppercase;
+	width: 488px;
+	height: 49px;
+	padding: 5px;
 }

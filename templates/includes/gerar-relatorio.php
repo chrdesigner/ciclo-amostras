@@ -1,6 +1,6 @@
 
 	<div class="info-inicial">
-		<h2>Selecione à Clinica desejada</h2>
+		<h2>Selecione a Clinica para Gerar o Relatório</h2>
 	</div>
 
 	<form id="listar-minhas-clinicas" action="<?php bloginfo('url'); ?>" method="GET">
@@ -15,18 +15,22 @@
 		$loop_add_visita = new WP_Query( $args );
 		if ( $loop_add_visita->have_posts() ) {
 
-		echo '<select id="add-clinica" name="add-clinica" onchange="ajax_get_clinica()"  required>
+		echo '
+		<div class="styled-select">
+			<select id="add-clinica" name="add-clinica" onchange="ajax_get_clinica()"  required>
 				<option class="ajax" value="" data-title="">Selecione sua clinica</option>';
 			while ( $loop_add_visita->have_posts() ) { $loop_add_visita->the_post();
 			echo '<option class="ajax" value="' . get_the_ID() . '" id="' . get_the_ID() . '" data-title="' . get_the_title() . '">' . get_the_title() . '</option>';
 			}
-		echo '</select>';
+		echo '
+			</select>
+		</div>';
 
 		}
 		wp_reset_postdata();
 	?>
 
-		<div id="loading-animation" style="display: none;">
+		<div id="loading-clinica" style="display: none;">
 			<img src="<?php echo plugin_dir_url(dirname(__FILE__)); ?>assets/images/loading.png"/>
 		</div>
 		
@@ -50,7 +54,7 @@
 
 			var ajaxurl = "<?php echo admin_url( 'admin-ajax.php' ); ?>";
 
-		    jQuery("#loading-animation").show();
+		    jQuery("#loading-clinica").show();
 		    jQuery("#geracao-relatorios").hide();
 
 		    jQuery.ajax({
@@ -65,7 +69,7 @@
 		        	//alert(dataHoje);
 
 		        	jQuery("#geracao-relatorios").show().html(response);
-		            jQuery("#loading-animation").hide();
+		            jQuery("#loading-clinica").hide();
 
 		            jQuery.fn.dataTable.moment('DD/MM');
 
@@ -90,15 +94,17 @@
 								extend: 'excelHtml5',
 								title: titulo + ' - '+ dataHoje,
 								exportOptions: {
-									columns: [ 0, 1, 2, 4 ]
-								}
+									columns: [ 0, 1, 2, 3, 4 ]
+								},
+								// footer: true
 							},
 							{
 								extend: 'csvHtml5',
 								title: titulo + ' - '+ dataHoje,
 								exportOptions: {
-									columns: [ 0, 1, 2, 4 ]
-								}
+									columns: [ 0, 1, 2, 3, 4 ]
+								},
+								// footer: true
 							}
 				        ]
 					} );
