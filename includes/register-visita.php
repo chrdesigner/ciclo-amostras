@@ -2,9 +2,12 @@
 	
 	if( 'POST' == $_SERVER['REQUEST_METHOD'] && !empty( $_POST['action'] ) &&  $_POST['action'] == "nova_visita") {
 	 	
-	 	$title 		= $_POST['post_title'];
-	 	$clinica	= $_POST['todas_clinicas'];
+	 	$data			= $_POST['data_atual'];
+	 	$clinica		= $_POST['todas_clinicas'];
+		$nome_clinica	= $_POST['todas_title_clinica'];
 
+	 	$title 		= 'Relatório ' . $nome_clinica . ' | ' . $data ;
+	 	
 	 	global $user_ID, $wpdb;
 
 	    $query = $wpdb->prepare(
@@ -60,14 +63,14 @@
 
 	    remove_action( 'acf/save_post', 'update_visita' );
 
-	    $new_title = get_field('post_title', $post_id) . ' ' . $value;
-	    $new_slug = sanitize_title( $new_title );
+	    //$new_title = get_field('post_title', $post_id) . ' ' . $value;
+	    //$new_slug = sanitize_title( $new_title );
 
 	    $post = array(
 	        'ID'           => $post_id,
 	        'post_type'    => 'gerenciar_visita',
-	        'post_title'   => $new_title,
-		  	'post_name'    => $new_slug,
+	    	//'post_title'   => $new_title,
+		  	//'post_name'    => $new_slug,
 	        'post_status'  => 'publish'
 	    );
 

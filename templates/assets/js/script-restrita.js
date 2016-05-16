@@ -94,7 +94,10 @@
 		} );
 
 		$('#add-visita').change(function() {
+	        var t = $('#add-visita option:selected').data('titulo');
 	        var x = $(this).val();
+	        
+			$('#hidden_title_clinica').val(t);
 	        $('#hidden_visita').val(x);
 	    });
 

@@ -111,10 +111,12 @@
 			<tr>
 				<td colspan="6">
 					<form id="nova_visita" name="nova_visita" method="post" action="" class="front-end-form" enctype="multipart/form-data">
-						<label class="adicionar-visita" for="nome-visita">Adicionar Visita</label>
+						<label class="adicionar-visita" for="nome-visita">Adicionar Nova Visita</label>
 						<fieldset id="campos-visita" style="display: none;">
-							<input type="text" id="titulo-relatorio" value="" tabindex="2" name="post_title" placeholder="Nome do Relatório: " required />
 							<?php
+								date_default_timezone_set('America/Sao_Paulo');
+								$today = date("d/m/Y"); 
+
 								$args = array (
 										'post_type'              => array( 'clinica' ),
 										'post_status'            => array( 'publish' ),
@@ -129,7 +131,7 @@
 								echo '<select id="add-visita" name="add-visita" required>
 										<option value="">Selecione sua clinica</option>';
 									while ( $loop_add_visita->have_posts() ) { $loop_add_visita->the_post();
-										echo '<option value=' . get_the_ID() . '>' . get_the_title() . '</option>';
+										echo '<option value=' . get_the_ID() . ' data-titulo="' . get_the_title() . '">' . get_the_title() . '</option>';
 									}
 								echo '</select>';
 									
@@ -139,8 +141,12 @@
 							?>
 					        <input class="button" type="submit" value="Nova Visita" tabindex="40" id="submitButtonId" name="submit" />
 					    </fieldset>			
+						
 						<div class="errorTxt"></div>
+						
 					    <input type="hidden" name="todas_clinicas" id="hidden_visita" value="" />
+					    <input type="hidden" name="todas_title_clinica" id="hidden_title_clinica" value="" />
+					    <input type="hidden" name="data_atual" value="<?php echo $today; ?>" />
 					    <input type="hidden" name="action" value="nova_visita" />
 					    <?php wp_nonce_field( 'new-post' ); ?>
 					</form>

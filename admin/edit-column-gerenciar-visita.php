@@ -30,32 +30,57 @@ function gerenciar_visita_posts_columns( $column, $post_id ) {
         
         case 'visita_promotor':
             
-            echo "Promotor";            
-            
+            $posts = get_field('todas_clinicas', $post_id);
+            if( $posts ) :
+                foreach( $posts as $p ) :
+                    $getID = $p->post_author;
+                    $author_name = get_the_author_meta( 'display_name', $getID );                    
+                    echo sprintf( '<a href="%1$s" title="Gerenciar Visita(s) - %2$s">%2$s</a>', admin_url( 'edit.php?post_type=gerenciar_visita&author=' . $getID ), $author_name );
+                endforeach;
+            endif;
             break;
 
         case 'visita_cidade':
 
-            echo "CIDADE/UF";
+            $posts = get_field('todas_clinicas', $post_id);
+            if( $posts ) :
+                foreach( $posts as $p ) :
 
+                    $cidade_uf = get_field('estado_cidade_clinica', $p->ID);
+
+                    if($cidade_uf != null){
+                        echo $cidade_uf['city_name'] . '/' . $cidade_uf['state_id'] ;
+                    };
+
+                endforeach;
+            endif;
             break;
 
         case 'visita_entrega':
 
-            echo "Entrega";
+            $programada_rows = get_field('relatorio_do_promotor', $post_id);
+            if($programada_rows) {
+                foreach($programada_rows as $programada) {
+                    $data_programada = $programada['data_entrega_amostra'];
+                    $data_programada = new DateTime($data_programada);
 
+                    echo $data_programada->format('d/m');
+                }
+            }
             break;
 
         case 'visita_proximo':
 
-            echo "Proximo";
-            
+            $proxima_entrega = get_field('proxima_entrega', $post_id);
+            if($proxima_entrega != null){
+                $proxima_entrega = new DateTime($proxima_entrega);
+                echo $proxima_entrega->format('d/m');
+            }
             break;
 
         case 'visita_historico':
 
-            echo 'Histórico';
-
+            echo sprintf( '<a href="%1$s" title="Histórico" target="_blank">Ver</a>', get_the_permalink($post_id) );
             break;
 
     }
