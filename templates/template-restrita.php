@@ -18,14 +18,8 @@
 	} else {
 
 		wp_enqueue_style( 'style-restrita' );
-		wp_enqueue_style( 'style-datatables' );
-		wp_enqueue_script('script-tabelas-js' );
-		wp_enqueue_script('script-jszip-js');
-        wp_enqueue_script('script-restrita-js');
-        wp_enqueue_script('script-datatables-js');
-        wp_enqueue_script('script-moment-js');
-        wp_enqueue_script('script-datetime-moment-js');
-			
+		wp_enqueue_script('script-restrita-js');
+
 		require plugin_dir_path( __FILE__ ) . 'header-restitra.php';
 
 		global $current_user;
@@ -39,6 +33,16 @@
 		$user_promotor 		= 'promotor';
 		$user_marketing 	= 'marketing';
 		$user_administrator = 'administrator';
+
+		
+		wp_enqueue_style( 'style-datatables', plugin_dir_url( __FILE__ ) . 'datatables/css/datatables.min.css' );
+		wp_enqueue_script( 'script-datatables-js', plugin_dir_url( __FILE__ ) . 'datatables/js/datatables.min.js', false, false );
+		wp_enqueue_script( 'script-tabelas-js', plugin_dir_url( __FILE__ ) . 'assets/js/script-tabelas.js', array('jquery'), true );
+		wp_enqueue_script( 'script-datetime-moment-js', plugin_dir_url( __FILE__ ) . 'datatables/js/datetime-moment.js', false, true );
+		wp_enqueue_script( 'script-moment-js', plugin_dir_url( __FILE__ ) . 'datatables/js/moment.min.js', false, true );
+		wp_enqueue_script( 'script-jszip-js', plugin_dir_url( __FILE__ ) . 'datatables/js/jszip.min.js', array('jquery'), true );
+		
+		
 
 	?>
 
@@ -74,6 +78,7 @@
 	    <div id="visita" class="nav-links" rel="2">
 	   		<?php require plugin_dir_path( __FILE__ ) . 'includes/agenda-visita.php'; ?>
 	    </div>
+	    
 	<?php if( $user_marketing != $user_role ) : ?>
 	    <div id="relatorio" class="nav-links" rel="3">
 	    	<?php require plugin_dir_path( __FILE__ ) . 'includes/gerar-relatorio.php'; ?>

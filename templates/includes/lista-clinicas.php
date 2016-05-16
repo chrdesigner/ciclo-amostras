@@ -130,7 +130,7 @@
 					<?php
 						$situacao = get_field('situacao_do_cadastro');
 
-						if (empty($veterinario && $email_clinica && $endereco_completo_clinica && $cidade_uf && $telefone_clinica && $celular_clinica)) {
+						if ($veterinario == null && $email_clinica == null && $endereco_completo_clinica == null && $cidade_uf == null && $telefone_clinica == null && $celular_clinica == null) {
 							echo '<abbr id="warning" class="dashicons-before dashicons-warning" title="Falta Informações sobre a Clinica">warning</abbr>';
 						}elseif($situacao == null){
 							echo '<abbr id="ativa" class="dashicons-before dashicons-yes" title="Cliníca Ativa">ativo</abbr>';

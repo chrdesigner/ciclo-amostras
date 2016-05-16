@@ -12,6 +12,7 @@
 			</tr>
 		</thead>
 		<tbody>
+			
 	<?php
 		global $current_user;
 		
@@ -53,6 +54,7 @@
 		if ( $loop_visita->have_posts() ) {
 
 			while ( $loop_visita->have_posts() ) { $loop_visita->the_post(); ?>
+			
 			<tr class="clickable-row" data-href="<?php the_permalink();?>">
 				<td>
 					<?php the_title(); ?>
@@ -123,13 +125,7 @@
 					<a href="<?php the_permalink();?>#acf-relatorio_do_promotor" title="Ver Histórico">Ver</a>
 				</td>
 			</tr>
-		<?php } } else { ?>
-			<tr>
-				<td colspan="6" align="center">
-					Não existe nenhuma visita cadastrada...
-				</td>
-			</tr>
-		<?php } wp_reset_postdata(); ?>
+		<?php }  } wp_reset_postdata(); ?>
 		</tbody>
 		<tfoot>
 			<tr>
