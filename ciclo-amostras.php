@@ -79,7 +79,7 @@ function add_admin_scripts( $hook ) {
 
     if ( $hook == 'post-new.php' || $hook == 'post.php' ) {
 
-        if ( 'clinica' == $post->post_type || 'promotor' == $post->post_type ) { 
+        if ( 'clinica' == $post->post_type || 'promotor' == $post->post_type || 'gerenciar_visita' == $post->post_type ) { 
 
             wp_enqueue_style( 'style-admin' );
             wp_enqueue_script('ca-maskedinput-js');
@@ -127,7 +127,7 @@ function amostras_admin_css() {
     
     global $post_type;
     
-    if ( ($_GET['post_type'] == 'promotor') || ($post_type == 'promotor') || ($_GET['post_type'] == 'clinica') || ($post_type == 'clinica') ) :
+    if ( ($_GET['post_type'] == 'promotor') || ($post_type == 'promotor') || ($_GET['post_type'] == 'clinica') || ($post_type == 'clinica') || ($_GET['post_type'] == 'gerenciar_visita') || ($post_type == 'gerenciar_visita') ) :
     
         wp_enqueue_style( 'style-admin' );
 

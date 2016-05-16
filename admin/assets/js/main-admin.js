@@ -10,6 +10,10 @@ jQuery(function($) {
 		$( "#post-body #acf-telefone_promotor.field" ).removeClass( "required" );
 		$( "#post-body #acf-celular_promotor.field" ).removeClass( "required" );
 	}
+
+	if($('#post_type').val() === 'gerenciar_visita'){
+		$('#title').attr('disabled','disabled');
+	}
 	
 	$.mask.definitions['~']='[+-]';
 	//Inicio Mascara Telefone

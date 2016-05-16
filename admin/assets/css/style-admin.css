@@ -3,6 +3,10 @@ select[name="seo_filter"],
 	display: none!important;
 }
 
+.widefat td, .widefat th {
+    padding: 15px 10px;
+}
+
 .column-clinica_situacao abbr{
 	text-decoration: none;
 }
