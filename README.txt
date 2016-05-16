@@ -8,4 +8,6 @@ Stable tag: 4.5.1
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
-Plugin desenvolvido por César Ribeiro para criação da area de amostras.
+Plugin desenvolvido por **César Ribeiro** para criação da área de amostras para a empresa http://konigbrasil.com.br/
+
+Todos os direitos de uso é exclusivo da empresa **König Brasil**
