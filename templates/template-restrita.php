@@ -19,6 +19,7 @@
 
 		wp_enqueue_style( 'style-restrita' );
 		wp_enqueue_style( 'style-datatables' );
+		wp_enqueue_script('script-jszip-js');
         wp_enqueue_script('script-restrita-js');
         wp_enqueue_script('script-datatables-js');
         wp_enqueue_script('script-moment-js');
@@ -26,11 +27,20 @@
 			
 		require plugin_dir_path( __FILE__ ) . 'header-restitra.php';
 
+		global $current_user;
+			
+		get_currentuserinfo();
+
+
+		$user_roles = $current_user->roles;
+		$user_role = array_shift($user_roles);
+		
+		$user_marketing 	= 'marketing';
+		$user_administrator = 'administrator';
+
 	?>
 
-		<script src="https://cdnjs.cloudflare.com/ajax/libs/jszip/2.5.0/jszip.min.js" type="text/javascript"></script>
-
- 		<nav id="nav-informacoes">
+		<nav id="nav-informacoes">
 			<ul id="navigation">
 				<li data-tab="clinicas" class="setting-link active">
 					<a class="link_info dashicons-before dashicons-nametag" title="Minhas Clinicas"></a>
@@ -44,6 +54,12 @@
 					<a class="link_info dashicons-before dashicons-clipboard" title="Gerar Relatório"></a>
 					<i class="tooltip">Gerar Relatório</i>
 				</li>
+			<?php if( $user_administrator == $user_role || $user_administrator == $user_role ) : ?>
+				<li data-tab="gerenciar-promotores" class="setting-link">
+					<a class="link_info private-link dashicons-before dashicons-chart-area" title="Gerenciar Promotores"></a>
+					<i class="tooltip">Gerenciar Promotores</i>
+				</li>
+			<?php endif; ?>
 			</ul>
 		</nav>
 
@@ -58,6 +74,12 @@
 	    <div id="relatorio" class="nav-links" rel="3">
 	    	<?php require plugin_dir_path( __FILE__ ) . 'includes/gerar-relatorio.php'; ?>
 	    </div>
+
+	<?php if( $user_administrator == $user_role || $user_administrator == $user_role ) : ?>
+		<div id="gerenciar-promotores" class="nav-links" rel="999">
+	    	<?php require plugin_dir_path( __FILE__ ) . 'includes/gerenciar-promotores.php'; ?>
+	    </div>
+	<?php endif; ?>
 
 	<?php }; ?>
 

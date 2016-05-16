@@ -444,6 +444,7 @@ a.dashicons-before.dashicons-edit:before{
 
 #nav-informacoes ul li a,
 #nav-informacoes ul li a:before{
+	color: #ffffff;
 	float: left;
     font-size: 60px;
     height: 50px;
@@ -451,6 +452,11 @@ a.dashicons-before.dashicons-edit:before{
     padding: 0;
     width: 100%;
     text-decoration: none;
+}
+
+#nav-informacoes ul li a.private-link,
+#nav-informacoes ul li a.private-link:before{
+	color: #EA4335;
 }
 
 #nav-informacoes ul li a:hover,

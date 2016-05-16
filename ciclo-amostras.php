@@ -50,6 +50,7 @@ wp_register_script( 'disable-field-js', plugin_dir_url( __FILE__ ) . 'assets/js/
 wp_register_style( 'style-restrita', plugin_dir_url( __FILE__ ) . 'templates/assets/css/style-restrita.css' );
 wp_register_script( 'script-restrita-js', plugin_dir_url( __FILE__ ) . 'templates/assets/js/script-restrita.js', array('jquery'), true );
 wp_register_style( 'style-datatables', plugin_dir_url( __FILE__ ) . 'templates/datatables/css/datatables.min.css' );
+wp_register_script( 'script-jszip-js', plugin_dir_url( __FILE__ ) . 'templates/datatables/js/jszip.min.js', array('jquery'), true );
 wp_register_script( 'script-datatables-js', plugin_dir_url( __FILE__ ) . 'templates/datatables/js/datatables.min.js', false, true );
 wp_register_script( 'script-moment-js', plugin_dir_url( __FILE__ ) . 'templates/datatables/js/moment.min.js', false, true );
 wp_register_script( 'script-datetime-moment-js', plugin_dir_url( __FILE__ ) . 'templates/datatables/js/datetime-moment.js', false, true );

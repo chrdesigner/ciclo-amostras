@@ -16,12 +16,12 @@
 			'order'			=> 'ASC',
             'meta_query' => array(
                 array(
-                    'key' => 'todas_clinicas',
-                    'value' => '"' . $id_clinica . '"',
-                    'compare' => 'LIKE'
+                    'key'		=> 'todas_clinicas',
+                    'value' 	=> '"' . $id_clinica . '"',
+                    'compare' 	=> 'LIKE'
                 )
             ),
-            'posts_per_page'    => -1,
+            'posts_per_page'  => -1,
         ));
 
 	?>
