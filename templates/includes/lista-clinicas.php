@@ -17,12 +17,33 @@
 		<tbody>
 	<?php
 
+	global $current_user;
+	
+	get_currentuserinfo();
+
+	$user_roles = $current_user->roles;
+	$user_role = array_shift($user_roles);
+
+	$user_administrator = 'administrator';
+
+	if( $user_administrator == $user_role ) {
+
+		$args = array (
+			'post_type'              => array( 'clinica' ),
+			'post_status'            => array( 'publish' ),
+			'posts_per_page'         => -1,
+		);
+
+	}else{
+
 		$args = array (
 			'post_type'              => array( 'clinica' ),
 			'post_status'            => array( 'publish' ),
 			'author'                 => get_current_user_id(),
 			'posts_per_page'         => -1,
 		);
+
+	};
 
 		$loop_inscricao = new WP_Query( $args );
 

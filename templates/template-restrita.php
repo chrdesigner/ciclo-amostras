@@ -19,6 +19,7 @@
 
 		wp_enqueue_style( 'style-restrita' );
 		wp_enqueue_style( 'style-datatables' );
+		wp_enqueue_script('script-tabelas-js' );
 		wp_enqueue_script('script-jszip-js');
         wp_enqueue_script('script-restrita-js');
         wp_enqueue_script('script-datatables-js');
@@ -35,6 +36,7 @@
 		$user_roles = $current_user->roles;
 		$user_role = array_shift($user_roles);
 		
+		$user_promotor 		= 'promotor';
 		$user_marketing 	= 'marketing';
 		$user_administrator = 'administrator';
 
@@ -50,11 +52,13 @@
 					<a class="link_info dashicons-before dashicons-calendar" title="Agenda de Visitas"></a>
 					<i class="tooltip">Agenda de Visitas</i>
 				</li>
+			<?php if( $user_marketing != $user_role ) : ?>
 				<li data-tab="relatorio" class="setting-link">
 					<a class="link_info dashicons-before dashicons-clipboard" title="Gerar Relatório"></a>
 					<i class="tooltip">Gerar Relatório</i>
 				</li>
-			<?php if( $user_administrator == $user_role || $user_administrator == $user_role ) : ?>
+			<?php endif; ?>
+			<?php if( $user_administrator == $user_role || $user_marketing == $user_role ) : ?>
 				<li data-tab="gerenciar-promotores" class="setting-link">
 					<a class="link_info private-link dashicons-before dashicons-chart-area" title="Gerenciar Promotores"></a>
 					<i class="tooltip">Gerenciar Promotores</i>
@@ -70,11 +74,11 @@
 	    <div id="visita" class="nav-links" rel="2">
 	   		<?php require plugin_dir_path( __FILE__ ) . 'includes/agenda-visita.php'; ?>
 	    </div>
-
+	<?php if( $user_marketing != $user_role ) : ?>
 	    <div id="relatorio" class="nav-links" rel="3">
 	    	<?php require plugin_dir_path( __FILE__ ) . 'includes/gerar-relatorio.php'; ?>
 	    </div>
-
+	<?php endif; ?>
 	<?php if( $user_administrator == $user_role || $user_administrator == $user_role ) : ?>
 		<div id="gerenciar-promotores" class="nav-links" rel="999">
 	    	<?php require plugin_dir_path( __FILE__ ) . 'includes/gerenciar-promotores.php'; ?>

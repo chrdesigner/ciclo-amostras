@@ -4,25 +4,57 @@
 
         $id_clinica = $_POST[ 'clinica_value' ];
 		$post_author_id = get_post_field( 'post_author', $id_clinica );
+
+		global $current_user;
+	
+		get_currentuserinfo();
+
+		$user_roles = $current_user->roles;
+		$user_role = array_shift($user_roles);
+
+		$user_administrator = 'administrator';
         
         if( $id_clinica == null ){ }else{
 
-        $relatorios = get_posts(array(
-            'post_type'     => 'gerenciar_visita',
-            'post_status'   => array( 'publish' ),
-            'author'        => get_current_user_id(),
-            'meta_key'		=> 'proxima_entrega',
-			'orderby'		=> 'meta_value_num',
-			'order'			=> 'ASC',
-            'meta_query' => array(
-                array(
-                    'key'		=> 'todas_clinicas',
-                    'value' 	=> '"' . $id_clinica . '"',
-                    'compare' 	=> 'LIKE'
-                )
-            ),
-            'posts_per_page'  => -1,
-        ));
+
+        if( $user_administrator == $user_role ) {
+
+        	$relatorios = get_posts(array(
+	            'post_type'     => 'gerenciar_visita',
+	            'post_status'   => array( 'publish' ),
+	            'meta_key'		=> 'proxima_entrega',
+				'orderby'		=> 'meta_value_num',
+				'order'			=> 'ASC',
+	            'meta_query' => array(
+	                array(
+	                    'key'		=> 'todas_clinicas',
+	                    'value' 	=> '"' . $id_clinica . '"',
+	                    'compare' 	=> 'LIKE'
+	                )
+	            ),
+	            'posts_per_page'  => -1,
+	        ));
+
+        }else{
+
+        	$relatorios = get_posts(array(
+	            'post_type'     => 'gerenciar_visita',
+	            'post_status'   => array( 'publish' ),
+	            'author'        => get_current_user_id(),
+	            'meta_key'		=> 'proxima_entrega',
+				'orderby'		=> 'meta_value_num',
+				'order'			=> 'ASC',
+	            'meta_query' => array(
+	                array(
+	                    'key'		=> 'todas_clinicas',
+	                    'value' 	=> '"' . $id_clinica . '"',
+	                    'compare' 	=> 'LIKE'
+	                )
+	            ),
+	            'posts_per_page'  => -1,
+	        ));
+
+        };
 
 	?>
     <div class="table-2">

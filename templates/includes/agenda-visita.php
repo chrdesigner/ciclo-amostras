@@ -13,16 +13,40 @@
 		</thead>
 		<tbody>
 	<?php
+		global $current_user;
+		
+		get_currentuserinfo();
 
-		$args = array (
-			'post_type'			=> array( 'gerenciar_visita' ),
-			'post_status'		=> array( 'publish' ),
-			'author'            => get_current_user_id(),
-			'meta_key'			=> 'proxima_entrega',
-			'orderby'			=> 'meta_value_num',
-			'order'				=> 'ASC',
-			'posts_per_page'	=> -1,
-		);
+		$user_roles = $current_user->roles;
+		$user_role = array_shift($user_roles);
+
+		$user_administrator = 'administrator';
+
+
+		if( $user_administrator == $user_role ) {
+
+			$args = array (
+				'post_type'			=> array( 'gerenciar_visita' ),
+				'post_status'		=> array( 'publish' ),
+				'meta_key'			=> 'proxima_entrega',
+				'orderby'			=> 'meta_value_num',
+				'order'				=> 'ASC',
+				'posts_per_page'	=> -1,
+			);
+
+		}else{
+
+			$args = array (
+				'post_type'			=> array( 'gerenciar_visita' ),
+				'post_status'		=> array( 'publish' ),
+				'author'            => get_current_user_id(),
+				'meta_key'			=> 'proxima_entrega',
+				'orderby'			=> 'meta_value_num',
+				'order'				=> 'ASC',
+				'posts_per_page'	=> -1,
+			);
+
+		};
 
 		$loop_visita = new WP_Query( $args );
 
@@ -34,17 +58,17 @@
 					<?php the_title(); ?>
 				</td>
 				<td>
-					<?php
-						$posts = get_field('todas_clinicas');
+				<?php
+					$posts = get_field('todas_clinicas');
 
-						if( $posts ) :
-							foreach( $posts as $p ) :
+					if( $posts ) :
+						foreach( $posts as $p ) :
 
-								echo get_the_title($p->ID);
+							echo get_the_title($p->ID);
 
-						 	endforeach;
-						endif;
-					?>
+					 	endforeach;
+					endif;
+				?>
 				</td>
 				<td>
 				<?php

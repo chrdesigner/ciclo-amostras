@@ -49,11 +49,12 @@ wp_register_script( 'data-visita-js', plugin_dir_url( __FILE__ ) . 'assets/js/da
 wp_register_script( 'disable-field-js', plugin_dir_url( __FILE__ ) . 'assets/js/disable.field.js', array('jquery'), false );
 wp_register_style( 'style-restrita', plugin_dir_url( __FILE__ ) . 'templates/assets/css/style-restrita.css' );
 wp_register_script( 'script-restrita-js', plugin_dir_url( __FILE__ ) . 'templates/assets/js/script-restrita.js', array('jquery'), true );
+wp_register_script( 'script-tabelas-js', plugin_dir_url( __FILE__ ) . 'templates/assets/js/script-tabelas.js', array('jquery'), true );
 wp_register_style( 'style-datatables', plugin_dir_url( __FILE__ ) . 'templates/datatables/css/datatables.min.css' );
-wp_register_script( 'script-jszip-js', plugin_dir_url( __FILE__ ) . 'templates/datatables/js/jszip.min.js', array('jquery'), true );
 wp_register_script( 'script-datatables-js', plugin_dir_url( __FILE__ ) . 'templates/datatables/js/datatables.min.js', false, true );
 wp_register_script( 'script-moment-js', plugin_dir_url( __FILE__ ) . 'templates/datatables/js/moment.min.js', false, true );
 wp_register_script( 'script-datetime-moment-js', plugin_dir_url( __FILE__ ) . 'templates/datatables/js/datetime-moment.js', false, true );
+wp_register_script( 'script-jszip-js', plugin_dir_url( __FILE__ ) . 'templates/datatables/js/jszip.min.js', array('jquery'), true );
 
 /**
  * Remover as Metabox não desejadas
@@ -80,7 +81,7 @@ function add_admin_scripts( $hook ) {
 
     if ( $hook == 'post-new.php' || $hook == 'post.php' ) {
 
-        if ( 'clinica' == $post->post_type || 'promotor' == $post->post_type || 'gerenciar_visita' == $post->post_type ) { 
+        if ( 'clinica' == $post->post_type || 'promotor' == $post->post_type ) { 
 
             wp_enqueue_style( 'style-admin' );
             wp_enqueue_script('ca-maskedinput-js');

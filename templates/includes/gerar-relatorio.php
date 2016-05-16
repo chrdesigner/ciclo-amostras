@@ -6,13 +6,36 @@
 	<form id="listar-minhas-clinicas" action="<?php bloginfo('url'); ?>" method="GET">
 
 	<?php
+	global $current_user;
+	
+	get_currentuserinfo();
+
+	$user_roles = $current_user->roles;
+	$user_role = array_shift($user_roles);
+
+	$user_administrator = 'administrator';
+
+	if( $user_administrator == $user_role ) {
+
+		$args = array (
+			'post_type'              => array( 'clinica' ),
+			'post_status'            => array( 'publish' ),
+			'posts_per_page'         => -1,
+		);
+
+	}else{
+
 		$args = array (
 			'post_type'              => array( 'clinica' ),
 			'post_status'            => array( 'publish' ),
 			'author'                 => get_current_user_id(),
 			'posts_per_page'         => -1,
 		);
+
+	};
+
 		$loop_add_visita = new WP_Query( $args );
+		
 		if ( $loop_add_visita->have_posts() ) {
 
 		echo '
