@@ -37,6 +37,7 @@ require plugin_dir_path( __FILE__ ) . 'includes/cpt/cpt_gerenciar_visita.php';
 
 require plugin_dir_path( __FILE__ ) . 'admin/edit-column-promotor.php';
 require plugin_dir_path( __FILE__ ) . 'admin/edit-column-clinica.php';
+require plugin_dir_path( __FILE__ ) . 'admin/edit-column-gerenciar-visita.php';
 
 /**
  * Registrar styles e scripts padrões do plugin
@@ -223,7 +224,7 @@ function include_template_single( $template_path ) {
         }
     }
     return $template_path;
-    
+
 }
 
 /**

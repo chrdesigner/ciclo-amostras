@@ -52,7 +52,7 @@ function promotor_posts_columns( $column, $post_id ) {
         case 'promotor_clinicas':
 
             $get_email = get_post_meta($post_id, 'email_promotor', true);
-            $user = get_user_by( 'email', $get_email );            
+            $user = get_user_by( 'email', $get_email );
             $get_id_user = $user->ID;
             $get_display_name_user = $user->display_name;
             echo sprintf( '<a href="%1$s" title="Clinica(s) Cadastrada(s) por %2$s">Clinica(s) %3$s Registrada(s)</a>', admin_url( 'edit.php?post_type=clinica&author=' . $get_id_user ), $get_display_name_user, count_user_posts( $get_id_user , "clinica"  ) );
@@ -60,7 +60,47 @@ function promotor_posts_columns( $column, $post_id ) {
 
         case 'promotor_proximo':
 
-            echo '...';
+            $get_email = get_post_meta($post_id, 'email_promotor', true);
+            $user = get_user_by( 'email', $get_email );
+            $get_id_user = $user->ID;
+
+            $date_args = array(
+                'post_type'      => 'gerenciar_visita',
+                'meta_key'       => 'proxima_entrega',
+                'author'         => $get_id_user,
+                'posts_per_page' => 1,
+                'orderby' => 'meta_value_num',
+                'order' => 'ASC',
+                'meta_query'=> array(
+                    array(
+                      'key' => 'proxima_entrega',
+                      'compare' => '>',
+                      'value' => date("Ymd"),
+                      'type' => 'DATE'
+                    )
+                ),
+            );
+            
+            $date_query = new WP_Query( $date_args );
+
+            if ( $date_query->have_posts() ) {
+
+                while ( $date_query->have_posts() ) { $date_query->the_post();
+
+                    $verifica_entrega = get_field('proxima_entrega');
+                    $proxima_entrega = get_field('proxima_entrega', false, false);
+                    $proxima_entrega = new DateTime($proxima_entrega);
+
+                    echo '<a href="'. get_the_permalink() .'" title="Visualizar - '. get_the_title() .'" target="_blank">' . $proxima_entrega->format('d/m/Y') . '</a>';
+                    
+                } 
+
+            } else {
+
+                echo '<strong>Sem registro</strong>';
+
+            } wp_reset_postdata();
+
             break;
 
     }
