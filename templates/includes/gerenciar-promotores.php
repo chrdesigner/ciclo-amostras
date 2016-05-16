@@ -6,7 +6,7 @@
 				<th>Nome do Promotor</th>
 				<th>Email</th>
 				<th>Cidade/UF</th>
-				<th>Telefone</th>
+				<th class="no-sort">Telefone</th>
 				<th>Clinicas/Veterinários</th>
 				<th>Próximo ciclo de visita</th>
 			</tr>
@@ -17,8 +17,6 @@
 		$args = array (
 			'post_type'			=> array( 'promotor' ),
 			'post_status'		=> array( 'publish' ),
-			// 'meta_key'			=> 'proxima_entrega',
-			// 'orderby'			=> 'meta_value_num',
 			'order'				=> 'ASC',
 			'posts_per_page'	=> -1,
 		);
@@ -29,41 +27,41 @@
 
 			while ( $gerenciar_promotores->have_posts() ) { $gerenciar_promotores->the_post(); ?>
 			<tr>
-				<td>
-					<?php the_title(); ?>
+				<td width="20%">
+					<?php echo get_field('post_title') . ' ' . get_field('sobrenome_promotor'); ?>
 				</td>
-				<td>
+				<td width="20%">
 					<?php
 						$email_promotor = get_post_meta(get_the_ID(), 'email_promotor', true);
             			echo sprintf( '<a href="mailto:%1$s" title="%1$s">%1$s</a>', $email_promotor );
 					?>
 				</td>
-				<td>
+				<td width="10%">
 				<?php
 					$estado_cidade_promotor = get_post_meta(get_the_ID(), 'estado_cidade_promotor', true);
 		            $state_verification = $estado_cidade_promotor['state_name'];
 		            echo ! empty( $state_verification ) ? sprintf( '%1$s/%2$s', $estado_cidade_promotor['city_name'], $estado_cidade_promotor['state_id'] ) : 'Não Registrado';
 				?>
 				</td>
-				<td>
+				<td width="20%">
 				<?php
 					$telefone_promotor = get_post_meta(get_the_ID(), 'telefone_promotor', true);
 		            $celular_promotor = get_post_meta(get_the_ID(), 'celular_promotor', true);
 		            $return_tel = ! empty( $telefone_promotor ) ? sprintf( '%1$s', $telefone_promotor ) : 'Não preenchido';
 		            $return_cel = ! empty( $celular_promotor ) ? sprintf( '%1$s', $celular_promotor ) : 'Não preenchido';
-		            echo '<ul><li class="dashicons-before dashicons-phone">' . $return_tel . '</li><li class="dashicons-before dashicons-smartphone">' . $return_cel . '</li></ul>';
+		            echo '<ul class="info-tel-promotor"><li class="dashicons-before dashicons-phone">' . $return_tel . '</li><li class="dashicons-before dashicons-smartphone">' . $return_cel . '</li></ul>';
 				?>
 				</td>
-				<td>
+				<td width="5%" align="center">
 				<?php
 					$get_email = get_post_meta(get_the_ID(), 'email_promotor', true);
 		            $user = get_user_by( 'email', $get_email );
 		            $get_id_user = $user->ID;
 		            $get_display_name_user = $user->display_name;
-		            echo sprintf( '<a href="%1$s" title="Clinica(s) Cadastrada(s) por %2$s">Clinica(s) %3$s Registrada(s)</a>', admin_url( 'edit.php?post_type=clinica&author=' . $get_id_user ), $get_display_name_user, count_user_posts( $get_id_user , "clinica"  ) );
+		            echo sprintf( '<a href="%1$s" title="Clinica(s) Cadastrada(s) por %2$s">%3$s</a>', admin_url( 'edit.php?post_type=clinica&author=' . $get_id_user ), $get_display_name_user, count_user_posts( $get_id_user , "clinica"  ) );
 				?>
 				</td>
-				<td>
+				<td width="25%" align="center">
 				<?php
 					$get_email = get_post_meta(get_the_ID(), 'email_promotor', true);
 		            $user = get_user_by( 'email', $get_email );

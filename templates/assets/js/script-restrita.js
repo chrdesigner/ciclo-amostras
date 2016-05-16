@@ -100,6 +100,11 @@
 	            [ '10 resultados', '25 resultados', '50 resultados', 'Todos os resultados' ]
 	        ],
 			"order": [[ 5, "asc" ]],
+			"columnDefs": [ {
+		          "targets": 'no-sort',
+		          "orderable": false,
+		          "searchable": false
+		    } ],
 	        "language": {
 	            "url": "//cdn.datatables.net/plug-ins/1.10.11/i18n/Portuguese-Brasil.json"
 	        },
