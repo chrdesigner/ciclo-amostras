@@ -79,7 +79,7 @@
 				            [ 10, 25, 50, -1 ],
 				            [ '10 resultados', '25 resultados', '50 resultados', 'Todos os resultados' ]
 				        ],
-				    	"order": [[ 2, "desc" ]],
+				    	"order": [[ 2, "asc" ]],
 						"columnDefs": [ {
 					          "targets": 'no-sort',
 					          "orderable": false,

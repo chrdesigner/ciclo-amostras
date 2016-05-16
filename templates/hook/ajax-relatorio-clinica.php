@@ -11,6 +11,9 @@
             'post_type'     => 'gerenciar_visita',
             'post_status'   => array( 'publish' ),
             'author'        => get_current_user_id(),
+            'meta_key'		=> 'proxima_entrega',
+			'orderby'		=> 'meta_value_num',
+			'order'			=> 'ASC',
             'meta_query' => array(
                 array(
                     'key' => 'todas_clinicas',
