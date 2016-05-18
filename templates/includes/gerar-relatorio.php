@@ -1,6 +1,6 @@
 
 	<div class="info-inicial">
-		<h2>Selecione a Clinica para Gerar o Relatório</h2>
+		<h2>Selecione a Clínica para Gerar o Relatório</h2>
 	</div>
 
 	<form id="listar-minhas-clinicas" action="<?php bloginfo('url'); ?>" method="GET">
@@ -41,7 +41,7 @@
 		echo '
 		<div class="styled-select">
 			<select id="add-clinica" name="add-clinica" onchange="ajax_get_clinica()"  required>
-				<option class="ajax" value="" data-title="">Selecione sua clinica</option>';
+				<option class="ajax" value="" data-title="">Selecione sua Clínica</option>';
 			while ( $loop_add_visita->have_posts() ) { $loop_add_visita->the_post();
 			echo '<option class="ajax" value="' . get_the_ID() . '" id="' . get_the_ID() . '" data-title="' . get_the_title() . '">' . get_the_title() . '</option>';
 			}
@@ -71,7 +71,7 @@
 			var data = new Date();
 			var mes = data.getMonth()+1;
 			var dia = data.getDate();
-			var dataHoje = ((''+dia).length<2 ? '0' : '') + dia + '/' + ((''+mes).length<2 ? '0' : '') + mes + '/' + data.getFullYear();
+			var dataHoje = ( (''+dia).length < 2 ? '0' : '' ) + dia + '/' + ( (''+mes).length < 2 ? '0' : '' ) + mes + '/' + data.getFullYear();
 
 			var titulo = jQuery('option.ajax:selected').data('title');
 

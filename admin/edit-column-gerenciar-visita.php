@@ -5,11 +5,11 @@
 function gerenciar_visita_posts_edit_columns( $columns ) {
     $columns = array(
         'cb' => '<input type="checkbox" />',
-        'title' => __( 'Noma da Clinica', 'ciclo-amostras' ),
+        'title' => __( 'Nome da Clínica', 'ciclo-amostras' ),
         'visita_promotor' => __( 'Promotor', 'ciclo-amostras' ),
         'visita_cidade' => __( 'Cidade/UF', 'ciclo-amostras' ),
         'visita_entrega' => __( 'Entrega da amostra', 'ciclo-amostras' ),
-        'visita_proximo' => __( 'Proxíma entrega', 'ciclo-amostras' ),
+        'visita_proximo' => __( 'Proxima entrega', 'ciclo-amostras' ),
         'visita_historico' => __( 'Histórico', 'ciclo-amostras' ),
         
     );

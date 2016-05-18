@@ -4,10 +4,10 @@
 		<thead>
 			<tr>
 				<th>Nome do Relatório</th>
-				<th>Nome da Clinica</th>
+				<th>Nome da Clínica</th>
 				<th>Região</th>
 				<th>Entrega da amostra</th>
-				<th>Próxima entrega</th>
+				<th>Proxima entrega</th>
 				<th class="no-sort">Histórico</th>
 			</tr>
 		</thead>
@@ -149,7 +149,7 @@
 									if ( $loop_add_visita->have_posts() ) {
 									
 								echo '<select id="add-visita" name="add-visita" required>
-										<option value="">Selecione sua clinica</option>';
+										<option value="">Selecione sua clínica</option>';
 									while ( $loop_add_visita->have_posts() ) { $loop_add_visita->the_post();
 										echo '<option value=' . get_the_ID() . ' data-titulo="' . get_the_title() . '">' . get_the_title() . '</option>';
 									}

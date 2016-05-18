@@ -58,7 +58,7 @@ function clinica_posts_columns( $column, $post_id ) {
         case 'clinica_situacao':
 
             $situacao = get_post_meta($post_id, 'situacao_do_cadastro', true);
-			if($situacao == null){
+			if($situacao == 0){
 				echo '<abbr class="dashicons-before dashicons-yes ativa" title="Cliníca Ativa"></abbr>';
 			}else{
 				echo '<abbr class="dashicons-before dashicons-no inativa" title="Cliníca Inativa"></abbr>';

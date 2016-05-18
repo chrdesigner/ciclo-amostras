@@ -3,11 +3,11 @@
 	{
 		register_field_group(array (
 			'id' => 'acf_gerenciar-minhas-clinicas',
-			'title' => 'Gerenciar Minhas Clinicas',
+			'title' => 'Gerenciar Minhas Clínicas',
 			'fields' => array (
 				array (
 					'key' => 'field_5733613a9ba39',
-					'label' => 'Todas as Minhas Clinicas',
+					'label' => 'Todas as Minhas Clínicas',
 					'name' => 'todas_clinicas',
 					'type' => 'relationship',
 					'required' => 1,
@@ -50,7 +50,7 @@
 				),
 				array (
 					'key' => 'field_57338b71d62d6',
-					'label' => 'Próxima entrega',
+					'label' => 'Proxima entrega',
 					'name' => 'proxima_entrega',
 					'type' => 'date_picker',
 					'required' => 1,

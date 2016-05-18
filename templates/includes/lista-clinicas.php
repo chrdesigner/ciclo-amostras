@@ -1,14 +1,14 @@
 <div class="table-2">
-	<h3 style="text-align: center; text-transform: uppercase;">Informações da(s) Minha(s) Clinica(s)</h3>
+	<h3 style="text-align: center; text-transform: uppercase;">Informações da(s) Minha(s) Clínicas(s)</h3>
 	
 	<table class="table-default-ca table-clinicas">
 		<thead>
 			<tr>
-				<th>Clinica</th>
+				<th>Clínica</th>
 				<th>Veterinário</th>
 				<th class="no-sort">E-mail</th>
 				<th class="no-sort">Endereço</th>
-				<th>Cidada/UF</th>
+				<th>Cidade/UF</th>
 				<th class="no-sort">Telefone</th>
 				<th class="no-sort">Celular</th>
 				<th>Situação</th>

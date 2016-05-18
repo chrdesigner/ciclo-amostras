@@ -63,7 +63,7 @@
                 <tr>
                     <th>Data programada</th>
                     <th>Data entrega da amostra</th>
-                    <th>Próxima entrega</th>
+                    <th>Proxima entrega</th>
                     <th class="no-sort">Produtos</th>
                     <th class="no-sort">Obervações</th>
                     <th class="no-sort"></th>

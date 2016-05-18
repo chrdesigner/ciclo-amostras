@@ -9,8 +9,8 @@ function promotor_posts_edit_columns( $columns ) {
         'promotor_email' => __( 'E-mail', 'ciclo-amostras' ),
         'promotor_cidade' => __( 'Cidade/UF', 'ciclo-amostras' ),
         'promotor_telefone' => __( 'Contatos', 'ciclo-amostras' ),
-        'promotor_clinicas' => __( 'Clinicas/Veterinários', 'ciclo-amostras' ),
-        'promotor_proximo' => __( 'Proxímo ciclo visita', 'ciclo-amostras' ),
+        'promotor_clinicas' => __( 'Clínicas/Veterinários', 'ciclo-amostras' ),
+        'promotor_proximo' => __( 'Proximo ciclo visita', 'ciclo-amostras' ),
     );
     return $columns;
 }

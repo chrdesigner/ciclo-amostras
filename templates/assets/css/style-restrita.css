@@ -224,6 +224,12 @@
 .dataTables_wrapper .pagination > .active > span:hover{
 	background-color: #ED2224;
 	border-color: #ED2224;
+	color: #ffffff;
+}
+
+.dataTables_wrapper .pagination > li > a,
+.dataTables_wrapper .pagination > li > span{
+	color: #ed2224;
 }
 
 abbr.dashicons-before,
@@ -613,4 +619,14 @@ dl.legenda-alerta dd .alerta-informacoes{
 	width: 488px;
 	height: 49px;
 	padding: 5px;
+}
+
+.list-clinica-promotor{
+	margin: 0;
+	padding: 0;
+	text-align: left;
+}
+
+.list-clinica-promotor li{
+	
 }
