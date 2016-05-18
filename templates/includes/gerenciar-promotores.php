@@ -32,13 +32,15 @@
 		?>
 			<tr>
 				<td width="20%">
-					<?php echo get_field('post_title') . ' ' . get_field('sobrenome_promotor'); ?>
+				<?php
+					echo sprintf( '<a href="%1$s" title="%2$s %3$s" target="_blank">%2$s %3$s</a>', get_the_permalink($id_post), get_field('post_title'), get_field('sobrenome_promotor'));
+				?>
 				</td>
 				<td width="20%">
-					<?php
-						$email_promotor = get_post_meta($id_post, 'email_promotor', true);
-            			echo sprintf( '<a href="mailto:%1$s" title="%1$s">%1$s</a>', $email_promotor );
-					?>
+				<?php
+					$email_promotor = get_post_meta($id_post, 'email_promotor', true);
+        			echo sprintf( '<a href="mailto:%1$s" title="%1$s">%1$s</a>', $email_promotor );
+				?>
 				</td>
 				<td width="10%">
 				<?php
@@ -68,7 +70,7 @@
 		            $user_promotor = get_user_by( 'email', $get_email_promotor );
 		            $get_id_user_promotor = $user_promotor->ID;
 
-		        	echo '<span class="trigger">( <a id="box'.$get_id_user_promotor.'">' . count_user_posts( $get_id_user_promotor , "clinica"  ) . '</a> )</span>';
+		        	echo '<span class="trigger">( <a data-id="box'.$get_id_user_promotor.'">' . count_user_posts( $get_id_user_promotor , "clinica"  ) . '</a> )</span>';
 		        	
 		        	$clinica_args = array(
 		                'post_type'      => 'clinica',
@@ -78,13 +80,11 @@
 		            );
 		            $clinica_query = new WP_Query( $clinica_args );
 		            if ( $clinica_query->have_posts() ) {
-		            echo '<div id="box'.$get_id_user_promotor.'" class="toggle" style="display: none;">
-		            	  	<ol class="list-clinica-promotor">';
+		            echo '<ol id="box'.$get_id_user_promotor.'" class="toggle list-clinica-promotor" style="display: none;">';
 		                while ( $clinica_query->have_posts() ) { $clinica_query->the_post();
-		                    echo '<li><a href="'. get_the_permalink() .'" title="Visualizar - '. get_the_title() .'" target="_blank">' . get_the_title() . '</a></li>';
+		                    echo '<li>-> <a href="'. get_the_permalink() .'" title="Visualizar - '. get_the_title() .'" target="_blank">' . get_the_title() . ' </a></li>';
 		                } 
-		            echo '	</ol>
-		            	  </div>';
+		            echo '</ol>';
 		            }
 		            wp_reset_postdata();
 		       ?>
@@ -148,9 +148,9 @@
 	<script type="text/javascript">
 		jQuery(function($){
 	        $(".trigger").click(function(){
-			    var div = $(this).next(".toggle");
-			    $(".toggle").not(div).slideUp("slow");
-			    div.slideToggle("slow");
+			    var ol = $(this).next(".toggle");
+			    $(".toggle").not(ol).slideUp("slow");
+			    ol.slideToggle("slow");
 			});
 		});
 	</script>

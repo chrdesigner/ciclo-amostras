@@ -621,12 +621,18 @@ dl.legenda-alerta dd .alerta-informacoes{
 	padding: 5px;
 }
 
-.list-clinica-promotor{
+.table-gerenciar-promotores span.trigger{
+	cursor: pointer;
+}
+
+.table-gerenciar-promotores .list-clinica-promotor{
 	margin: 0;
 	padding: 0;
 	text-align: left;
+	color: #ffffff;
 }
 
-.list-clinica-promotor li{
-	
+.table-gerenciar-promotores .list-clinica-promotor li{
+	margin-top: 2px;
+	list-style-type: none;
 }
