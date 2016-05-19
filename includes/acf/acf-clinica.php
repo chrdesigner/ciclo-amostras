@@ -56,6 +56,18 @@ if(function_exists("register_field_group"))
 				'maxlength' => '',
 			),
 			array (
+				'key' => 'field_572e9999a73a7',
+				'label' => 'cityLat',
+				'name' => 'citylat',
+				'type' => 'hidden',
+			),
+			array (
+				'key' => 'field_572e9988a73a7',
+				'label' => 'cityLng',
+				'name' => 'citylng',
+				'type' => 'hidden',
+			),
+			array (
 				'key' => 'field_57309b56381dd',
 				'label' => 'Selecione o Estado e a Cidade',
 				'name' => 'estado_cidade_clinica',
