@@ -97,7 +97,7 @@
 					        $data_programada = get_sub_field('data_entrega_amostra', false, false);
 					        $data_programada = new DateTime($data_programada);
 
-					        echo $data_programada->format('d/m');
+					        echo $data_programada->format('d/m/Y');
 
 					    endwhile;
 
@@ -115,7 +115,7 @@
 					$proxima_entrega = new DateTime($proxima_entrega);
 
 					if($verifica_entrega != null){
-						echo $proxima_entrega->format('d/m');
+						echo $proxima_entrega->format('d/m/Y');
 					}else{
 						echo '<strong class="alerta-informacoes">*</strong>';
 					}

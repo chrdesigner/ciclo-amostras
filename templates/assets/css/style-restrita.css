@@ -636,3 +636,9 @@ dl.legenda-alerta dd .alerta-informacoes{
 	margin-top: 2px;
 	list-style-type: none;
 }
+
+#footer-restrita{
+	border-top: 12px solid #353535;
+	background-color: #383838;
+	text-align: center;
+}

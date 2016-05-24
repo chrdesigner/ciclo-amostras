@@ -50,3 +50,9 @@
     background: #e80707 -moz-linear-gradient(to bottom, #d60707, #e80707) repeat scroll 0 0; /* Firefox 3.6-15 */
     background: #e80707 linear-gradient(to bottom, #d60707, #e80707) repeat scroll 0 0; /* Standard syntax */
 }
+
+#footer-restrita{
+    border-top: 12px solid #353535;
+    background-color: #383838;
+    text-align: center;
+}

@@ -59,8 +59,7 @@
 		wp_localize_script('ajax-logout-script', 'ajax_object',
 		    array(
 		        'ajax_url' => admin_url('admin-ajax.php'),
-		        'home_url' => get_home_url(),
-		        'loadingmessage' => __('Até breve...'),
+		        'home_url' => 'area-restrita',
 		        'logout_nonce' => wp_create_nonce('ajax-logout-nonce')
 		    )
 		);

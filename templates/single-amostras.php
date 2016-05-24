@@ -1,5 +1,14 @@
-<?php acf_form_head(); ?>
-<?php get_header(); ?>
+<?php
+	if ( ! defined( 'ABSPATH' ) ) {
+		exit; // Exit if accessed directly
+	}
+
+	acf_form_head();
+
+	require plugin_dir_path( __FILE__ ) . 'header-restrita.php'; 
+
+?>
+	
 	<div id="primary">
 	<?php
 
@@ -9,7 +18,7 @@
 
 		} else {
 
-			require plugin_dir_path( __FILE__ ) . 'header-restitra.php'; 
+			require plugin_dir_path( __FILE__ ) . 'header-information.php'; 
 
 			global $current_user;
 			
@@ -180,4 +189,4 @@
 	
 	?>
 	</div><!-- #primary -->
-<?php get_footer(); ?>
+<?php require plugin_dir_path( __FILE__ ) . 'footer-restrita.php';  ?>

@@ -77,7 +77,7 @@
 	                    $data_programada = get_field('data_programada', $relatorio->ID);
 	                    $data_programada = new DateTime($data_programada);
 	                    
-	                    echo $data_programada->format('d/m');  
+	                    echo $data_programada->format('d/m/Y');  
 	                ?>
 	                </td>
 	                <td width="16%">
@@ -88,7 +88,7 @@
 								$data_programada = $programada['data_entrega_amostra'];
 								$data_programada = new DateTime($data_programada);
 
-								echo $data_programada->format('d/m');
+								echo $data_programada->format('d/m/Y');
 							}
 						}
 	                ?>
@@ -98,7 +98,7 @@
 	                    $proxima_entrega = get_field('proxima_entrega', $relatorio->ID);
 	                    $proxima_entrega = new DateTime($proxima_entrega);
 
-	                    echo $proxima_entrega->format('d/m');
+	                    echo $proxima_entrega->format('d/m/Y');
 	                ?>
 	                </td>
 	                <td width="25%">

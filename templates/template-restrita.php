@@ -5,7 +5,13 @@
  * Template para exibir Área Restrita.
  *
  */
-	get_header(); ?>
+	if ( ! defined( 'ABSPATH' ) ) {
+		exit; // Exit if accessed directly
+	}
+
+	require plugin_dir_path( __FILE__ ) . 'header-restrita.php'; 
+
+?>
 
 	<div id="primary">
 	
@@ -20,7 +26,7 @@
 		wp_enqueue_style( 'style-restrita' );
 		wp_enqueue_script('script-restrita-js');
 
-		require plugin_dir_path( __FILE__ ) . 'header-restitra.php';
+		require plugin_dir_path( __FILE__ ) . 'header-information.php';
 
 		global $current_user;
 			
@@ -41,9 +47,7 @@
 		wp_enqueue_script( 'script-datetime-moment-js', plugin_dir_url( __FILE__ ) . 'datatables/js/datetime-moment.js', false, true );
 		wp_enqueue_script( 'script-moment-js', plugin_dir_url( __FILE__ ) . 'datatables/js/moment.min.js', false, true );
 		wp_enqueue_script( 'script-jszip-js', plugin_dir_url( __FILE__ ) . 'datatables/js/jszip.min.js', array('jquery'), true );
-		
-		
-
+	
 	?>
 
 		<nav id="nav-informacoes">
@@ -95,4 +99,4 @@
 		
 	</div><!-- #primary -->
 
-<?php  get_footer(); ?>
+<?php require plugin_dir_path( __FILE__ ) . 'footer-restrita.php';  ?>

@@ -3,7 +3,7 @@
  * Plugin Name:       Ciclo de Amostras
  * Plugin URI:        https://github.com/chrdesigner/ciclo-amostras/
  * Description:       Plugin desenvolvido para König
- * Version:           1.0.0
+ * Version:           1.0.1
  * Author:            CHR Designer
  * Author URI:        http://www.chrdesigner.com
  * License:           GPL-2.0+
@@ -223,6 +223,8 @@ function include_template_single( $template_path ) {
     return $template_path;
 
 }
+
+require_once('includes/custom-login.php');
 
 /**
  * Populate o SQL com os Estados e Cidades
