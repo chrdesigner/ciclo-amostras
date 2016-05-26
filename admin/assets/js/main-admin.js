@@ -4,13 +4,13 @@ jQuery(function($) {
 	//find the hidden post type input, and grab the value
 	if( $('#post_type').val() === 'promotor' ){
 		
-		$('#titlediv').hide();
+		//$('#titlediv').hide();
 		$('#title').attr('disabled','disabled');
 		
 		// Remover a class de validação do backend
-		$('#acf-estado_cidade_promotor.field').removeClass('required');
-		$('#acf-telefone_promotor.field').removeClass('required');
-		$('#acf-celular_promotor.field').removeClass('required');
+		$( "#post-body #acf-estado_cidade_promotor.field" ).removeClass( "required" );
+		$( "#post-body #acf-telefone_promotor.field" ).removeClass( "required" );
+		$( "#post-body #acf-celular_promotor.field" ).removeClass( "required" );
 	}
 
 	if( $('#post_type').val() === 'gerenciar_visita' ){

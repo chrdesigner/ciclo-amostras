@@ -60,12 +60,10 @@
 					<a class="link_info dashicons-before dashicons-calendar" title="Agenda de Visitas"></a>
 					<i class="tooltip">Agenda de Visitas</i>
 				</li>
-			<?php if( $user_marketing != $user_role ) : ?>
 				<li data-tab="relatorio" class="setting-link">
 					<a class="link_info dashicons-before dashicons-clipboard" title="Gerar Relatório"></a>
 					<i class="tooltip">Gerar Relatório</i>
 				</li>
-			<?php endif; ?>
 			<?php if( $user_administrator == $user_role || $user_marketing == $user_role ) : ?>
 				<li data-tab="gerenciar-promotores" class="setting-link">
 					<a class="link_info private-link dashicons-before dashicons-chart-area" title="Gerenciar Promotores"></a>
