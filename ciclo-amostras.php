@@ -151,6 +151,7 @@ function acf_install_init() {
  		// Registro e Permissão Promotor
  		include_once plugin_dir_path( __FILE__ ) . 'includes/role-register.php';
  		include_once plugin_dir_path( __FILE__ ) . 'includes/register-user.php';
+        include_once plugin_dir_path( __FILE__ ) . 'email/user-emails.php';
 
         include_once plugin_dir_path( __FILE__ ) . 'includes/register-clinica.php';
         include_once plugin_dir_path( __FILE__ ) . 'includes/register-visita.php';

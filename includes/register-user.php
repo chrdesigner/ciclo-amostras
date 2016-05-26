@@ -17,7 +17,7 @@
 		$username = preg_replace(array("/(á|à|ã|â|ä)/","/(Á|À|Ã|Â|Ä)/","/(é|è|ê|ë)/","/(É|È|Ê|Ë)/","/(í|ì|î|ï)/","/(Í|Ì|Î|Ï)/","/(ó|ò|õ|ô|ö)/","/(Ó|Ò|Õ|Ô|Ö)/","/(ú|ù|û|ü)/","/(Ú|Ù|Û|Ü)/","/(ñ)/","/(Ñ)/"),explode(" ","a A e E i I o O u U n N"), strtolower( $firstname . ' ' . $lastname));
 
 		// Verifica se o usuário existe ou não para atualizar as informações
-		if(email_exists( $email )){
+		if( email_exists( $email ) ) :
 
 	    	$user = get_user_by( 'email', $email );
 
@@ -33,28 +33,28 @@
 
 	    	return $post_id;
 		   
-	    }
+	    else :
 
-	    // Se não existir o usuario registrar
-		$userdata = array(
-			'ID' 		 => $user_id,
-			'first_name' => $firstname,
-		   	'last_name'  => $lastname,
-		   	'user_login' => $username,
-		   	'user_email' => $email,
-		   	'user_pass'  => $password,
-			'role'		 => 'promotor'
-		);
+		    // Se não existir o usuario registrar
+			$userdata = array(
+				'ID' 		 => $user_id,
+				'first_name' => $firstname,
+			   	'last_name'  => $lastname,
+			   	'user_login' => $username,
+			   	'user_email' => $email,
+			   	'user_pass'  => $password,
+				'role'		 => 'promotor'
+			);
 
-		$user_id = wp_insert_user($userdata);
-		//$user_id = 'user_'.$user_id;
+			$user_id = wp_insert_user($userdata);
+
+			wp_new_user_notification( $user_id, $plaintext_pass = '' );
 		
-		// update $_POST['return']
-		$_POST['return'] = add_query_arg( 'updated', 'true', get_permalink( $post_id ) );
+			$_POST['return'] = add_query_arg( 'updated', 'true', get_permalink( $post_id ) );
 
-		return $user_id;
+			return $user_id;
 
-
+		endif;
 	}
 
 /*
@@ -85,10 +85,6 @@
 		  	'post_author'	=> $userID,
 	        'post_status'	=> 'publish'
 	    );
-
-		// echo '<pre>';
-		// 	var_dump($post);
-		// echo '</pre>';
 
 		wp_update_post( $post );
 

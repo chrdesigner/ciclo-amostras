@@ -1,5 +1,5 @@
-select[name="seo_filter"],
-.column-title .row-actions{
+select[name="seo_filter"]
+/*,.column-title .row-actions*/{
 	display: none!important;
 }
 

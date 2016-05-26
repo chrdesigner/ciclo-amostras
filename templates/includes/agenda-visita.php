@@ -22,9 +22,10 @@
 		$user_role = array_shift($user_roles);
 
 		$user_administrator = 'administrator';
+		$user_marketing = 'marketing';
 
 
-		if( $user_administrator == $user_role ) {
+		if( $user_administrator == $user_role || $user_marketing == $user_role ) {
 
 			$args = array (
 				'post_type'			=> array( 'gerenciar_visita' ),

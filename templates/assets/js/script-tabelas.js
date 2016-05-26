@@ -27,6 +27,7 @@
 	            [ 10, 25, 50, -1 ],
 	            [ '10 resultados', '25 resultados', '50 resultados', 'Todos os resultados' ]
 	        ],
+			"scrollX": true,
 			"order": [[ 0, "asc" ]],
 	    	"columnDefs": [ {
 		          "targets": 'no-sort',
@@ -54,6 +55,7 @@
 	            [ 10, 25, 50, -1 ],
 	            [ '10 resultados', '25 resultados', '50 resultados', 'Todos os resultados' ]
 	        ],
+	        "scrollX": true,
 			"order": [[ 5, "asc" ]],
 			"columnDefs": [ {
 		          "targets": 'no-sort',
@@ -82,6 +84,7 @@
 	            [ 10, 25, 50, -1 ],
 	            [ '10 resultados', '25 resultados', '50 resultados', 'Todos os resultados' ]
 	        ],
+	        "scrollX": true,
 	    	"order": [[ 4, "asc" ]],
 	    	"columnDefs": [ {
 		          "targets": 'no-sort',
