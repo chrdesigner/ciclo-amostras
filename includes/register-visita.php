@@ -2,54 +2,32 @@
 	
 	if( 'POST' == $_SERVER['REQUEST_METHOD'] && !empty( $_POST['action'] ) &&  $_POST['action'] == "nova_visita") {
 	 	
-	 	$data			= $_POST['data_atual'];
 	 	$clinica		= $_POST['todas_clinicas'];
 		$nome_clinica	= $_POST['todas_title_clinica'];
 
-	 	$title 		= 'Relatório ' . $nome_clinica . ' | ' . $data ;
+	 	$title 		= 'Relatório ' . $nome_clinica;
 	 	
-	 	global $user_ID, $wpdb;
-
-	    $query = $wpdb->prepare(
-	        'SELECT ID FROM ' . $wpdb->posts . '
-	        WHERE post_title = %s
-	        AND post_type = \'gerenciar_visita\'',
-	        $title
+	    $nova_visita = array(
+		    'post_title'    => $title,
+		    'post_status'   => 'publish',
+		    'post_date' 	=> date('Y-m-d H:i:s'),
+		    'post_type'  	=> 'gerenciar_visita'
 	    );
 
-	    $wpdb->query( $query );
+	    $pid = wp_insert_post($nova_visita);
 
-	    if ( $wpdb->num_rows ) {
-	    
-	        $post_id = $wpdb->get_var( $query );
-	        $meta = get_post_meta( $post_id, 'post_title', TRUE );
-	        $meta++;
-	        update_post_meta( $post_id, 'post_title', $meta );
-	    
-	    } else {
+	    update_field('field_5733613a9ba39', $clinica, $pid);
+		
+		add_post_meta($pid, 'post_title', $title, true);
 
-		    $nova_visita = array(
-			    'post_title'    => $title,
-			    'post_status'   => 'publish',
-			    'post_date' 	=> date('Y-m-d H:i:s'),
-			    'post_type'  	=> 'gerenciar_visita'
-		    );
+		$url = get_permalink( $pid );
 
-		    $pid = wp_insert_post($nova_visita);
+		$post = get_post($pid);
 
-		    update_field('field_5733613a9ba39', $clinica, $pid);
-			
-			add_post_meta($pid, 'post_title', $title, true);
+		wp_redirect($url);
+		
+		exit();
 
-			$url = get_permalink( $pid );
-
-			$post = get_post($pid);
-
-			wp_redirect($url);
-			
-			exit();
-
-		}
 	}
 	
 	do_action('wp_insert_post', 'wp_insert_post');
@@ -63,14 +41,19 @@
 
 	    remove_action( 'acf/save_post', 'update_visita' );
 
-	    //$new_title = get_field('post_title', $post_id) . ' ' . $value;
-	    //$new_slug = sanitize_title( $new_title );
+	    $data_programada = get_post_meta($post_id, 'data_programada', true);
+	    $data_programada = new DateTime($data_programada);
+	    $data_final = $data_programada->format('d/m/Y');
+	    
+	    $new_title = get_field('post_title', $post_id) . ' | ' . $data_final;
+
+	    $new_slug = sanitize_title( $new_title );
 
 	    $post = array(
 	        'ID'           => $post_id,
 	        'post_type'    => 'gerenciar_visita',
-	    	//'post_title'   => $new_title,
-		  	//'post_name'    => $new_slug,
+	    	'post_title'   => $new_title,
+		  	'post_name'    => $new_slug,
 	        'post_status'  => 'publish'
 	    );
 

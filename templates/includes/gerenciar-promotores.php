@@ -1,14 +1,15 @@
 <div class="table-2">
 	<h3 style="text-align: center; text-transform: uppercase;">Gerenciar Promotores</h3>	
-	<table class="table-default-ca table-gerenciar-promotores">
+	<table class="display table-default-ca table-gerenciar-promotores" cellspacing="0" width="100%">
 		<thead>
 			<tr>
 				<th>Nome do Promotor</th>
 				<th class="no-sort">Email</th>
-				<th>Cidade/UF</th>
+				<th>Cidade</th>
+				<th>UF</th>
 				<th class="no-sort">Telefone</th>
-				<th>Clínicas/Veterinários</th>
-				<th>Proxima ciclo de visita</th>
+				<th class="no-sort">Clínicas/Veterinários</th>
+				<th>Proxima Visita</th>
 			</tr>
 		</thead>
 		<tbody>
@@ -28,15 +29,19 @@
 			while ( $gerenciar_promotores->have_posts() ) { $gerenciar_promotores->the_post();
 
 			$id_post = get_the_ID();
+			$estado_cidade_promotor = get_post_meta($id_post, 'estado_cidade_promotor', true);
+		    $state_verification = $estado_cidade_promotor['state_name'];
+
+		    echo  $id_post;
 		
 		?>
 			<tr>
-				<td width="20%">
+				<td width="15%">
 				<?php
 					echo sprintf( '<a href="%1$s" title="%2$s %3$s" target="_blank">%2$s %3$s</a>', get_the_permalink($id_post), get_field('post_title'), get_field('sobrenome_promotor'));
 				?>
 				</td>
-				<td width="20%">
+				<td width="15%">
 				<?php
 					$email_promotor = get_post_meta($id_post, 'email_promotor', true);
         			echo sprintf( '<a href="mailto:%1$s" title="%1$s">%1$s</a>', $email_promotor );
@@ -44,12 +49,15 @@
 				</td>
 				<td width="10%">
 				<?php
-					$estado_cidade_promotor = get_post_meta($id_post, 'estado_cidade_promotor', true);
-		            $state_verification = $estado_cidade_promotor['state_name'];
-		            echo ! empty( $state_verification ) ? sprintf( '%1$s/%2$s', $estado_cidade_promotor['city_name'], $estado_cidade_promotor['state_id'] ) : 'Não Registrado';
+					echo ! empty( $state_verification ) ? sprintf( '%1$s', $estado_cidade_promotor['city_name'] ) : 'Não Registrado';
 				?>
 				</td>
-				<td width="20%">
+				<td width="5%">
+				<?php
+					echo ! empty( $state_verification ) ? sprintf( '%1$s', $estado_cidade_promotor['state_id'] ) : 'Não Registrado';
+				?>
+				</td>
+				<td width="25%">
 				<?php
 					$telefone_promotor = get_post_meta($id_post, 'telefone_promotor', true);
 		            $celular_promotor = get_post_meta($id_post, 'celular_promotor', true);
@@ -97,20 +105,20 @@
 		            $get_id_user_proxima = $user_proxima->ID;
 
 		            $date_args = array(
-		                'post_type'      => 'gerenciar_visita',
-		                'meta_key'       => 'proxima_entrega',
-		                'author'         => $get_id_user_proxima,
-		                'posts_per_page' => 1,
-		                'orderby' => 'meta_value_num',
-		                'order' => 'ASC',
-		                'meta_query'=> array(
-		                    array(
-		                      'key' => 'proxima_entrega',
-		                      'compare' => '>',
-		                      'value' => date("Ymd"),
-		                      'type' => 'DATE'
-		                    )
-		                ),
+		                'post_type'			=> array( 'gerenciar_visita' ),
+						'post_status'		=> array( 'publish' ),
+						'author'            => $get_id_user_proxima,
+						'orderby' 			=> 'meta_value_num',
+		                'order' 			=> 'ASC',
+						'meta_query'        => array(
+							array(
+								'key'       => 'proxima_entrega',
+								'value'     => date("Ymd"),
+								'compare'   => '>=',
+								'type'      => 'NUMERIC',
+							),
+						),
+						'posts_per_page'	=> 1,
 		            );
 		            
 		            $date_query = new WP_Query( $date_args );
@@ -119,7 +127,8 @@
 
 		                while ( $date_query->have_posts() ) { $date_query->the_post();
 
-		                	$proxima_entrega = get_field('proxima_entrega', $id_post);
+		                	$id_date = get_the_ID();
+		                	$proxima_entrega = get_field('proxima_entrega', $id_date);
 		                    $proxima_entrega = new DateTime($proxima_entrega);
 
 		                    echo '<a href="'. get_the_permalink() .'" title="Visualizar - '. get_the_title() .'" target="_blank">' . $proxima_entrega->format('d/m/Y') . '</a>';
@@ -138,13 +147,12 @@
 		</tbody>
 		<tfoot>
 			<tr>
-				<td colspan="6">
+				<td colspan="7">
 					
 				</td>
 			</tr>
 		</tfoot>
 	</table>
-	
 	<script type="text/javascript">
 		jQuery(function($){
 	        $(".trigger").click(function(){
@@ -154,7 +162,6 @@
 			});
 		});
 	</script>
-
 	<dl class="legenda-alerta">
 		<dt>Legenda(s):</dt>
 		<dd><sup class="alerta-informacoes">* Campos não cadastrados</sup></dd>

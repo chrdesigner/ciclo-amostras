@@ -42,14 +42,14 @@
 <div class="table-2">
 	<h3 style="text-align: center; text-transform: uppercase;">Informações da(s) Minha(s) Clínicas(s)</h3>
 	
-	<table class="table-default-ca table-clinicas <?php echo $addClass; ?>">
+	<table class="display table-default-ca table-clinicas <?php echo $addClass; ?>" cellspacing="0" width="100%">
 		<thead>
 			<tr>
 			<?php if( $user_administrator == $user_role || $user_marketing == $user_role) : ?>
 				<th class="th-promotor">Promotor</th>
 			<?php endif; ?>
-				<th class="th-clinica">Clínica</th>
-				<th class="th-veterinario">Veterinário</th>
+				<th class="th-clinica">Nome da Clínica</th>
+				<th class="th-veterinario">Nome do Veterinário</th>
 				<th class="th-email no-sort">E-mail</th>
 				<th class="th-endereco no-sort">Endereço</th>
 				<th class="th-cidade">Cidade</th>
@@ -146,20 +146,18 @@
 			</tr>
 		</tfoot>
 	</table>
+	<script type="text/javascript">
+		jQuery(document).ready(function($) {
+		    $( '.adicionar-clinica' ).on('click', function(e) {
+		    	e.preventDefault();
+				$( '#campos-clinica' ).toggle( 'slow', function() {
+					// Animation complete.
+				});
+			});
+		});
+	</script>
 	<dl class="legenda-alerta">
 		<dt>Legenda(s):</dt>
 		<dd><sup class="alerta-informacoes">* Campos não cadastrados</sup></dd>
 	</dl>
 </div>
-<script type="text/javascript">
-	jQuery(document).ready(function($) {
-	    $('.clickable-row').click(function() {
-	        window.document.location = $(this).data('href');
-	    });
-	    $( '.adicionar-clinica' ).click(function() {
-		  $( '#campos-clinica' ).toggle( 'slow', function() {
-		    // Animation complete.
-		  });
-		});
-	});
-</script>

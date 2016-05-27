@@ -59,6 +59,9 @@
 					$citylat = get_field('citylat');
 					$citylng = get_field('citylng'); 
 
+					echo 'Lat' . $citylat;
+					echo 'Lng' . $citylng;
+
 					if($citylat == null || $citylng == null ){
 						$clat = '-22.8950635';
 						$clng = '-47.1703484';
@@ -75,11 +78,9 @@
 			    	$('#acf-endereco_completo_clinica .acf-input-wrap').after( '<div id="map"></div>' );
 			    });
 
-			  
-
 				function initMap() {
 
-					var clat = (document.getElementById('input_key-field_572e9999a73a7').value);
+					var clat = (document.getElementById('input_key-field_572e9988a73a7').value);
 			    	var clng = (document.getElementById('input_key-field_572e9988a73a7').value);
 
 			    	var map = new google.maps.Map(document.getElementById('map'), {

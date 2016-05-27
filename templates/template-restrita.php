@@ -53,20 +53,20 @@
 		<nav id="nav-informacoes">
 			<ul id="navigation">
 				<li data-tab="clinicas" class="setting-link active">
-					<a class="link_info dashicons-before dashicons-nametag" title="Minhas Clinicas"></a>
+					<a href="#clinicas" class="link_info dashicons-before dashicons-nametag" title="Minhas Clinicas"></a>
 					<i class="tooltip">Minhas Clinicas</i>
 				</li>
 				<li data-tab="visita" class="setting-link">
-					<a class="link_info dashicons-before dashicons-calendar" title="Agenda de Visitas"></a>
+					<a href="#visita" class="link_info dashicons-before dashicons-calendar" title="Agenda de Visitas"></a>
 					<i class="tooltip">Agenda de Visitas</i>
 				</li>
 				<li data-tab="relatorio" class="setting-link">
-					<a class="link_info dashicons-before dashicons-clipboard" title="Gerar Relatório"></a>
+					<a href="#relatorio" class="link_info dashicons-before dashicons-clipboard" title="Gerar Relatório"></a>
 					<i class="tooltip">Gerar Relatório</i>
 				</li>
 			<?php if( $user_administrator == $user_role || $user_marketing == $user_role ) : ?>
 				<li data-tab="gerenciar-promotores" class="setting-link">
-					<a class="link_info private-link dashicons-before dashicons-chart-area" title="Gerenciar Promotores"></a>
+					<a href="#gerenciar-promotores" class="link_info private-link dashicons-before dashicons-chart-area" title="Gerenciar Promotores"></a>
 					<i class="tooltip">Gerenciar Promotores</i>
 				</li>
 			<?php endif; ?>
@@ -80,17 +80,17 @@
 	    <div id="visita" class="nav-links" rel="2">
 	   		<?php require plugin_dir_path( __FILE__ ) . 'includes/agenda-visita.php'; ?>
 	    </div>
-	    
-	<?php if( $user_marketing != $user_role ) : ?>
+
 	    <div id="relatorio" class="nav-links" rel="3">
 	    	<?php require plugin_dir_path( __FILE__ ) . 'includes/gerar-relatorio.php'; ?>
 	    </div>
-	<?php endif; ?>
-	<?php if( $user_administrator == $user_role || $user_administrator == $user_role ) : ?>
+	
+		<?php if( $user_administrator == $user_role || $user_administrator == $user_role ) : ?>
 		<div id="gerenciar-promotores" class="nav-links" rel="999">
 	    	<?php require plugin_dir_path( __FILE__ ) . 'includes/gerenciar-promotores.php'; ?>
 	    </div>
-	<?php endif; ?>
+		<?php endif; ?>
+
 
 	<?php }; ?>
 

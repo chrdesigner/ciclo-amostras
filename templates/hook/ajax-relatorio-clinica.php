@@ -61,6 +61,8 @@
         <table class="table-default-ca table-relatorios">
             <thead>
                 <tr>
+                    <th>Nome da Clínica</th>
+					<th>Nome do Veterinário</th>
                     <th>Data programada</th>
                     <th>Data entrega da amostra</th>
                     <th>Proxima entrega</th>
@@ -70,9 +72,24 @@
                 </tr>
             </thead>
             <tbody>
-        	<?php  if( $relatorios ) : foreach( $relatorios as $relatorio ) : ?>
-	            <tr>
-	                <td width="16%">
+        	<?php if( $relatorios ) : foreach( $relatorios as $relatorio ) : $posts = get_field('todas_clinicas', $relatorio->ID); ?>
+	            	<td>
+	            	<?php
+	            		if( $posts ) : foreach( $posts as $p ) :
+							echo get_the_title($p->ID);
+						endforeach; endif;
+					?>
+	            	</td>
+	            	
+	            	<td>
+	            	<?php
+						if( $posts ) : foreach( $posts as $p ) :
+							echo get_field('nome_clinica', $p->ID);
+					 	endforeach; endif;
+					?>
+	            	</td>
+
+	                <td>
 	                <?php
 	                    $data_programada = get_field('data_programada', $relatorio->ID);
 	                    $data_programada = new DateTime($data_programada);
@@ -80,7 +97,8 @@
 	                    echo $data_programada->format('d/m/Y');  
 	                ?>
 	                </td>
-	                <td width="16%">
+	                
+	                <td>
 	                <?php
 	                	$programada_rows = get_field('relatorio_do_promotor', $relatorio->ID);
 	                	if($programada_rows) {
@@ -93,7 +111,8 @@
 						}
 	                ?>
 					</td>
-	                <td width="16%">
+	                
+	                <td>
 	                <?php
 	                    $proxima_entrega = get_field('proxima_entrega', $relatorio->ID);
 	                    $proxima_entrega = new DateTime($proxima_entrega);
@@ -101,7 +120,8 @@
 	                    echo $proxima_entrega->format('d/m/Y');
 	                ?>
 	                </td>
-	                <td width="25%">
+	                
+	                <td>
 	                <?php
 	                	$produtos_rows = get_field('relatorio_do_promotor', $relatorio->ID);
 	                	if($produtos_rows) {
@@ -111,7 +131,8 @@
 						}
 	                ?>
 	                </td>
-	                <td width="25%">
+
+	                <td>
 	                <?php
 	                	$observacoes_rows = get_field('relatorio_do_promotor', $relatorio->ID);
 	                	if($observacoes_rows) {
@@ -121,7 +142,8 @@
 						}
 	                ?>
 	                </td>
-	                <td width="2%">
+	                
+	                <td>
 	                    <a href="<?php echo get_permalink( $relatorio->ID ); ?>" class="dashicons-before dashicons-edit" title="Editar Relatório">Editar</a>
 	                </td>
 	            </tr>
@@ -129,7 +151,7 @@
             </tbody>
             <tfoot>
                 <tr>
-                    <td colspan="6" class="detalhes-relatorio">
+                    <td colspan="8" class="detalhes-relatorio">
                         Clinica: <?php echo get_the_title( $id_clinica ); ?> - Promotor: <?php the_author_meta( 'display_name', $post_author_id ); ?>
                     </td>
                 </tr>

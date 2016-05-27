@@ -19,21 +19,21 @@
 		var dia = data.getDate();
 		var dataHoje = ((''+dia).length<2 ? '0' : '') + dia + '/' + ((''+mes).length<2 ? '0' : '') + mes + '/' + data.getFullYear();
 
-		$.fn.dataTable.moment('DD/MM');
+		$.fn.dataTable.moment('DD/MM/YYYY');
 
 		$('.table-default-ca.table-clinicas').DataTable( {
 			dom: 'Bfrtip',
+			scrollX: true,
 			lengthMenu: [
 	            [ 10, 25, 50, -1 ],
 	            [ '10 resultados', '25 resultados', '50 resultados', 'Todos os resultados' ]
 	        ],
-			"scrollX": true,
-			"order": [[ 0, "asc" ]],
-	    	"columnDefs": [ {
+			order: [[ 0, "asc" ]],
+	    	columnDefs: [ {
 		          "targets": 'no-sort',
 		          "orderable": false,
 		    } ],
-	        "language": {
+	        language: {
 	            "url": "//cdn.datatables.net/plug-ins/1.10.11/i18n/Portuguese-Brasil.json"
 	        },
 	        buttons: [
@@ -55,14 +55,14 @@
 	            [ 10, 25, 50, -1 ],
 	            [ '10 resultados', '25 resultados', '50 resultados', 'Todos os resultados' ]
 	        ],
-	        "scrollX": true,
-			"order": [[ 5, "asc" ]],
-			"columnDefs": [ {
+	        scrollX: true,
+			order: [[ 6, "asc" ]],
+			columnDefs: [ {
 		          "targets": 'no-sort',
 		          "orderable": false,
 		          "searchable": false
 		    } ],
-	        "language": {
+	        language: {
 	            "url": "//cdn.datatables.net/plug-ins/1.10.11/i18n/Portuguese-Brasil.json"
 	        },
 	        buttons: [
@@ -84,14 +84,14 @@
 	            [ 10, 25, 50, -1 ],
 	            [ '10 resultados', '25 resultados', '50 resultados', 'Todos os resultados' ]
 	        ],
-	        "scrollX": true,
-	    	"order": [[ 4, "asc" ]],
-	    	"columnDefs": [ {
+	        scrollX: true,
+	    	order: [[ 6, "asc" ]],
+	    	columnDefs: [ {
 		          "targets": 'no-sort',
 		          "orderable": false,
 		          "searchable": false
 		    } ],
-	        "language": {
+	        language: {
 	            "url": "//cdn.datatables.net/plug-ins/1.10.11/i18n/Portuguese-Brasil.json"
 	        },
 	        buttons: [

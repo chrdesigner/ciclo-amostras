@@ -1,11 +1,60 @@
+<?php
+	global $current_user;
+		
+	get_currentuserinfo();
+
+	$user_roles = $current_user->roles;
+	$user_role = array_shift($user_roles);
+
+	$user_administrator = 'administrator';
+	$user_marketing = 'marketing';
+
+
+	if( $user_administrator == $user_role || $user_marketing == $user_role ) {
+
+		$args = array (
+			'post_type'			=> array( 'gerenciar_visita' ),
+			'post_status'		=> array( 'publish' ),
+			'meta_query'        => array(
+				array(
+					'key'       => 'proxima_entrega',
+					'value'     => date("Ymd"),
+					'compare'   => '>=',
+					'type'      => 'NUMERIC',
+				),
+			),
+			'posts_per_page'	=> -1,
+		);
+
+	}else{
+
+		$args = array (
+			'post_type'			=> array( 'gerenciar_visita' ),
+			'post_status'		=> array( 'publish' ),
+			'author'            => get_current_user_id(),
+			'meta_query'        => array(
+				array(
+					'key'       => 'proxima_entrega',
+					'value'     => date("Ymd"),
+					'compare'   => '>=',
+					'type'      => 'NUMERIC',
+				),
+			),
+			'posts_per_page'	=> -1,
+		);
+
+	};
+?>
 <div class="table-2">
 	<h3 style="text-align: center; text-transform: uppercase;">Minha(s) Visita(s)</h3>	
-	<table class="table-default-ca table-visita">
+	<table class="display table-default-ca table-visita <?php echo $addClass; ?>" cellspacing="0" width="100%">
 		<thead>
 			<tr>
-				<th>Nome do Relatório</th>
 				<th>Nome da Clínica</th>
-				<th>Região</th>
+				<th>Nome do Veterinário</th>
+				<th>Cidade</th>
+				<th>UF</th>
+				<th>Data Programada</th>
 				<th>Entrega da amostra</th>
 				<th>Proxima entrega</th>
 				<th class="no-sort">Histórico</th>
@@ -14,55 +63,22 @@
 		<tbody>
 			
 	<?php
-		global $current_user;
-		
-		get_currentuserinfo();
-
-		$user_roles = $current_user->roles;
-		$user_role = array_shift($user_roles);
-
-		$user_administrator = 'administrator';
-		$user_marketing = 'marketing';
-
-
-		if( $user_administrator == $user_role || $user_marketing == $user_role ) {
-
-			$args = array (
-				'post_type'			=> array( 'gerenciar_visita' ),
-				'post_status'		=> array( 'publish' ),
-				'meta_key'			=> 'proxima_entrega',
-				'orderby'			=> 'meta_value_num',
-				'order'				=> 'ASC',
-				'posts_per_page'	=> -1,
-			);
-
-		}else{
-
-			$args = array (
-				'post_type'			=> array( 'gerenciar_visita' ),
-				'post_status'		=> array( 'publish' ),
-				'author'            => get_current_user_id(),
-				'meta_key'			=> 'proxima_entrega',
-				'orderby'			=> 'meta_value_num',
-				'order'				=> 'ASC',
-				'posts_per_page'	=> -1,
-			);
-
-		};
 
 		$loop_visita = new WP_Query( $args );
 
 		if ( $loop_visita->have_posts() ) {
 
-			while ( $loop_visita->have_posts() ) { $loop_visita->the_post(); ?>
+			while ( $loop_visita->have_posts() ) { $loop_visita->the_post();
+
+
+			$posts = get_field('todas_clinicas');
+
+		?>
 			
 			<tr class="clickable-row" data-href="<?php the_permalink();?>">
 				<td>
-					<?php the_title(); ?>
-				</td>
-				<td>
 				<?php
-					$posts = get_field('todas_clinicas');
+					
 
 					if( $posts ) :
 						foreach( $posts as $p ) :
@@ -75,19 +91,56 @@
 				</td>
 				<td>
 				<?php
-					$posts = get_field('todas_clinicas');
+					if( $posts ) :
+						foreach( $posts as $p ) :
 
+							echo get_field('nome_clinica', $p->ID);
+
+					 	endforeach;
+					endif;
+				?>
+				</td>
+				<td>
+				<?php
 					if( $posts ) :
 						foreach( $posts as $p ) :
 
 							$cidade_uf = get_field('estado_cidade_clinica', $p->ID);
 
 							if($cidade_uf != null){
-								echo $cidade_uf['city_name'] . '/' . $cidade_uf['state_id'] ;
+								echo $cidade_uf['city_name'];
 							};
 
 					 	endforeach;
 					endif;
+				?>
+				</td>
+				<td>
+				<?php
+					if( $posts ) :
+						foreach( $posts as $p ) :
+
+							$cidade_uf = get_field('estado_cidade_clinica', $p->ID);
+
+							if($cidade_uf != null){
+								echo $cidade_uf['state_id'] ;
+							};
+
+					 	endforeach;
+					endif;
+				?>
+				</td>
+				<td>
+				<?php
+					$verifica_programada = get_field('data_programada');
+					$data_programada = get_field('data_programada', false, false);
+					$data_programada = new DateTime($data_programada);
+
+					if($verifica_programada != null){
+						echo $data_programada->format('d/m/Y');
+					}else{
+						echo '<strong class="alerta-informacoes">*</strong>';
+					}
 				?>
 				</td>
 				<td>
@@ -130,7 +183,7 @@
 		</tbody>
 		<tfoot>
 			<tr>
-				<td colspan="6">
+				<td colspan="8">
 					<form id="nova_visita" name="nova_visita" method="post" action="" class="front-end-form" enctype="multipart/form-data">
 						<label class="adicionar-visita" for="nome-visita">Adicionar Nova Visita</label>
 						<fieldset id="campos-visita" style="display: none;">
@@ -175,17 +228,18 @@
 			</tr>
 		</tfoot>
 	</table>
+	<script type="text/javascript">
+		jQuery(document).ready(function($) {
+		    $( '.adicionar-visita' ).on('click', function(e) {
+		    	e.preventDefault();
+				$( '#campos-visita' ).toggle( 'slow', function() {
+					// Animation complete.
+				});
+			});
+		});
+	</script>
 	<dl class="legenda-alerta">
 		<dt>Legenda(s):</dt>
 		<dd><sup class="alerta-informacoes">* Campos não cadastrados</sup></dd>
 	</dl>
 </div>
-<script type="text/javascript">
-	jQuery(document).ready(function($) {
-	    $( '.adicionar-visita' ).click(function() {
-		  $( '#campos-visita' ).toggle( 'slow', function() {
-		    // Animation complete.
-		  });
-		});
-	});
-</script>
