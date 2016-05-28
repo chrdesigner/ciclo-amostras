@@ -3,6 +3,9 @@
 	function load_relatorio_clinica () {
 
         $id_clinica = $_POST[ 'clinica_value' ];
+
+        $value_group = $_POST[ 'grupo_value' ];
+
 		$post_author_id = get_post_field( 'post_author', $id_clinica );
 
 		global $current_user;
@@ -13,49 +16,44 @@
 		$user_role = array_shift($user_roles);
 
 		$user_administrator = 'administrator';
+		$user_marketing = 'marketing';
         
-        if( $id_clinica == null ){ }else{
+	if( $id_clinica == null ){ }else{
 
+		// Verifica se é optgroup Promotores
+		if($value_group == 'promotores') :
+			// Exibirá todas as clinicas referentes a todos os promotores
+			if( $id_clinica == 'todos-promotores' ) :
+				$relatorios = get_posts( array( 'post_type' => 'gerenciar_visita', 'post_status' => array( 'publish' ), 'order' => 'ASC', 'posts_per_page' => -1 ) );
+			// Exibirá todas as clinicas referentes a um promotor especifico
+			else :
+				$relatorios = get_posts( array( 'post_type' => 'gerenciar_visita', 'post_status' => array( 'publish' ), 'author' => $id_clinica, 'order' => 'ASC', 'posts_per_page'  => -1 ) );
+			endif;
 
-        if( $user_administrator == $user_role ) {
+		// Termina a verificação de promotores e inicia das clinicas
+		else :
 
-        	$relatorios = get_posts(array(
-	            'post_type'     => 'gerenciar_visita',
-	            'post_status'   => array( 'publish' ),
-	            'meta_key'		=> 'proxima_entrega',
-				'orderby'		=> 'meta_value_num',
-				'order'			=> 'ASC',
-	            'meta_query' => array(
-	                array(
-	                    'key'		=> 'todas_clinicas',
-	                    'value' 	=> '"' . $id_clinica . '"',
-	                    'compare' 	=> 'LIKE'
-	                )
-	            ),
-	            'posts_per_page'  => -1,
-	        ));
+        if( $id_clinica == 'todas-clinicas' ){
+        	// Exibirá todas as clinicas - Adm / Mkt
+	        if( $user_administrator == $user_role || $user_marketing == $user_role ) :
+	        	$relatorios = get_posts( array( 'post_type' => 'gerenciar_visita', 'post_status' => array( 'publish' ), 'order' => 'ASC', 'posts_per_page' => -1, ) );
+	        // Exibirá todas as clinicas especifica por promotor
+	        else :
+	        	$relatorios = get_posts( array( 'post_type' => 'gerenciar_visita', 'post_status' => array( 'publish' ), 'author' => get_current_user_id(), 'order' => 'ASC', 'posts_per_page' => -1, ) );
+	        endif;
+        
+		}else{
+			// Exibirá as clinicas especifica por promotor - Adm / Mkt
+       		if( $user_administrator == $user_role || $user_marketing == $user_role ) :
+				$relatorios = get_posts( array( 'post_type' => 'gerenciar_visita', 'post_status' => array( 'publish' ), 'meta_key' => 'proxima_entrega', 'orderby' => 'meta_value_num', 'order' => 'ASC', 'meta_query' => array( array( 'key' => 'todas_clinicas', 'value' => '"' . $id_clinica . '"', 'compare' => 'LIKE' ) ), 'posts_per_page'  => -1, ) );
+	        // Exibirá as clinicas especifica selecionada pelo promotor
+	        else :
+	        	$relatorios = get_posts( array( 'post_type' => 'gerenciar_visita', 'post_status' => array( 'publish' ), 'author' => get_current_user_id(), 'meta_key' => 'proxima_entrega', 'orderby' => 'meta_value_num', 'order' => 'ASC', 'meta_query' => array( array( 'key' => 'todas_clinicas', 'value' => '"' . $id_clinica . '"', 'compare' => 'LIKE' ) ), 'posts_per_page' => -1 ) );
+	        endif;
 
-        }else{
-
-        	$relatorios = get_posts(array(
-	            'post_type'     => 'gerenciar_visita',
-	            'post_status'   => array( 'publish' ),
-	            'author'        => get_current_user_id(),
-	            'meta_key'		=> 'proxima_entrega',
-				'orderby'		=> 'meta_value_num',
-				'order'			=> 'ASC',
-	            'meta_query' => array(
-	                array(
-	                    'key'		=> 'todas_clinicas',
-	                    'value' 	=> '"' . $id_clinica . '"',
-	                    'compare' 	=> 'LIKE'
-	                )
-	            ),
-	            'posts_per_page'  => -1,
-	        ));
-
-        };
-
+		}
+		// Termina a verificação de clinicas
+		endif;
 	?>
     <div class="table-2">
         <table class="table-default-ca table-relatorios">
@@ -149,17 +147,9 @@
 	            </tr>
         	<?php endforeach; endif;?>
             </tbody>
-            <tfoot>
-                <tr>
-                    <td colspan="8" class="detalhes-relatorio">
-                        Clinica: <?php echo get_the_title( $id_clinica ); ?> - Promotor: <?php the_author_meta( 'display_name', $post_author_id ); ?>
-                    </td>
-                </tr>
-            </tfoot>
         </table>
 	</div><?php
-
-	}
+	};
 
 	$response = ob_get_contents();
 	ob_end_clean();

@@ -45,117 +45,6 @@
 			<?php };?>
 
 			<section id="ca-content-main">
-
-				<style>
-					#map {
-						width: 100%;
-						height: 400px;
-						position: relative;
-						z-index: 0;
-					}
-				</style>
-				
-				<?php
-					$citylat = get_field('citylat');
-					$citylng = get_field('citylng'); 
-
-					echo 'Lat' . $citylat;
-					echo 'Lng' . $citylng;
-
-					if($citylat == null || $citylng == null ){
-						$clat = '-22.8950635';
-						$clng = '-47.1703484';
-					}else{
-						$clat = $citylat;
-						$clng = $citylng;
-					}
-				?>
-			
-				<script>
-				// <![CDATA[
-				
-				jQuery(function($) {
-			    	$('#acf-endereco_completo_clinica .acf-input-wrap').after( '<div id="map"></div>' );
-			    });
-
-				function initMap() {
-
-					var clat = (document.getElementById('input_key-field_572e9988a73a7').value);
-			    	var clng = (document.getElementById('input_key-field_572e9988a73a7').value);
-
-			    	var map = new google.maps.Map(document.getElementById('map'), {
-			          center: { lat: clat, lng: clng},
-			          zoom: 8
-			        });
-
-			        var input = (document.getElementById('acf-field-endereco_completo_clinica'));
-
-			        //map.controls[google.maps.ControlPosition.TOP_LEFT].push(input);
-
-			        var autocomplete = new google.maps.places.Autocomplete(input);
-			        
-			        autocomplete.bindTo('bounds', map);
-
-			        var infowindow = new google.maps.InfoWindow();
-			        
-			        var marker = new google.maps.Marker({
-			          map: map,
-			          anchorPoint: new google.maps.Point(0, -29)
-			        });
-
-			        autocomplete.addListener('place_changed', function() {
-
-						infowindow.close();
-						marker.setVisible(false);
-
-						var place = autocomplete.getPlace();
-
-						if (!place.geometry) {
-							window.alert("Autocomplete's returned place contains no geometry");
-							return;
-						}
-
-						// If the place has a geometry, then present it on a map.
-						if (place.geometry.viewport) {
-							map.fitBounds(place.geometry.viewport);
-						} else {
-							map.setCenter(place.geometry.location);
-							map.setZoom(17);  // Why 17? Because it looks good.
-						}
-
-						marker.setIcon(/** @type {google.maps.Icon} */({
-							url: place.icon,
-							size: new google.maps.Size(71, 71),
-							origin: new google.maps.Point(0, 0),
-							anchor: new google.maps.Point(17, 34),
-							scaledSize: new google.maps.Size(35, 35)
-						}));
-						
-						marker.setPosition(place.geometry.location);
-						marker.setVisible(true);
-
-						var address = '';
-						
-						if (place.address_components) {
-							address = [
-								(place.address_components[0] && place.address_components[0].short_name || ''),
-								(place.address_components[1] && place.address_components[1].short_name || ''),
-								(place.address_components[2] && place.address_components[2].short_name || '')
-							].join(' ');
-						}
-
-						infowindow.setContent('<div><strong>' + place.name + '</strong><br>' + address);
-						infowindow.open(map, marker);
-
-			        });
-
-			    }
-			    setTimeout(initMap, 2800);
-			// ]]>
-			</script>
-			
-
-
 			<?php
 				if(is_singular('gerenciar_visita')) :
 				
@@ -171,9 +60,6 @@
 			 	
 			 	acf_form();
 			?>
-
-			<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyC-FENs3Gc66W1vB-1ZuWbd6s3bbZVR9nk&amp;libraries=places&amp;callback=initMap" async defer></script>
-			
 			</section>
 			<?php
 

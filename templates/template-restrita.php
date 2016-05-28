@@ -82,10 +82,18 @@
     </section>
 
     <section id="relatorio" class="nav-links" rel="3">
+    <?php if( $user_administrator == $user_role || $user_marketing == $user_role ) : ?>
+
+    	<?php require plugin_dir_path( __FILE__ ) . 'includes/gerar-relatorio-administrator.php'; ?>
+
+    <?php else : ?>
+    
     	<?php require plugin_dir_path( __FILE__ ) . 'includes/gerar-relatorio.php'; ?>
+
+    <?php endif; ?>
     </section>
 
-	<?php if( $user_administrator == $user_role || $user_administrator == $user_role ) : ?>
+	<?php if( $user_administrator == $user_role || $user_marketing == $user_role ) : ?>
 	<section id="gerenciar-promotores" class="nav-links" rel="999">
     	<?php require plugin_dir_path( __FILE__ ) . 'includes/gerenciar-promotores.php'; ?>
     </section>

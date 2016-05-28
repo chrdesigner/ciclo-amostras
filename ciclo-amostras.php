@@ -147,7 +147,6 @@ function acf_install_init() {
  		include_once plugin_dir_path( __FILE__ ) . 'includes/acf/acf-clinica.php';
  		include_once plugin_dir_path( __FILE__ ) . 'includes/acf/acf-promotor.php';
         include_once plugin_dir_path( __FILE__ ) . 'includes/acf/acf-gerenciar-visita.php';
-        include_once plugin_dir_path( __FILE__ ) . 'includes/acf/acf-hidden/acf-hidden.php';
 
  		// Registro e Permissão Promotor
  		include_once plugin_dir_path( __FILE__ ) . 'includes/role-register.php';
