@@ -25,6 +25,16 @@ jQuery(function($) {
                 yearRange       :   "-100:+100",
                 changeMonth     :   true,
                 showButtonPanel :   true,
+                closeText: "Fechar",
+                prevText: "&#x3C;Anterior",
+                nextText: "Próximo&#x3E;",
+                currentText: "Hoje",
+                dayNames: ['Domingo','Segunda','Terça','Quarta','Quinta','Sexta','Sábado'],
+                dayNamesMin: ['D','S','T','Q','Q','S','S','D'],
+                dayNamesShort: ['Dom','Seg','Ter','Qua','Qui','Sex','Sáb','Dom'],
+                monthNames: ['Janeiro','Fevereiro','Março','Abril','Maio','Junho','Julho','Agosto','Setembro','Outubro','Novembro','Dezembro'],
+                monthNamesShort: ['Jan','Fev','Mar','Abr','Mai','Jun','Jul','Ago','Set','Out','Nov','Dez'],
+                weekHeader: "Sm",
                 firstDay        :   this.o.first_day,
                 onSelect: function(dateText, instance) {
                     date = $.datepicker.parseDate(instance.settings.dateFormat, dateText, instance.settings);

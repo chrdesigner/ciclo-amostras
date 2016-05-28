@@ -60,6 +60,7 @@
 		<div id="geracao-relatorios"></div>
 
 		<input type="hidden" name="todas_clinicas" id="hidden_clinica" value="" />
+
 	</form>
 
 	<script type="text/javascript">
@@ -89,8 +90,7 @@
 		        	clinica_value: selectedValue
 		        },
 		        success: function(response) {
-		        	//alert(dataHoje);
-
+		        	
 		        	jQuery("#geracao-relatorios").show().html(response);
 		            jQuery("#loading-clinica").hide();
 
@@ -118,16 +118,14 @@
 								title: titulo + ' - '+ dataHoje,
 								exportOptions: {
 									columns: [ 0, 1, 2, 3, 4 ]
-								},
-								// footer: true
+								}
 							},
 							{
 								extend: 'csvHtml5',
 								title: titulo + ' - '+ dataHoje,
 								exportOptions: {
 									columns: [ 0, 1, 2, 3, 4 ]
-								},
-								// footer: true
+								}
 							}
 				        ]
 					} );

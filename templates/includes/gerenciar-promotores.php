@@ -31,8 +31,6 @@
 			$id_post = get_the_ID();
 			$estado_cidade_promotor = get_post_meta($id_post, 'estado_cidade_promotor', true);
 		    $state_verification = $estado_cidade_promotor['state_name'];
-
-		    echo  $id_post;
 		
 		?>
 			<tr>

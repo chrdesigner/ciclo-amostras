@@ -396,6 +396,12 @@ a.dashicons-before.dashicons-edit:before{
 	background-color: #353535;
 }
 
+#ca-content-main table.acf_input tbody tr td.label .sub-field-instructions{
+	margin-top: 10px;
+	color: #EA4335;
+	text-shadow: none;
+}
+
 #ca-content-main table.acf_input tbody tr.field_type-message td.label label{
 	display: none;
 }
@@ -644,3 +650,5 @@ dl.legenda-alerta dd .alerta-informacoes{
 	background-color: #383838;
 	text-align: center;
 }
+
+

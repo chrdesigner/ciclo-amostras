@@ -50,6 +50,7 @@ wp_register_script( 'disable-field-js', plugin_dir_url( __FILE__ ) . 'assets/js/
 wp_register_style( 'style-restrita', plugin_dir_url( __FILE__ ) . 'templates/assets/css/style-restrita.css' );
 wp_register_script( 'script-restrita-js', plugin_dir_url( __FILE__ ) . 'templates/assets/js/script-restrita.js', array('jquery'), true );
 
+
 /**
  * Remover as Metabox não desejadas
  */
@@ -205,8 +206,7 @@ function include_template_single( $template_path ) {
         if ( is_single() ) {
 
             wp_enqueue_style( 'style-restrita' );
-            wp_enqueue_script('script-restrita-js');
-
+            
             if ( $theme_file = locate_template( array ( 'single-amostras.php' ) ) ) {
                 $template_path = $theme_file;
             } else {
