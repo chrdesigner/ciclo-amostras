@@ -48,7 +48,8 @@
 
 			$user_id = wp_insert_user($userdata);
 
-			wp_new_user_notification( $user_id, $plaintext_pass = '' );
+			//send notification to user
+			wp_new_user_notification_new( $user_id, $password );
 		
 			$_POST['return'] = add_query_arg( 'updated', 'true', get_permalink( $post_id ) );
 
