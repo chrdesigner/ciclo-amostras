@@ -565,7 +565,7 @@ a.dashicons-before.dashicons-edit:before{
 }
 
 .nav-links {
-    display: none;
+    /*display: none;*/
 }
 
 dl.legenda-alerta{

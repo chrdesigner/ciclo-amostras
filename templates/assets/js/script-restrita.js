@@ -17,6 +17,8 @@
 		$('#nav-informacoes ul li').click(function() {
 
 			$('html, body').animate({scrollTop : 0},800);
+
+			$('.dataTables_scrollHeadInner').css('width', '100%' );
 			
 			$('#nav-informacoes ul li').removeClass('active'); //Remove any "active" class
 			
