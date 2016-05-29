@@ -59,6 +59,9 @@
         <table class="table-default-ca table-relatorios">
             <thead>
                 <tr>
+                <?php if($value_group == 'promotores') : ?>
+                	<th>Nome do Promotor</th>
+                <?php endif; ?>
                     <th>Nome da Clínica</th>
 					<th>Nome do Veterinário</th>
                     <th>Data programada</th>
@@ -71,6 +74,15 @@
             </thead>
             <tbody>
         	<?php if( $relatorios ) : foreach( $relatorios as $relatorio ) : $posts = get_field('todas_clinicas', $relatorio->ID); ?>
+	            <?php if($value_group == 'promotores') : ?>
+	            	<td>
+	            	<?php
+	            		$get_id_author = $relatorio->post_author;
+	            		$show_author = get_user_by('id', $get_id_author);
+						echo $show_author->display_name;
+	            	?>
+	            	</td>
+	            <?php endif; ?>
 	            	<td>
 	            	<?php
 	            		if( $posts ) : foreach( $posts as $p ) :
