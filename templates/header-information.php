@@ -10,7 +10,7 @@
 	$user_administrator = 'administrator';
 
 ?>
-<header class="header-restrita">
+<header class="header-restrita fusion-row" style="<?php echo $row_css; ?>">
 	<div class="main-info-restrita">
 		<h1>Olá, <?php echo $current_user->display_name; ?></h1>
 		<p class="status-logout"></p>

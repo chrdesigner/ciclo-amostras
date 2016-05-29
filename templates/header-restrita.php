@@ -124,11 +124,11 @@
 
 	$body_classes[] = 'mobile-menu-design-' . $smof_data['mobile_menu_design'];
 ?>
-<body <?php body_class( $body_classes ); ?> data-spy="scroll">
-	<header class="fusion-header-wrapper">
-		<hgroup class="fusion-header">
+<body id="body-ciclo-amostras" <?php body_class( $body_classes ); ?> data-spy="scroll">
+	<header id="header-ciclo-amostras" class="fusion-header-wrapper">
+		<hgroup class="fusion-row">
 
-			<figure class="fusion-row">
+			<figure>
 			<?php
 					
 					$args = array (
@@ -153,4 +153,3 @@
 		</hgroup>
 	</header>
 	<div id="main" class="clearfix <?php echo $main_class; ?>" style="<?php echo $main_css; ?>">
-		<div class="fusion-row" style="<?php echo $row_css; ?>">

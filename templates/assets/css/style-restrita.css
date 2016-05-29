@@ -1,3 +1,16 @@
+#body-ciclo-amostras{
+	background-color: #181818;
+}
+
+#header-ciclo-amostras{
+	padding-left: 30px;
+    padding-right: 30px;
+}
+
+#body-ciclo-amostras #main{
+	padding-top: 0;
+}
+
 .header-restrita{
 	display: table;
 	width: 100%;
@@ -9,7 +22,7 @@
 }
 
 .header-restrita > div.main-info-restrita{
-	width: 90%;
+	width: 100%;
 }
 
 .header-restrita > div.main-info-restrita h1{

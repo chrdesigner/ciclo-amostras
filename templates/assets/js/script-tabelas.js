@@ -23,7 +23,7 @@
 
 		$('.table-default-ca.table-clinicas').DataTable( {
 			dom: 'Bfrtip',
-			scrollX: true,
+			//scrollX: true,
 			lengthMenu: [
 	            [ 10, 25, 50, -1 ],
 	            [ '10 resultados', '25 resultados', '50 resultados', 'Todos os resultados' ]
@@ -55,7 +55,7 @@
 	            [ 10, 25, 50, -1 ],
 	            [ '10 resultados', '25 resultados', '50 resultados', 'Todos os resultados' ]
 	        ],
-	        scrollX: true,
+	        //scrollX: true,
 			order: [[ 6, "asc" ]],
 			columnDefs: [ {
 		          "targets": 'no-sort',
@@ -84,7 +84,7 @@
 	            [ 10, 25, 50, -1 ],
 	            [ '10 resultados', '25 resultados', '50 resultados', 'Todos os resultados' ]
 	        ],
-	        scrollX: true,
+	        //scrollX: true,
 	    	order: [[ 6, "asc" ]],
 	    	columnDefs: [ {
 		          "targets": 'no-sort',

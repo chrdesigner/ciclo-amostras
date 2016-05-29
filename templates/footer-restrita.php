@@ -1,4 +1,3 @@
-			</div>  <!-- fusion-row -->
 		</div>  <!-- #main -->
 		
 		
