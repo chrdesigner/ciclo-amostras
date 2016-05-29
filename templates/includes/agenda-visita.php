@@ -179,7 +179,15 @@
 					<a href="<?php the_permalink();?>#acf-relatorio_do_promotor" title="Ver Histórico">Ver</a>
 				</td>
 			</tr>
-		<?php }  } wp_reset_postdata(); ?>
+			<?php
+				}
+			} else { ?>
+			<tr>
+				<td colspan="<?php echo $addColspan; ?>" align="center">
+					Não existe nenhuma clínica cadastrada...
+				</td>
+			</tr>
+		<?php   } wp_reset_postdata(); ?>
 		</tbody>
 		<tfoot>
 			<tr>

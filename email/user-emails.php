@@ -17,7 +17,7 @@
         $logoUrl = plugin_dir_url(dirname(__FILE__)) . 'assets/images/konig-brasil-logotipo.png';
  
         $subject = 'König Brasil / Agenda de Visitas';
-        $headers = 'From: König Brasil <chrdesigner@chrdesigner.com>';
+        $headers = 'From: König Brasil <0800@konigbrasil.com.br>';
  
         // admin email
         $message  = "Um novo promotor foi criado"."\r\n\r\n";

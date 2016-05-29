@@ -13,12 +13,13 @@
 			window.location.hash=this.hash;
 		}); 
 
-		//On Click Event
+		//On Click Event - Informações Home
 		$('#nav-informacoes ul li').click(function() {
 
 			$('html, body').animate({scrollTop : 0},800);
 
 			$('.dataTables_scrollHeadInner').css('width', '100%' );
+			$('.dataTables_scrollFootInner').css('width', '100%' );
 			
 			$('#nav-informacoes ul li').removeClass('active'); //Remove any "active" class
 			
@@ -34,6 +35,15 @@
 			
 		}).filter(':has(a[href="' + window.location.hash + '"])').click();
 
+		//On Click Event - Informações Internas
+		$('#sub-informacoes ul li').click(function() {
+			
+			$('html, body').animate({scrollTop : 0},800);
+
+			$('.dataTables_scrollHeadInner').css('width', '100%' );
+			$('.dataTables_scrollFootInner').css('width', '100%' );
+
+		}).filter(':has(a[href="' + window.location.hash + '"])').click();
 
 	});
 // ]]>

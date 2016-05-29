@@ -30,8 +30,9 @@
 			</select>
 		</div>';
 
-		}
-		wp_reset_postdata();
+		} else {
+			echo '<strong style="text-align: center; display: inline-block; width: 100%; font-size: 2rem; color: #fff;">Ainda não existe nenhum relatório para ser gerado</strong>';
+		} wp_reset_postdata();
 	?>
 
 		<div id="loading-clinica" style="display: none;">
