@@ -64,7 +64,7 @@ function gerenciar_visita_posts_columns( $column, $post_id ) {
                     $data_programada = $programada['data_entrega_amostra'];
                     $data_programada = new DateTime($data_programada);
 
-                    echo $data_programada->format('d/m');
+                    echo $data_programada->format('d/m/Y');
                 }
             }
             break;
@@ -74,7 +74,7 @@ function gerenciar_visita_posts_columns( $column, $post_id ) {
             $proxima_entrega = get_field('proxima_entrega', $post_id);
             if($proxima_entrega != null){
                 $proxima_entrega = new DateTime($proxima_entrega);
-                echo $proxima_entrega->format('d/m');
+                echo $proxima_entrega->format('d/m/Y');
             }
             break;
 
