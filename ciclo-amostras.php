@@ -95,7 +95,10 @@ function add_admin_scripts( $hook ) {
     }
 }
 
-// Register and Enqueue - Frontend
+/*
+ * Register and Enqueue - Frontend
+ */
+
 function add_frontend_scripts() {
 
     global $post;
@@ -120,6 +123,7 @@ function add_frontend_scripts() {
 /*
  * Adicionar estilo nas colunas dos post's
  */
+
 function amostras_admin_css() {
     
     global $post_type;
@@ -132,9 +136,24 @@ function amostras_admin_css() {
 
 }
 
-// Todos os Creditos para https://github.com/luizhguimaraes/acf-brazilian-city
+/**
+ * Todos os Creditos para https://github.com/luizhguimaraes/acf-brazilian-city
+ */
+
 function register_fields_brazilian_city() {
     include_once('includes/acf/acf-brazilian-city-field.php');
+}
+
+/**
+ * Suporte para a versão 4.5 do WP para o plugin
+ */
+
+function load_old_jquery_fix() {
+    if ( ! is_admin() ) {
+        wp_deregister_script( 'jquery' );
+        wp_register_script( 'jquery', ( "//ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js" ), false, '1.11.3' );
+        wp_enqueue_script( 'jquery' );
+    }
 }
 
 /**
@@ -143,7 +162,8 @@ function register_fields_brazilian_city() {
 
 function acf_install_init() {
 	if( class_exists( 'acf' ) && function_exists('acf_register_repeater_field') ) {
- 		// Custom Fields
+ 		
+        // Custom Fields
  		include_once plugin_dir_path( __FILE__ ) . 'includes/acf/acf-clinica.php';
  		include_once plugin_dir_path( __FILE__ ) . 'includes/acf/acf-promotor.php';
         include_once plugin_dir_path( __FILE__ ) . 'includes/acf/acf-gerenciar-visita.php';
@@ -158,6 +178,9 @@ function acf_install_init() {
 
         // Ajax Login
         include_once plugin_dir_path( __FILE__ ) . 'templates/login/ajax_login.php';
+
+        // Personaliza a tela do WP-Admin
+        include_once plugin_dir_path( __FILE__ ) . 'includes/custom-login.php';
  		
         // Styles
         add_action('admin_head', 'amostras_admin_css');
@@ -166,6 +189,10 @@ function acf_install_init() {
  		add_action( 'admin_enqueue_scripts', 'add_admin_scripts', 10, 1 );
  		add_action( 'wp_enqueue_scripts', 'add_frontend_scripts' );
  		add_action('acf/register_fields', 'register_fields_brazilian_city');
+        
+        // Load jQuery Old Version
+        // After upgrading to WordPress 4.5, an error like the above one could appear in many themes, especially in ThemeForest themes.
+        add_action( 'wp_enqueue_scripts', 'load_old_jquery_fix', 100 );
 
 	}else{
 		
@@ -223,8 +250,6 @@ function include_template_single( $template_path ) {
     return $template_path;
 
 }
-
-require_once('includes/custom-login.php');
 
 /**
  * Populate o SQL com os Estados e Cidades
