@@ -635,11 +635,21 @@ dl.legenda-alerta dd .alerta-informacoes{
 	background: transparent;
 	border: none;
 	font-size: 20px;
-	color: #fff;
+	color: #ffffff;
 	text-transform: uppercase;
 	width: 488px;
 	height: 49px;
 	padding: 5px;
+}
+
+#listar-minhas-clinicas .styled-select select optgroup{
+	padding: .5em;
+}
+
+#listar-minhas-clinicas .styled-select select optgroup,
+#listar-minhas-clinicas .styled-select select optgroup option{
+	background-color: #353535;
+	color: #ffffff;
 }
 
 .table-gerenciar-promotores span.trigger{

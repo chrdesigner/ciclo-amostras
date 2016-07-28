@@ -76,7 +76,7 @@
 		        	jQuery("#geracao-relatorios").show().html(response);
 		            jQuery("#loading-clinica").hide();
 
-		            jQuery.fn.dataTable.moment('DD/MM');
+		            jQuery.fn.dataTable.moment('DD-MM-YYYY');
 
 		            jQuery('.table-default-ca.table-relatorios').DataTable( {
 						dom: 'Bfrtip',
@@ -99,14 +99,14 @@
 								extend: 'excelHtml5',
 								title: titulo + ' - '+ dataHoje,
 								exportOptions: {
-									columns: [ 0, 1, 2, 3, 4 ]
+									columns: ':not(.notPrintable)'
 								}
 							},
 							{
 								extend: 'csvHtml5',
 								title: titulo + ' - '+ dataHoje,
 								exportOptions: {
-									columns: [ 0, 1, 2, 3, 4 ]
+									columns: ':not(.notPrintable)'
 								}
 							}
 				        ]

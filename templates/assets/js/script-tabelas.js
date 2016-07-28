@@ -19,7 +19,7 @@
 		var dia = data.getDate();
 		var dataHoje = ((''+dia).length<2 ? '0' : '') + dia + '/' + ((''+mes).length<2 ? '0' : '') + mes + '/' + data.getFullYear();
 
-		$.fn.dataTable.moment('DD/MM/YYYY');
+		$.fn.dataTable.moment('DD-MM-YYYY');
 
 		$('.table-default-ca.table-clinicas').DataTable( {
 			dom: 'Bfrtip',

@@ -69,7 +69,7 @@
                     <th>Proxima entrega</th>
                     <th class="no-sort">Produtos</th>
                     <th class="no-sort">Obervações</th>
-                    <th class="no-sort"></th>
+                    <th class="no-sort notPrintable"></th>
                 </tr>
             </thead>
             <tbody>
@@ -104,7 +104,7 @@
 	                    $data_programada = get_field('data_programada', $relatorio->ID);
 	                    $data_programada = new DateTime($data_programada);
 	                    
-	                    echo $data_programada->format('d/m/Y');  
+	                    echo $data_programada->format('d-m-Y');  
 	                ?>
 	                </td>
 	                
@@ -116,7 +116,7 @@
 								$data_programada = $programada['data_entrega_amostra'];
 								$data_programada = new DateTime($data_programada);
 
-								echo $data_programada->format('d/m/Y');
+								echo $data_programada->format('d-m-Y');
 							}
 						}
 	                ?>
@@ -127,7 +127,7 @@
 	                    $proxima_entrega = get_field('proxima_entrega', $relatorio->ID);
 	                    $proxima_entrega = new DateTime($proxima_entrega);
 
-	                    echo $proxima_entrega->format('d/m/Y');
+	                    echo $proxima_entrega->format('d-m-Y');
 	                ?>
 	                </td>
 	                
@@ -153,7 +153,7 @@
 	                ?>
 	                </td>
 	                
-	                <td>
+	                <td class="notPrintable">
 	                    <a href="<?php echo get_permalink( $relatorio->ID ); ?>" class="dashicons-before dashicons-edit" title="Editar Relatório">Editar</a>
 	                </td>
 	            </tr>

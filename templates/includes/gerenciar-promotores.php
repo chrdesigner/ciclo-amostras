@@ -129,7 +129,7 @@
 		                	$proxima_entrega = get_field('proxima_entrega', $id_date);
 		                    $proxima_entrega = new DateTime($proxima_entrega);
 
-		                    echo '<a href="'. get_the_permalink() .'" title="Visualizar - '. get_the_title() .'" target="_blank">' . $proxima_entrega->format('d/m/Y') . '</a>';
+		                    echo '<a href="'. get_the_permalink() .'" title="Visualizar - '. get_the_title() .'" target="_blank">' . $proxima_entrega->format('d-m-Y') . '</a>';
 		                    
 		                } 
 
