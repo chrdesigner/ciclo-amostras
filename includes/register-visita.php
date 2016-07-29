@@ -58,9 +58,10 @@
 	    );
 
 	    wp_update_post( $post );
+
     	add_action( 'acf/save_post', 'saved_visita' );
 
-	    $_POST['return'] = add_query_arg( 'updated', 'true', get_permalink( $post_id ) );
+    	wp_redirect( add_query_arg( 'updated', 'true', home_url( '/area-restrita/#visita' ) ) ); exit;
 
 	}
 

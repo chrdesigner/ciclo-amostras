@@ -50,6 +50,7 @@
 	<table class="display table-default-ca table-visita <?php echo $addClass; ?>" cellspacing="0" width="100%">
 		<thead>
 			<tr>
+				<th class="notPrintable">Ciclo</th>
 				<th>Nome da Clínica</th>
 				<th>Nome do Veterinário</th>
 				<th>Cidade</th>
@@ -57,7 +58,7 @@
 				<th>Data Programada</th>
 				<th>Entrega da amostra</th>
 				<th>Proxima entrega</th>
-				<th class="no-sort">Histórico</th>
+				<th class="no-sort notPrintable">Histórico</th>
 			</tr>
 		</thead>
 		<tbody>
@@ -70,12 +71,21 @@
 
 			while ( $loop_visita->have_posts() ) { $loop_visita->the_post();
 
-
 			$posts = get_field('todas_clinicas');
+			$ciclo_visite_acabou = get_field('ciclo_visite_acabou');
 
 		?>
 			
 			<tr class="clickable-row" data-href="<?php the_permalink();?>">
+				<td class="notPrintable">
+					<?php
+						if($ciclo_visite_acabou == null){
+							echo '<abbr id="ativa" class="dashicons-before dashicons-thumbs-up" title="Ciclo de Visita está ativo">ativo</abbr>';
+						}else{
+							echo '<abbr id="inativa" class="dashicons-before dashicons-flag" title="Ciclo de Visita está finalizada">inativa</abbr>';
+						}
+					?>
+				</td>
 				<td>
 				<?php
 					
@@ -175,7 +185,7 @@
 					}
 				?>
 				</td>
-				<td class="td-historico">
+				<td class="td-historico notPrintable">
 					<a href="<?php the_permalink();?>#acf-relatorio_do_promotor" title="Ver Histórico">Ver</a>
 				</td>
 			</tr>
@@ -191,7 +201,7 @@
 		</tbody>
 		<tfoot>
 			<tr>
-				<td colspan="8">
+				<td colspan="9">
 					<form id="nova_visita" name="nova_visita" method="post" action="" class="front-end-form" enctype="multipart/form-data">
 						<label class="adicionar-visita" for="nome-visita">Adicionar Nova Visita</label>
 						<fieldset id="campos-visita" style="display: none;">

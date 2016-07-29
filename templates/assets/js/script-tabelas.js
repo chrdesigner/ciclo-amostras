@@ -100,14 +100,14 @@
 					extend: 'excelHtml5',
 					title: 'Agenda de Visitas - '+ dataHoje,
 					exportOptions: {
-						columns: [ 0, 1, 2, 3, 4 ]
+						columns: ':not(.notPrintable)'
 					}
 				},
 				{
 					extend: 'csvHtml5',
 					title: 'Agenda de Visitas - '+ dataHoje,
 					exportOptions: {
-						columns: [ 0, 1, 2, 3, 4 ]
+						columns: ':not(.notPrintable)'
 					}
 				}
 	        ]

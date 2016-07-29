@@ -315,12 +315,14 @@ a.dashicons-before.dashicons-edit:before{
 	width: 100%;
 }
 
-#ca-content-main #acf-situacao_do_cadastro{
+#ca-content-main #acf-situacao_do_cadastro,
+#ca-content-main #acf_acf_ciclo-de-visita{
 	background-color: #353535;
 	padding: 1rem;
 }
 
-#ca-content-main #acf-situacao_do_cadastro .label{
+#ca-content-main #acf-situacao_do_cadastro .label,
+#ca-content-main #acf_acf_ciclo-de-visita .label{
 	text-shadow: none;
 }
 
@@ -674,4 +676,21 @@ dl.legenda-alerta dd .alerta-informacoes{
 	text-align: center;
 }
 
+#filtrar-data{
+	width: 100%;
+	margin-bottom: 3em;
+}
 
+#filtrar-data thead{
+	background-color: #1e1e1e;
+	border: 1px solid #0f0f0f;
+}
+
+#filtrar-data thead tr th{
+	color: #3E3E3E;
+}
+
+.hidden-value{
+	padding: 0 0;
+	display: none;
+}

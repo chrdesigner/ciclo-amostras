@@ -54,7 +54,7 @@
 			var data = new Date();
 			var mes = data.getMonth()+1;
 			var dia = data.getDate();
-			var dataHoje = ( (''+dia).length < 2 ? '0' : '' ) + dia + '/' + ( (''+mes).length < 2 ? '0' : '' ) + mes + '/' + data.getFullYear();
+			var dataHoje = ( (''+dia).length < 2 ? '0' : '' ) + dia + '-' + ( (''+mes).length < 2 ? '0' : '' ) + mes + '-' + data.getFullYear();
 
 			var titulo = jQuery('option.ajax:selected').data('title');
 
@@ -84,7 +84,7 @@
 				            [ 10, 25, 50, -1 ],
 				            [ '10 resultados', '25 resultados', '50 resultados', 'Todos os resultados' ]
 				        ],
-				    	"order": [[ 3, "asc" ]],
+				    	"order": [[ 4, "asc" ]],
 						"columnDefs": [ {
 					          "targets": 'no-sort',
 					          "orderable": false,
@@ -111,9 +111,96 @@
 							}
 				        ]
 					} );
+
+					$.fn.dataTableExt.afnFiltering.push(
+						function( oSettings, aData, iDataIndex ) {
+							
+							var today = new Date();
+							var dd = today.getDate();
+							var mm = today.getMonth();
+							var yyyy = today.getFullYear();
+							
+							if (dd < 10) dd = '0'+dd;
+							
+							if (mm < 10) mm = '0'+mm;
+							
+							today = dd+'-'+mm+'-'+yyyy;
+							
+							if ($('#min').val() != '' || $('#max').val() != '') {
+								var iMin_temp = $('#min').val();
+								if (iMin_temp == '') {
+									iMin_temp = '01-01-1980';
+								}
+								
+								var iMax_temp = $('#max').val();
+								if (iMax_temp == '') {
+									iMax_temp = today;
+								}
+								
+								var arr_min = iMin_temp.split('-');
+								var arr_max = iMax_temp.split('-');
+								var arr_date = aData[4].split('-');
+
+								var iMin  = new Date( arr_min[2],  arr_min[1],  arr_min[0], 0, 0, 0, 0);
+								var iMax  = new Date( arr_max[2],  arr_max[1],  arr_max[0], 0, 0, 0, 0);
+								var iDate = new Date( arr_date[2], arr_date[1], arr_date[0], 0, 0, 0, 0);
+								
+								if ( iMin == '' && iMax == '' )
+								{
+									return true;
+								}
+								else if ( iMin == '' && iDate < iMax )
+								{
+									return true;
+								}
+								else if ( iMin <= iDate && '' == iMax )
+								{
+									return true;
+								}
+								else if ( iMin <= iDate && iDate <= iMax )
+								{
+									return true;
+								}
+
+								// console.log('Minimo ' + iMin);
+								// console.log('Maximo ' + iMax);
+								// console.log('Data ' + iDate);
+								
+								return false;
+
+							}
+						}
+					);
+
+					$(document).ready(function(){
+
+				        $(function() {
+				            $( '.date-filter' ).datepicker({
+							    dateFormat: 'dd-mm-yy',
+							    dayNames: ['Domingo','Segunda','Terça','Quarta','Quinta','Sexta','Sábado'],
+							    dayNamesMin: ['D','S','T','Q','Q','S','S','D'],
+							    dayNamesShort: ['Dom','Seg','Ter','Qua','Qui','Sex','Sáb','Dom'],
+							    monthNames: ['Janeiro','Fevereiro','Março','Abril','Maio','Junho','Julho','Agosto','Setembro','Outubro','Novembro','Dezembro'],
+							    monthNamesShort: ['Jan','Fev','Mar','Abr','Mai','Jun','Jul','Ago','Set','Out','Nov','Dez'],
+							    nextText: 'Próximo',
+							    prevText: 'Anterior'
+							});
+				        });
+
+				        var oTable=$('.table-default-ca.table-relatorios').dataTable();
+
+				        /* Add event listeners to the two date-range filtering inputs */
+
+				   		$('#min').change( function() { oTable.fnDraw(); } );
+				        $('#max').change( function() { oTable.fnDraw(); } );
+
+				    });
+
 		            return false;
 		        }
 		    });
 
 		};
 	</script>
+	<link rel="stylesheet" href="//code.jquery.com/ui/1.12.0/themes/base/jquery-ui.css">
+	<script src="https://code.jquery.com/ui/1.12.0/jquery-ui.js"></script>
