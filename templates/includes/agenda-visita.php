@@ -159,16 +159,20 @@
 					    while( have_rows('relatorio_do_promotor') ) : the_row();
 					        
 					        $data_programada = get_sub_field('data_entrega_amostra', false, false);
-					        $data_programada = new DateTime($data_programada);
 
-					        echo $data_programada->format('d-m-Y');
+					        if( $data_programada != null){
+					        
+					        	$data_programada = new DateTime($data_programada);
+
+					        	echo $data_programada->format('d-m-Y');
+
+					        }else{
+
+								echo '<strong class="alerta-informacoes">*</strong>';
+							
+							}
 
 					    endwhile;
-
-					    else :
-
-					    	echo '<strong class="alerta-informacoes">*</strong>';
-
 					endif;
 				?>
 				</td>

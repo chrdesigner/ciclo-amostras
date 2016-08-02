@@ -61,7 +61,9 @@
 
     	add_action( 'acf/save_post', 'saved_visita' );
 
-    	wp_redirect( add_query_arg( 'updated', 'true', home_url( '/area-restrita/#visita' ) ) ); exit;
+    	wp_redirect( home_url( '/area-restrita/#visita' ) );
+
+		die();
 
 	}
 

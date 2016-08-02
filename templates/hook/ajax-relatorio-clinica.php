@@ -163,15 +163,26 @@
 		            </td>
 		            <td class="notPrintable">
 		                <?php
+		                	
 		                	$programada_rows = get_field('relatorio_do_promotor', $relatorio->ID);
-		                	if($programada_rows) {
+
+		                	if($programada_rows == null){
+
+		                		echo '<strong class="alerta-informacoes">*</strong>';
+
+		                	}else{
+
 								foreach($programada_rows as $programada) {
+									
 									$data_programada = $programada['data_entrega_amostra'];
 									$data_programada = new DateTime($data_programada);
 
 									echo $data_programada->format('d-m-Y');
+
 								}
-							}
+
+		                	};
+		     				
 		                ?>
 					</td>
 		            <td class="notPrintable">
@@ -182,16 +193,27 @@
 		            </td>
 		                
 		            <td class="hidden-value">
-		                <?php
+			            <?php
+			                	
 		                	$programada_rows = get_field('relatorio_do_promotor', $relatorio->ID);
-		                	if($programada_rows) {
+
+		                	if($programada_rows == null){
+
+		                		echo '<strong class="alerta-informacoes">*</strong>';
+
+		                	}else{
+
 								foreach($programada_rows as $programada) {
+									
 									$data_programada = $programada['data_entrega_amostra'];
 									$data_programada = new DateTime($data_programada);
 
 									echo $data_programada->format('d/m/y');
+
 								}
-							}
+
+		                	};
+		     				
 		                ?>
 					</td>
 		                

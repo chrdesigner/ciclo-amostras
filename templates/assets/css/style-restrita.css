@@ -623,7 +623,10 @@ dl.legenda-alerta dd .alerta-informacoes{
 
 
 #listar-minhas-clinicas .styled-select {
-   background: url(http://i62.tinypic.com/15xvbd5.png) no-repeat #353535 96% center;
+   background-image: url(http://i62.tinypic.com/15xvbd5.png);
+   background-repeat: no-repeat;
+   background-color: #353535;
+   background-position: 96% center;
    overflow: hidden;
    width: 460px;
    height: 49px;
@@ -633,8 +636,8 @@ dl.legenda-alerta dd .alerta-informacoes{
    border-radius: 5px;
 }
 
-#listar-minhas-clinicas .styled-select select {
-	background: transparent;
+#listar-minhas-clinicas select {
+	background-color: transparent;
 	border: none;
 	font-size: 20px;
 	color: #ffffff;
@@ -646,12 +649,13 @@ dl.legenda-alerta dd .alerta-informacoes{
 
 #listar-minhas-clinicas .styled-select select optgroup{
 	padding: .5em;
+	background-color: #353535!important;
+	color: #ffffff!important;
 }
 
-#listar-minhas-clinicas .styled-select select optgroup,
-#listar-minhas-clinicas .styled-select select optgroup option{
-	background-color: #353535;
-	color: #ffffff;
+#listar-minhas-clinicas select optgroup option{
+	background-color: #353535!important;
+	color: #ffffff!important;	
 }
 
 .table-gerenciar-promotores span.trigger{

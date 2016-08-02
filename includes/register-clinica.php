@@ -20,8 +20,11 @@
 	        $post_id = $wpdb->get_var( $query );
 	        $meta = get_post_meta( $post_id, 'post_title', TRUE );
 	        $meta++;
+
 	        update_post_meta( $post_id, 'post_title', $meta );
-	    
+
+
+
 	    } else {
 
 		    $nova_clinica = array(
@@ -40,7 +43,7 @@
 			$post = get_post($pid);
 
 			wp_redirect($url);
-			
+
 			exit();
 
 		}
@@ -49,6 +52,7 @@
 	do_action('wp_insert_post', 'wp_insert_post');
 
 	add_action( 'acf/save_post', 'update_clinica', 10, 2 );
+	
 	function update_clinica( $post_id ) {
 	    
 	    if ( get_post_type( $post_id ) != 'clinica' || get_post_type( $post_id ) == 'acf' ) return;
@@ -69,8 +73,11 @@
 	    );
 
 	    wp_update_post( $post );
+
     	add_action( 'acf/save_post', 'saved_clinica' );
 
-    	wp_redirect( add_query_arg( 'updated', 'true', home_url( '/area-restrita/#clinicas' ) ) ); exit;
+    	wp_redirect( home_url( '/area-restrita/#clinicas' ) );
+
+		die();
 
 	}
