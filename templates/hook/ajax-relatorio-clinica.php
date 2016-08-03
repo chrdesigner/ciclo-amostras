@@ -162,8 +162,7 @@
 		                <?php echo $data_programada->format('d-m-Y'); ?>
 		            </td>
 		            <td class="notPrintable">
-		                <?php
-		                	
+		                <?php		                	
 		                	$programada_rows = get_field('relatorio_do_promotor', $relatorio->ID);
 
 		                	if($programada_rows == null){
@@ -177,12 +176,14 @@
 									$data_programada = $programada['data_entrega_amostra'];
 									$data_programada = new DateTime($data_programada);
 
-									echo $data_programada->format('d-m-Y');
-
+									if( $programada['data_entrega_amostra'] != null){
+										echo $data_programada->format('d-m-Y');
+									}else{
+										echo '<strong class="alerta-informacoes">*</strong>';
+									};
 								}
 
 		                	};
-		     				
 		                ?>
 					</td>
 		            <td class="notPrintable">
