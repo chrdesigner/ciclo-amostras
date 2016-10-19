@@ -14,11 +14,13 @@
 	        $('#hidden_clinica').val(x);
 	    });
 
-		var data = new Date();
-		var mes = data.getMonth()+1;
-		var dia = data.getDate();
-		var dataHoje = ((''+dia).length<2 ? '0' : '') + dia + '/' + ((''+mes).length<2 ? '0' : '') + mes + '/' + data.getFullYear();
+		var date = new Date();
+		var mes = date.getMonth()+1;
+		var dia = date.getDate();
+		var dataHoje = ((''+dia).length<2 ? '0' : '') + dia + '/' + ((''+mes).length<2 ? '0' : '') + mes + '/' + date.getFullYear();
 
+		var url_language = 'http://cdn.datatables.net/plug-ins/1.10.11/i18n/Portuguese-Brasil.json';
+		
 		$.fn.dataTable.moment('DD-MM-YYYY');
 
 		$('.table-default-ca.table-clinicas').DataTable( {
@@ -30,11 +32,11 @@
 	        ],
 			order: [[ 0, "asc" ]],
 	    	columnDefs: [ {
-		          "targets": 'no-sort',
-		          "orderable": false,
+		          'targets': 'no-sort',
+		          'orderable': false,
 		    } ],
 	        language: {
-	            "url": "//cdn.datatables.net/plug-ins/1.10.11/i18n/Portuguese-Brasil.json"
+	            'url': url_language
 	        },
 	        buttons: [
 	         	'pageLength',
@@ -56,14 +58,14 @@
 	            [ '10 resultados', '25 resultados', '50 resultados', 'Todos os resultados' ]
 	        ],
 	        //scrollX: true,
-			order: [[ 6, "asc" ]],
+			order: [[ 6, 'asc' ]],
 			columnDefs: [ {
-		          "targets": 'no-sort',
-		          "orderable": false,
-		          "searchable": false
+		          'targets': 'no-sort',
+		          'orderable': false,
+		          'searchable': false
 		    } ],
 	        language: {
-	            "url": "//cdn.datatables.net/plug-ins/1.10.11/i18n/Portuguese-Brasil.json"
+	            'url': url_language
 	        },
 	        buttons: [
 	         	'pageLength',
@@ -85,14 +87,14 @@
 	            [ '10 resultados', '25 resultados', '50 resultados', 'Todos os resultados' ]
 	        ],
 	        //scrollX: true,
-	    	order: [[ 6, "asc" ]],
+	    	order: [[ 6, 'asc' ]],
 	    	columnDefs: [ {
-		          "targets": 'no-sort',
-		          "orderable": false,
-		          "searchable": false
+		          'targets': 'no-sort',
+		          'orderable': false,
+		          'searchable': false
 		    } ],
 	        language: {
-	            "url": "//cdn.datatables.net/plug-ins/1.10.11/i18n/Portuguese-Brasil.json"
+	            'url': url_language
 	        },
 	        buttons: [
 	         	'pageLength',

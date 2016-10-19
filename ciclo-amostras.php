@@ -3,7 +3,7 @@
  * Plugin Name:       Ciclo de Amostras
  * Plugin URI:        https://github.com/chrdesigner/ciclo-amostras/
  * Description:       Plugin desenvolvido para König
- * Version:           2.0.0
+ * Version:           2.0.1
  * Author:            CHR Designer
  * Author URI:        http://www.chrdesigner.com
  * License:           GPL-2.0+

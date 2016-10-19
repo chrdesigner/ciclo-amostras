@@ -15,15 +15,15 @@
 		$args = array (
 			'post_type'			=> array( 'gerenciar_visita' ),
 			'post_status'		=> array( 'publish' ),
-			'meta_query'        => array(
-				array(
-					'key'       => 'proxima_entrega',
-					'value'     => date("Ymd"),
-					'compare'   => '>=',
-					'type'      => 'NUMERIC',
-				),
-			),
 			'posts_per_page'	=> -1,
+			// 'meta_query'        => array(
+			// 	array(
+			// 		'key'       => 'proxima_entrega',
+			// 		'value'     => date('Ymd'),
+			// 		'compare'   => '>=',
+			// 		'type'      => 'NUMERIC',
+			// 	),
+			// ),
 		);
 
 	}else{
@@ -32,15 +32,15 @@
 			'post_type'			=> array( 'gerenciar_visita' ),
 			'post_status'		=> array( 'publish' ),
 			'author'            => get_current_user_id(),
-			'meta_query'        => array(
-				array(
-					'key'       => 'proxima_entrega',
-					'value'     => date("Ymd"),
-					'compare'   => '>=',
-					'type'      => 'NUMERIC',
-				),
-			),
 			'posts_per_page'	=> -1,
+			// 'meta_query'        => array(
+			// 	array(
+			// 		'key'       => 'proxima_entrega',
+			// 		'value'     => date('Ymd'),
+			// 		'compare'   => '>=',
+			// 		'type'      => 'NUMERIC',
+			// 	),
+			// ),
 		);
 
 	};
@@ -69,15 +69,17 @@
 
 		if ( $loop_visita->have_posts() ) {
 
-			while ( $loop_visita->have_posts() ) { $loop_visita->the_post();
+			$count = 0;
+
+			while ( $loop_visita->have_posts() ) { $loop_visita->the_post(); $count ++;
 
 			$posts = get_field('todas_clinicas');
 			$ciclo_visite_acabou = get_field('ciclo_visite_acabou');
-
 		?>
 			
 			<tr class="clickable-row" data-href="<?php the_permalink();?>">
 				<td class="notPrintable">
+					<?php echo '<span style="display: none">' . $count . '</span>';?>
 					<?php
 						if($ciclo_visite_acabou == null){
 							echo '<abbr id="ativa" class="dashicons-before dashicons-thumbs-up" title="Ciclo de Visita está ativo">ativo</abbr>';
